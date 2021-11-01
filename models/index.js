@@ -1,22 +1,34 @@
 const User = require("./User");
 const Meme = require("./Meme");
-const Group = require("./Group");
+const Comments = require("./Comments");
+const Share = require("./Share");
 
-User.hasMany(Meme,{
-    onDelete:"CASCADE"
-});
+User.hasMany(Meme);
+User.hasMany(Share);
+User.hasMany(Comments);
+
+// User.hasMany(Comments)
+Meme.hasMany(Share);
+Meme.hasMany(Comments);
 Meme.belongsTo(User);
 
-User.belongsToMany(Group,{
-    through:"UserGroup"
-})
+Share.belongsTo(User);
+Share.belongsTo(Meme);
 
-Group.belongsToMany(User,{
-    through:"UserGroup"
-})
+Comments.belongsTo(User);
+Comments.belongsTo(Meme)
+
+// User.belongsToMany(Group,{
+//     through:"UserGroup"
+// })
+
+// Group.belongsToMany(User,{
+//     through:"UserGroup"
+// })
 
 module.exports={
     User,
     Meme,
-    Group
+    Comments,
+    Share
 };
