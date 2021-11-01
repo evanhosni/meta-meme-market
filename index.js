@@ -19,6 +19,10 @@ app.set('view engine', 'handlebars');
 app.use(express.static("public"));
 
 
+
+const signuploadwidgetRouter = require('./routes/signuploadwidget')
+app.use('/api/signuploadwidget', signuploadwidgetRouter)
+
 // Sets up the Express app to handle data parsing
 
 app.use(session({
