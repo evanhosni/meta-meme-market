@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    background: salmon;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    border-bottom: 3px solid black;
+    box-shadow: 0px 5px 5px black;
+    /* font-family: 'Courier New', Courier, monospace; */
+}
+
+#home {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+#home .card {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: larger;
+    padding: 50px;
+}
