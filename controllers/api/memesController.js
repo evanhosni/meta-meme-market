@@ -38,4 +38,27 @@ router.post("/", (req, res) => {
     });
 });
 
+router.put('/buy/:id', (req, res) => {
+  const amt = req.body.amt;
+  Meme.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(meme => {
+    User.findOne({
+      where: {
+        id: req.session.user.id
+      }
+    }).then(async (buyer) => {
+      await require('../../market/transaction')(buyer, meme, amt);
+      res.status(200).json()
+    })
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).json({ message: 'an error occured', err: err })
+  })
+});
+
 module.exports = router;

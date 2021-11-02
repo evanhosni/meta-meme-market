@@ -31,8 +31,11 @@ const buyShares = async (buyer, meme, amt) => {
     });
 
     shares.forEach(async (share) => {
-        await tradeShares(buyer, share);
-        await share.save();
-        await buyer.save();
+        if(await tradeShares(buyer, share)) {
+            await share.save();
+            await buyer.save();
+        }
     });
 }
+
+module.exports = buyShares;
