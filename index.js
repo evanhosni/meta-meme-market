@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3000;
 const hbs = exphbs.create({});
 
 // Requiring our models for syncing
-const {User,Meme,Group} = require('./models');
+const {User,Meme,Comments,Share} = require('./models');
 const routes = require("./controllers");
 
 app.engine('handlebars', hbs.engine);
@@ -22,8 +22,8 @@ app.use(express.static("public"));
 
 
 //cloudinary
-const signuploadwidgetRouter = require('./controllers/signuploadwidget')
-app.use('/api/upload', signuploadwidgetRouter)
+const signupload = require('./controllers/signupload')
+app.use('/api/upload', signupload)
 
 
 // Sets up the Express app to handle data parsing

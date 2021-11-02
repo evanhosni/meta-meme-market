@@ -4,28 +4,26 @@ require('../config/cloudinary');
 
 const cloudinary = require('cloudinary').v2
 const cloudName = cloudinary.config().cloud_name;
-const uploadPreset = cloudinary.config().upload_preset;
 const apiKey = cloudinary.config().api_key;
 const apiSecret = cloudinary.config().api_secret;
 
-const signuploadwidget = () => {
-  const timestamp = Math.round((new Date).getTime()/1000);
-  const signature = cloudinary.utils.api_sign_request({
-    timestamp: timestamp,
-    source: 'uw',
-    folder: 'memes'}, apiSecret);
+const signuploadform = () => {
+    const timestamp = Math.round((new Date).getTime()/1000);
   
-  return { timestamp, signature }
-}
+    const signature = cloudinary.utils.api_sign_request({
+      timestamp: timestamp,
+      eager: 'c_pad,h_300,w_400|c_crop,h_200,w_260'}, apiSecret);
+  
+    return { timestamp, signature }
+  }
 
 // using this API should require authentication
 router.get('/', function (req, res, next) {
-  const sig = signuploadwidget()
+  const sig = signuploadform()
   res.json({
     signature: sig.signature,
     timestamp: sig.timestamp,
     cloudname: cloudName,
-    uploadpreset: uploadPreset,
     apikey: apiKey
   })
 })

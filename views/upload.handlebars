@@ -1,9 +1,16 @@
-<h1>upload</h1>
 
-  <button id="upload_widget">Upload Meme</button>
+<div id="upload">
+  <form id="upload_form" method="post" enctype="multipart/form-data">
+<!-- ondrop="dropHandler(event);" ondragover="dragOverHandler(event);" --> <div id="meme_upload_container" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+      <label for="file" id="choose_meme">Choose Meme</label>
+      <input id="file" type="file" style="display: none;">
+      <div id="meme_img"></div>
+    </div>
+    <input type="text" id="meme_title" placeholder="title"><br>
+    <input type="text" id="number_shares" placeholder="# of shares"><br>
+    <input type="text" id="share_price" placeholder="$ per share"><br>
+  </form>
+  <button id="yeet">Yeet</button>
 
-  <!-- cloudinary upload widget -->
-  <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
-
-  <!-- local upload instantiation -->
   <script src="/js/upload.js" type="text/javascript"></script>
+</div>
