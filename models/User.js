@@ -66,6 +66,14 @@ User.init({
             isNumeric: true,
             len: [9.9]
         }
+    },
+    balance: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+            isNumeric: true
+        },
+        defaultValue: 10
     }
 }, {
     hooks: {

@@ -24,6 +24,8 @@ async function checkIncubating() {
     }
 }
 
-async function releaseShares() {
-    
-}
+/*
+Track: % of meme owned
+# of shares - retrieving the number of shares owned when visiting a page
+selling shares - getting input from form 
+*/
