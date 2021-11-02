@@ -105,19 +105,36 @@ const seed = async () => {
             number_shares: 5,
             bought_price: 11.11,
             user_id: 1,
-            meme_id: 6
+            meme_id: 6,
+            listed_at: Date.now()
         },
         {
             number_shares: 6,
             bought_price: 12.11,
             user_id: 2,
-            meme_id: 5
+            meme_id: 5,
+            listed_at: Date.now()
         },
         {
             number_shares: 7,
             bought_price: 13.11,
             user_id: 3,
-            meme_id: 4
+            meme_id: 4,
+            listed_at: Date.now()
+        },
+        {
+            number_shares: 7,
+            bought_price: 13.11,
+            user_id: 3,
+            meme_id: 4,
+            listed_at: Date.now()
+        },
+        {
+            number_shares: 7,
+            bought_price: 13.11,
+            user_id: 3,
+            meme_id: 4,
+            listed_at: Date.now()
         },
     ])
 
@@ -145,7 +162,6 @@ const seed = async () => {
 
 sequelize.sync({ force: true }).then(() => {
     seed().catch(err=>{
-        console.log(err)
-        
+        console.log(err);
     });
 })

@@ -14,9 +14,11 @@ Share.init({
         type:DataTypes.INTEGER,
         allowNull:false,
     },
+    listed_at: {
+        type: DataTypes.DATE,
+    },
     bought_price:{
         type: DataTypes.INTEGER,
-        allowNull: false,
         validate:{
             isNumeric: true
         }

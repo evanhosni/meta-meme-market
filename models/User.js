@@ -66,6 +66,14 @@ User.init({
             isNumeric: true,
             len: [9.9]
         }
+    },
+    balance: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+            isNumeric: true
+        },
+        defaultValue: 10
     }
 }, {
     hooks: {
@@ -80,7 +88,7 @@ User.init({
             updatedUser.username = updatedUser.username.toLowerCase();
             updatedUser.password = bcrypt.hashSync(updatedUser.password, 5);
             updatedUser.account_number = updatedUser.account_number.toString();
-            updateUser.account_number = bcrypt.hashSync(updateUser.account_number, 5);
+            updatedUser.account_number = bcrypt.hashSync(updatedUser.account_number, 5);
             return updatedUser;
         }
     },
