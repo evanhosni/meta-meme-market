@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const sequelize = require('../config/sequelize');
 
 class Meme extends Model { }
 
@@ -43,7 +43,10 @@ Meme.init({
     },
     created_at: {
         type: DataTypes.DATE,
-        allowNull: false
+        allowNull: false,
+        validate:{
+            isDate:true
+        }
     },
     user_id: {
         type: DataTypes.INTEGER,
