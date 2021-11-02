@@ -1,45 +1,91 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const sequelize = require('../config/sequelize');
 const bcrypt = require("bcrypt");
 
-class User extends Model {}
+class User extends Model { }
 
 User.init({
     // add properites here, ex:
-    username: {
-         type: DataTypes.STRING,
-         unique:true,
-         validate:{
-            isAlphanumeric:true
-         }
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+        autoIncrement: true
     },
-    password:{
-        type:DataTypes.STRING,
-        validate:{
-            // len:[8]
+    username: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+            isAlphanumeric: true,
+            len: [4,30]
         }
     },
-    email:{
-        type:DataTypes.STRING,
-        unique:true,
-        validate:{
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
             // isEmail:true
         }
+    },
+    password: {
+        type: DataTypes.STRING,
+        validate: {
+            len:[8],
+            isAlphanumeric:true
+        }
+    },
+    state_identification: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+            isAlphanumeric: true
+        }
+    },
+    bank_name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            isAlpha: true
+        }
+    },
+    account_number: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        unique: true,
+        validate: {
+            isNumeric: true
+        }
+    },
+    routing_number: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+            isNumeric: true,
+            len: [9.9]
+        }
     }
-},{
-    hooks:{
-        beforeCreate(newUser){
+}, {
+    hooks: {
+        beforeCreate(newUser) {
             newUser.username = newUser.username.toLowerCase();
-            newUser.password = bcrypt.hashSync(newUser.password,5);
+            newUser.password = bcrypt.hashSync(newUser.password, 5);
+            newUser.account_number = bcrypt.hashSync(newUser.account_number, 5);
             return newUser;
         },
-        beforeUpdate(updatedUser){
+        beforeUpdate(updatedUser) {
             updatedUser.username = updatedUser.username.toLowerCase();
-            updatedUser.password = bcrypt.hashSync(updatedUser.password,5);
+            updatedUser.password = bcrypt.hashSync(updatedUser.password, 5);
+            updateUser.account_number = bcrypt.hashSync(updateUser.account_number, 5);
             return updatedUser;
         }
     },
     sequelize,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'user'
 });
 
 module.exports = User;
