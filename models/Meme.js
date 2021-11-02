@@ -43,7 +43,10 @@ Meme.init({
     },
     created_at: {
         type: DataTypes.DATE,
-        allowNull: false
+        allowNull: false,
+        validate:{
+            isDate:true
+        }
     },
     user_id: {
         type: DataTypes.INTEGER,
