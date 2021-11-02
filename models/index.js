@@ -26,7 +26,7 @@ Comments.belongsTo(Meme)
 //     through:"UserGroup"
 // })
 
-module.exports={
+module.exports = {
     User,
     Meme,
     Comments,

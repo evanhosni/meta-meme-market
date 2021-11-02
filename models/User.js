@@ -17,7 +17,7 @@ User.init({
         allowNull: false,
         unique: true,
         validate: {
-            isAlphanumeric: true,
+            // isAlphanumeric: true,
             len: [4,30]
         }
     },
@@ -33,7 +33,7 @@ User.init({
         type: DataTypes.STRING,
         validate: {
             len:[8],
-            isAlphanumeric:true
+            // isAlphanumeric:true
         }
     },
     state_identification: {
@@ -52,7 +52,7 @@ User.init({
         }
     },
     account_number: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         unique: true,
         validate: {
@@ -72,12 +72,14 @@ User.init({
         beforeCreate(newUser) {
             newUser.username = newUser.username.toLowerCase();
             newUser.password = bcrypt.hashSync(newUser.password, 5);
+            newUser.account_number = newUser.account_number.toString();
             newUser.account_number = bcrypt.hashSync(newUser.account_number, 5);
             return newUser;
         },
         beforeUpdate(updatedUser) {
             updatedUser.username = updatedUser.username.toLowerCase();
             updatedUser.password = bcrypt.hashSync(updatedUser.password, 5);
+            updatedUser.account_number = updatedUser.account_number.toString();
             updateUser.account_number = bcrypt.hashSync(updateUser.account_number, 5);
             return updatedUser;
         }
