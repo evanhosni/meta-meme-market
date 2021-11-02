@@ -4,12 +4,12 @@ require('../config/cloudinary');
 
 const cloudinary = require('cloudinary').v2
 const cloudName = cloudinary.config().cloud_name;
+const uploadPreset = cloudinary.config().upload_preset;
 const apiKey = cloudinary.config().api_key;
 const apiSecret = cloudinary.config().api_secret;
 
 const signuploadwidget = () => {
   const timestamp = Math.round((new Date).getTime()/1000);
-
   const signature = cloudinary.utils.api_sign_request({
     timestamp: timestamp,
     source: 'uw',
@@ -25,6 +25,7 @@ router.get('/', function (req, res, next) {
     signature: sig.signature,
     timestamp: sig.timestamp,
     cloudname: cloudName,
+    uploadpreset: uploadPreset,
     apikey: apiKey
   })
 })
