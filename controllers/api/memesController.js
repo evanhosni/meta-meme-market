@@ -1,8 +1,8 @@
 const express = require("express");
-const { now } = require("sequelize/types/lib/utils");
+// const { now } = require("sequelize/types/lib/utils");
 const router = express.Router();
 const { Meme, User, Comments } = require("../../models");
-const session = require('session')
+// const session = require('session')
 
 router.get("/:id", (req, res) => {
   Meme.findOne({
