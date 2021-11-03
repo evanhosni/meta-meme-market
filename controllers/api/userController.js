@@ -63,31 +63,21 @@ router.post("/login", (req, res) => {
         }
     }).then(foundUser => {
         if (!foundUser) {
-            return req.session.destroy(() => {
-                return res.status(401).json({ message: "incorrect email or password" })
-            })
-        }
-        if (!req.session.password){
-            return req.session.destroy(() => {
-                return res.status(401).json({ message: "incorrect email or password" })
-            })
-        }
-        if (bcrypt.compareSync(req.body.password, foundUser.password)) {
+            req.session.destroy()
+            res.status(401).json({ message: "incorrect email or password" })
+        } else {
+            if (bcrypt.compareSync(req.body.password, foundUser.password)) {
                 req.session.user = {
-                    id: foundUser.id,
                     username: foundUser.username,
                     email: foundUser.email,
+                    id: foundUser.id
                 }
-                return res.json({
-                    id: foundUser.id,
-                    username: foundUser.username,
-                    email: foundUser.email,
-                })
+                res.json(foundUser)
             } else {
-                req.session.destroy(()=>{
-                return res.status(401).json({ message: "incorrect email or password" })
-            })
-    }
+                req.session.destroy()
+                res.status(401).json({ message: "incorrect email or password" })
+            }
+        }
     }).catch(err => {
         console.log(err);
         res.status(500).json(err);
