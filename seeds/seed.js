@@ -2,11 +2,12 @@ const sequelize = require("../config/sequelize");
 const { User, Meme, Share, Comments } = require("../models")
 
 const seed = async () => {
-    const userData = await User.bulkCreate([
+
+    const newUser = await User.bulkCreate([
         {
             username: "joe",
             email: "joe@joe.joe",
-            password: "password",  //'$2b$05$4C9TpL09IiPxekQ/T50ct.Oy0liVAgolrw1z6frO9Guz.NUoeeSey'
+            password: "password",  //'$2b$05$4C9TpL09IiPxekQ/T50ct.Oy0liVAgolrw1z6frO9Guz.NUoeeSey',
             state_identification: 'joe123',
             bank_name: 'bank of america',
             account_number: 123456789,
@@ -15,7 +16,7 @@ const seed = async () => {
         {
             username: "louis",
             email: "louis@joe.joe",
-            password: "password",  //'$2b$05$4C9TpL09IiPxekQ/T50ct.Oy0liVAgolrw1z6frO9Guz.NUoeeSey'
+            password: "password",  //'$2b$05$4C9TpL09IiPxekQ/T50ct.Oy0liVAgolrw1z6frO9Guz.NUoeeSey',
             state_identification: 'louis123',
             bank_name: 'chase',
             account_number: 234567890,
@@ -24,7 +25,7 @@ const seed = async () => {
         {
             username: "brett",
             email: "brett@joe.joe",
-            password: "password",  //'$2b$05$4C9TpL09IiPxekQ/T50ct.Oy0liVAgolrw1z6frO9Guz.NUoeeSey'
+            password: "password",  //'$2b$05$4C9TpL09IiPxekQ/T50ct.Oy0liVAgolrw1z6frO9Guz.NUoeeSey',
             state_identification: 'brett123',
             bank_name: 'seafirst',
             account_number: 345678901,
@@ -33,7 +34,7 @@ const seed = async () => {
         {
             username: "michael",
             email: "michael@joe.joe",
-            password: "password",  //'$2b$05$4C9TpL09IiPxekQ/T50ct.Oy0liVAgolrw1z6frO9Guz.NUoeeSey'
+            password: "password",  //'$2b$05$4C9TpL09IiPxekQ/T50ct.Oy0liVAgolrw1z6frO9Guz.NUoeeSey',
             state_identification: 'michael123',
             bank_name: 'washington mutual',
             account_number: 456789012,
@@ -45,6 +46,7 @@ const seed = async () => {
 
     const memesData = await Meme.bulkCreate([
         {
+
             img: "https://res.cloudinary.com/metamememarket/image/upload/v1635878183/e4rkyhci8mnlniz8nj9b.jpg",
             title: "Meme1",
             number_shares: 100,
@@ -134,6 +136,7 @@ const seed = async () => {
         },
         {
             comment_text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae necessitatibus perferendis animi sed temporibus quae ipsum sapiente nam ipsam, fugit in accusamus illo explicabo provident modi quam laboriosam ex est! Lorem ipsum dolor sit amet.',
+
             user_id: 3,
             meme_id: 4
         },
@@ -142,7 +145,8 @@ const seed = async () => {
 
 sequelize.sync({ force: true }).then(() => {
     seed().catch(err=>{
-        console.log(err)
-        
+
+        console.log(err);
     });
 })
+

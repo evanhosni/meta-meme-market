@@ -22,8 +22,10 @@ app.use(express.static("public"));
 
 
 //cloudinary
+
 const signupload = require('./controllers/signupload')
 app.use('/api/upload', signupload)
+
 
 
 // Sets up the Express app to handle data parsing
