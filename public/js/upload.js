@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           })
           .then((data) => {
               console.log(JSON.parse(data))
-              src = JSON.stringify(JSON.parse(data).url, null, 4);
+              src = JSON.stringify(JSON.parse(data).url, null, 4).slice(1,-1);
               document.getElementById("choose_meme").style.display = "none";
               document.getElementById("meme_img").innerHTML = `<img class="meme" src=${src}>`;
           });
@@ -45,30 +45,27 @@ document.addEventListener('DOMContentLoaded', async () => {
 const yeet = document.getElementById("yeet")
 yeet.addEventListener("click", (e) => {
   e.preventDefault();
-  var title = document.getElementById("meme_title").value
-  var numberShares = document.getElementById("number_shares").value
-  var sharePrice = document.getElementById("share_price").value
   
   const memeObj={
       img: src,
-      title: `"${title}"`,
-      number_shares: numberShares,
-      share_price: sharePrice,
-      is_initial: true,
-      created_at: 11 / 1 / 2021,
-      user_id: 1
+      title: document.getElementById("meme_title").value,
+      number_shares: document.getElementById("number_shares").value,
+      share_price: document.getElementById("share_price").value,
+      created_at: Date.now()
     }
-    fetch("/api/users/login",{
+    fetch("/api/memes",{
         method:"POST",
         body:JSON.stringify(memeObj),
         headers:{
             "Content-Type":"application/json"
         }
-    }).then(res=>{
-        if(res.ok){
-          location.href = "/meme/:id"
+    }).then((res) => {
+        if(!res.ok) {
+            return err;
         } else {
-            alert("trumpet sound")
+            res.json().then(data=>{
+                location.href = `/meme/${data.id}`
+            })
         }
     })
 })
