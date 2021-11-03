@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { User, Meme, Group } = require('../../models');
+const { User, Meme, Comment } = require('../../models');
 const bcrypt = require("bcrypt");
 
 router.get("/", (req, res) => {
@@ -63,21 +63,31 @@ router.post("/login", (req, res) => {
         }
     }).then(foundUser => {
         if (!foundUser) {
-            req.session.destroy()
-            res.status(401).json({ message: "incorrect email or password" })
-        } else {
-            if (bcrypt.compareSync(req.body.password, foundUser.password)) {
+            return req.session.destroy(() => {
+                return res.status(401).json({ message: "incorrect email or password" })
+            })
+        }
+        if (!req.session.password){
+            return req.session.destroy(() => {
+                return res.status(401).json({ message: "incorrect email or password" })
+            })
+        }
+        if (bcrypt.compareSync(req.body.password, foundUser.password)) {
                 req.session.user = {
+                    id: foundUser.id,
                     username: foundUser.username,
                     email: foundUser.email,
-                    id: foundUser.id
                 }
-                res.json(foundUser)
+                return res.json({
+                    id: foundUser.id,
+                    username: foundUser.username,
+                    email: foundUser.email,
+                })
             } else {
-                req.session.destroy()
-                res.status(401).json({ message: "incorrect email or password" })
-            }
-        }
+                req.session.destroy(()=>{
+                return res.status(401).json({ message: "incorrect email or password" })
+            })
+    }
     }).catch(err => {
         console.log(err);
         res.status(500).json(err);
