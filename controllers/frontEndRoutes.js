@@ -25,6 +25,30 @@ router.get("/", (req, res) => {
     })
 })
 
+router.get("/meme/:id", (req, res) => {
+    // res.render("meme")
+    Meme.findOne({
+        where: {
+            id: req.params.id
+        },
+        attributes: ['img','share_price','number_shares'],
+        include: [{
+            model: User,
+            attributes: ['username']
+        }]
+    }).then(memeData => {
+        console.log(memeData.toJSON())
+        const hbsMeme = memeData.get({plain:true})
+        // res.json(hbsMemes)
+        res.render("meme", {
+            meme: hbsMeme
+        })
+    }).catch(err => {
+        console.log(err)
+        res.status(500).json(err)
+    })
+})
+
 //Renders login page unless already logged in
 router.get("/login", (req, res) => {
     if (!req.session.user) {
@@ -46,12 +70,12 @@ router.get("/profile", (req, res) => {
     if (!req.session.user) {
         return res.redirect("/login")
     } else {
-        // User.findByPk(req.session.user.id,{
-        //     include:[Meme]
-        // }).then(userData=>{
-        //     const hbsUser = userData.get({plain:true});
-        res.render("profile"/*,hbsUser*/)
-        // })
+        User.findByPk(req.session.user.id,{
+            include:[Meme]
+        }).then(userData=>{
+            const hbsUser = userData.get({plain:true});
+            res.render("profile",hbsUser)
+        })
     }
 })
 
@@ -73,6 +97,10 @@ router.get('/sell', (req, res) => {
 
 router.get('/logout', (req,res)=>{
     req.session.destroy()
+    res.redirect('/')
+})
+
+router.get('*', (req,res)=>{
     res.redirect('/')
 })
 

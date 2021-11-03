@@ -31,10 +31,10 @@ Meme.init({
         }
     },
     share_price: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
-            isDecimal: true
+            isNumeric: true
         }
     },
     is_initial: {
@@ -45,7 +45,7 @@ Meme.init({
         type: DataTypes.DATE,
         allowNull: false,
         validate:{
-            isDate:true
+            // isDate:true
         }
     },
     user_id: {
