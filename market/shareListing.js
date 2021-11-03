@@ -1,5 +1,5 @@
 var CronJob = require('cron').CronJob;
-const { Meme } = require('../models/Meme');
+const { Meme, Share } = require('../models');
 
 async function checkIncubating() {
     try {
@@ -8,7 +8,7 @@ async function checkIncubating() {
             const publicDate = new Date(meme.created_at); // Replace with date created row name.
             publicDate.setDate(publicDate.getDate() + 1);
 
-            if (Date(meme.created_at) < Date.now()) {
+            if (Date(meme.created_at + 1) < Date.now()) {
                 meme.update({ is_initial: false });
                 // Add 'go public.'
             } else {
@@ -24,8 +24,34 @@ async function checkIncubating() {
     }
 }
 
+function IPO(seller, meme, amt, price) {
+    const toCreate = [];
+
+    for (let i = 0; i < amt; i++) {
+        toCreate.push({
+            listed_at: Date.now(),
+            bought_price: price,
+            is_initial: false,
+            user_id: seller,
+            meme_id: meme.id
+        });
+        toCreate.push({
+            listed_at: Date.now(),
+            bought_price: price,
+            is_initial: true,
+            user_id: seller,
+            meme_id: meme.id
+        });
+    }
+
+    Share.bulkCreate(toCreate)
+    .then(created => console.log(created))
+    .catch(err => console.error(err));
+}
 /*
 Track: % of meme owned
 # of shares - retrieving the number of shares owned when visiting a page
 selling shares - getting input from form 
 */
+
+module.exports = IPO;

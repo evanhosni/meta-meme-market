@@ -1,7 +1,8 @@
 const express = require("express");
 // const { now } = require("sequelize/types/lib/utils");
 const router = express.Router();
-const { Meme, User, Comments } = require("../../models");
+const { Meme, User, Comments, Share } = require("../../models");
+const IPO = require('../../market/shareListing');
 // const session = require('session')
 
 router.get("/:id", (req, res) => {
@@ -21,6 +22,11 @@ router.get("/:id", (req, res) => {
       attributes: ['comment_text', 'created_at'],
       include: { model: User, attributes: "username" }
     }
+    // {
+    //   model: Share,
+    //   where: { is_initial: true },
+    //   // attributes: ['id', 'listed_at', 'bought_price', 'meme_id']
+    // }
     ]
   }).then(dbMemes => {
     if (dbMemes.length) {
@@ -46,7 +52,9 @@ router.post("/", (req, res) => {
     created_at: req.body.created_at,
     user_id: req.session.user.id,
   }).then(newMeme => {
-    console.log(newMeme)
+    console.log(newMeme);
+
+    IPO(req.session.user.id, newMeme, newMeme.number_shares, newMeme.share_price);
     res.json(newMeme.toJSON());
   }).catch(err => {
       console.log(err);
@@ -54,9 +62,9 @@ router.post("/", (req, res) => {
     });
 });
 
-router.put('/buy/:id', (req, res) => {
+router.put('/buy/:id', async (req, res) => {
   const amt = req.body.amt;
-  Meme.findOne({
+  const newMeme = Meme.findOne({
     where: {
       id: req.params.id
     }

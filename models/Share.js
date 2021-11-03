@@ -2,7 +2,6 @@ const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/sequelize');
 
-
 class Share extends Model { }
 
 Share.init({
@@ -12,20 +11,19 @@ Share.init({
         autoIncrement: true,
         allowNull: false
     },
-    number_shares:{
-        type:DataTypes.INTEGER,
-        allowNull:false,
-    },
-
     listed_at: {
         type: DataTypes.DATE,
     },
     bought_price:{
         type: DataTypes.INTEGER,
-
         validate:{
             isNumeric: true
         }
+    },
+    is_initial: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
     },
     user_id: {
         type: DataTypes.INTEGER,
