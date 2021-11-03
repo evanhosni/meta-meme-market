@@ -43,10 +43,11 @@ router.post("/", (req, res) => {
     number_shares: req.body.number_shares,
     share_price: req.body.share_price,
     is_initial: true,
-    created_at: req.body.date,
+    created_at: req.body.created_at,
     user_id: req.session.user.id,
   }).then(newMeme => {
-    res.json(newMeme);
+    console.log(newMeme)
+    res.json(newMeme.toJSON());
   }).catch(err => {
       console.log(err);
       res.status(500).json({ message: "an error occured", err: err });

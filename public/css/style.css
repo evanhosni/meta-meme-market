@@ -1,6 +1,6 @@
 :root {
     --black: #111111;
-    --white: #999999;
+    --white: #cccccc;
     --gold: goldenrod;
     --silver: #777777;
 }
@@ -10,8 +10,11 @@
     margin: 0;
     background: var(--black);
     font-family: 'Bungee', sans-serif;
-    color: var(--gold);
     text-decoration: none;
+}
+
+body {
+    color: var(--white);
 }
 
 .card {
@@ -51,12 +54,16 @@
     text-decoration: none;
 }
 
+#topnav a {
+    color: var(--white);
+}
+
 #title {
     font-size: 2.5vw;
 }
 
-#links {
-    margin-right: 5vw;
+#title span {
+    color: var(--gold);
 }
 
 .link {
@@ -70,6 +77,13 @@
     /* padding-top: 8vw;
     padding-bottom: 4vw; */
     /* overflow-y: scroll; */
+    color: var(--silver);
+}
+
+#meme {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
     color: var(--silver);
 }
 
