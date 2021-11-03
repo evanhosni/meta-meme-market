@@ -2,6 +2,7 @@ const sequelize = require("../config/sequelize");
 const { User, Meme, Share, Comments } = require("../models")
 
 const seed = async () => {
+
     const newUser = await User.bulkCreate([
         {
             username: "joe",
@@ -45,7 +46,8 @@ const seed = async () => {
 
     const memesData = await Meme.bulkCreate([
         {
-            img: "Meme1",
+
+            img: "https://res.cloudinary.com/metamememarket/image/upload/v1635878183/e4rkyhci8mnlniz8nj9b.jpg",
             title: "Meme1",
             number_shares: 100,
             share_price: 24.72,
@@ -54,7 +56,7 @@ const seed = async () => {
             user_id: 1
         },
         {
-            img: "Meme2",
+            img: "https://res.cloudinary.com/metamememarket/image/upload/v1635878163/w8miibcytqlp9go9tidn.jpg",
             title: "Meme2",
             number_shares: 200,
             share_price: 22.88,
@@ -63,7 +65,7 @@ const seed = async () => {
             user_id: 1
         },
         {
-            img: "Meme3",
+            img: "https://res.cloudinary.com/metamememarket/image/upload/v1635877853/wfszlgnzn5fo5skg00wy.png",
             title: "Meme3",
             number_shares: 300,
             share_price: 20.34,
@@ -72,7 +74,7 @@ const seed = async () => {
             user_id: 2
         },
         {
-            img: "Meme4",
+            img: "https://res.cloudinary.com/metamememarket/image/upload/v1635877832/zfms4sepxjc5xfpe07xp.png",
             title: "Meme4",
             number_shares: 400,
             share_price: 17.77,
@@ -81,7 +83,7 @@ const seed = async () => {
             user_id: 1
         },
         {
-            img: "Meme5",
+            img: "https://res.cloudinary.com/metamememarket/image/upload/v1635877509/pmmepebomj5cclqnhktk.jpg",
             title: "Meme5",
             number_shares: 500,
             share_price: 15.55,
@@ -90,7 +92,7 @@ const seed = async () => {
             user_id: 3
         },
         {
-            img: "Meme6",
+            img: "https://res.cloudinary.com/metamememarket/image/upload/v1635876315/w2hryq5hyswrxaflul9u.png",
             title: "Meme6",
             number_shares: 9,
             share_price: 108.94,
@@ -105,55 +107,36 @@ const seed = async () => {
             number_shares: 5,
             bought_price: 11.11,
             user_id: 1,
-            meme_id: 6,
-            listed_at: Date.now()
+            meme_id: 6
         },
         {
             number_shares: 6,
             bought_price: 12.11,
             user_id: 2,
-            meme_id: 5,
-            listed_at: Date.now()
+            meme_id: 5
         },
         {
             number_shares: 7,
             bought_price: 13.11,
             user_id: 3,
-            meme_id: 4,
-            listed_at: Date.now()
-        },
-        {
-            number_shares: 7,
-            bought_price: 13.11,
-            user_id: 3,
-            meme_id: 4,
-            listed_at: Date.now()
-        },
-        {
-            number_shares: 7,
-            bought_price: 13.11,
-            user_id: 3,
-            meme_id: 4,
-            listed_at: Date.now()
+            meme_id: 4
         },
     ])
 
     const commentsData = await Comments.bulkCreate([
         {
             comment_text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae necessitatibus perferendis animi sed temporibus quae ipsum sapiente nam ipsam, fugit in accusamus illo explicabo provident modi quam laboriosam ex est! Lorem ipsum dolor sit amet.',
-            created_at: 10 / 11 / 2021,
             user_id: 4,
             meme_id: 2
         },
         {
             comment_text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae necessitatibus perferendis animi sed temporibus quae ipsum sapiente nam ipsam, fugit in accusamus illo explicabo provident modi quam laboriosam ex est! Lorem ipsum dolor sit amet.',
-            created_at: 10 / 11 / 2021,
             user_id: 1,
             meme_id: 5
         },
         {
             comment_text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae necessitatibus perferendis animi sed temporibus quae ipsum sapiente nam ipsam, fugit in accusamus illo explicabo provident modi quam laboriosam ex est! Lorem ipsum dolor sit amet.',
-            created_at: 10 / 11 / 2021,
+
             user_id: 3,
             meme_id: 4
         },
@@ -162,6 +145,8 @@ const seed = async () => {
 
 sequelize.sync({ force: true }).then(() => {
     seed().catch(err=>{
+
         console.log(err);
     });
 })
+

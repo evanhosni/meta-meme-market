@@ -22,8 +22,10 @@ app.use(express.static("public"));
 
 
 //cloudinary
-const signuploadwidgetRouter = require('./controllers/signuploadwidget')
-app.use('/api/upload', signuploadwidgetRouter)
+
+const signupload = require('./controllers/signupload')
+app.use('/api/upload', signupload)
+
 
 
 // Sets up the Express app to handle data parsing
