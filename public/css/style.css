@@ -1,25 +1,114 @@
-* {
-    margin: 0;
-    background: salmon;
+:root {
+    --black: #111111;
+    --white: #999999;
+    --gold: goldenrod;
+    --silver: #777777;
 }
 
-nav {
+* {
+    /* overflow-y: hidden; */
+    margin: 0;
+    background: var(--black);
+    font-family: 'Bungee', sans-serif;
+    color: var(--gold);
+    text-decoration: none;
+}
+
+.card {
+    margin: 2vw;
+    /* border: 3px solid black; */
+    box-shadow: black 0 0 20px;
+    border-radius: 15px;
+    text-align: center;
+    /* padding: 20px; */
+}
+
+.card img {
+    border-radius: 15px 15px 0 0;
+}
+
+.card:hover {
+    box-shadow: var(--white) 0 0 20px;
+}
+
+.meme {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+#topnav {
     display: flex;
     justify-content: space-between;
-    padding: 30px;
+    /* position: fixed; */
+    /* width: 100%; */
+    margin-bottom: 20px;
+    align-items: center;
+    padding: 15px 30px;
     border-bottom: 3px solid black;
-    box-shadow: 0px 5px 5px black;
-    /* font-family: 'Courier New', Courier, monospace; */
+    box-shadow: black 0 0 20px;
+    font-size: 1.5vw;
+    text-decoration: none;
+}
+
+#title {
+    font-size: 2.5vw;
+}
+
+#links {
+    margin-right: 5vw;
+}
+
+.link {
+    padding: 1vw;
 }
 
 #home {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    /* padding-top: 8vw;
+    padding-bottom: 4vw; */
+    /* overflow-y: scroll; */
+    color: var(--silver);
 }
 
-#home .card {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: larger;
+#upload {
     padding: 50px;
+    text-align: center;
+}
+
+#meme_upload_container {
+    height: 300px;
+    width: 300px;
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#choose_meme {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: space-around;
+    height: 250px;
+    width: 250px;
+    border: 5px dashed gray;
+    border-radius: 15px;
+}
+
+#meme_img img {
+    box-shadow: black 0 0 20px;
+    border-radius: 15px;
+}
+
+#upload input {
+    margin: 10px;
+    text-align: center;
+    border-radius: 10px;
+    width: 150px;
 }
