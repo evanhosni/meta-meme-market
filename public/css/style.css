@@ -61,7 +61,7 @@ body {
 
 .color-text {
     background-image: linear-gradient(to left, yellow, red, blue, green);
-  -webkit-background-clip: text;
+  /* -webkit-background-clip: text; */
   -webkit-text-fill-color: transparent;
 }
 
