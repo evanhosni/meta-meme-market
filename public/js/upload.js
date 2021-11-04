@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const signData = await signResponse.json();
 
   const url = "https://api.cloudinary.com/v1_1/" + signData.cloudname + "/auto/upload";
-  const form = document.querySelector("form");
+  const form = document.getElementById("file");
 
   form.addEventListener("change", (e) => {
       e.preventDefault();
@@ -43,12 +43,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 })
 
 const yeet = document.getElementById("yeet")
-yeet.addEventListener("click", (e) => {
+yeet.addEventListener("click", async (e) => {
   e.preventDefault();
   
   const memeObj={
       img: src,
-      title: document.getElementById("meme_title").value,
+      title: document.getElementById('meme_title').value,
       number_shares: document.getElementById("number_shares").value,
       share_price: document.getElementById("share_price").value,
       created_at: Date.now()
@@ -64,7 +64,7 @@ yeet.addEventListener("click", (e) => {
             return err;
         } else {
             res.json().then(data=>{
-                location.href = `/meme/${data.id}`
+                // location.href = `/meme/${data.id}`
             })
         }
     })

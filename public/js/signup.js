@@ -12,12 +12,14 @@ signUpForm.addEventListener("submit", async (e) => {
     const account_number = document.querySelector("#account-number").value.trim()
     const routing_number = document.querySelector("#bank-routing").value.trim()
 
-    console.log(username, email, state_identification, bank_name, password1, password2, account_number, routing_number)
+    // console.log(username, email, state_identification, bank_name, password1, password2, account_number, routing_number)
 
-    console.log(routing_number.length)
+    // console.log(routing_number.length)
 
     if (username && email && state_identification && bank_name && password1 && password2 && account_number && routing_number) {
-        if (password1 !== password2) {
+        if (username.length <= 3) {
+            alert("Username must be at least 4 characters long.")
+        } else if (password1 !== password2) {
             alert("Passwords must match!")
         } else if (routing_number.length != 9) {
             alert("Your routing number must be 9 digits.")
