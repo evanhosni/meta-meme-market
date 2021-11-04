@@ -62,7 +62,7 @@ router.get('/buy/:id', async (req, res) => {
         });
         const buyer = await User.findOne({
             where: {
-            id: req.session.user.id
+                id: req.session.user.id
             }});
         await require('../../market/transaction')(buyer, meme, amt);
         // console.log(meme);

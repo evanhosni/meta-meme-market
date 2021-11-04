@@ -39,10 +39,11 @@ router.get("/meme/:id", (req, res) => {
         }, {
             model: Share,
             where: { is_initial: true },
-            attributes: ['id', 'is_initial', 'listed_at', 'bought_price', 'meme_id']
+            attributes: ['id', 'is_initial', 'listed_at', 'bought_price', 'meme_id'],
+            required: false
         }]
     }).then(memeData => {
-        console.log(memeData.toJSON())
+        // console.log(memeData)
         const hbsMeme = memeData.get({plain:true})
         // res.json(hbsMemes)
         res.render("meme", {
@@ -94,15 +95,6 @@ router.get("/profile", (req, res) => {
     }
 })
 
-<<<<<<< HEAD
-// router.get('/buy/:id', (req, res) => {
-//     if (!req.session.user) {
-//         return res.redirect("/login")
-//     } else {
-//         res.render("buy")
-//     }
-// })
-=======
 router.get('/buy', (req, res) => {
     if (!req.session.user) {
         return res.redirect("/login")
@@ -110,7 +102,6 @@ router.get('/buy', (req, res) => {
         res.render("buy", {loggedIn: req.session.loggedIn})
     }
 })
->>>>>>> dev
 
 router.get('/sell', (req, res) => {
     if (!req.session.user) {

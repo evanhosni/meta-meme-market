@@ -1,4 +1,4 @@
-const { Meme, Share, User } = require('../models')
+const { Meme, Share, User, Transaction } = require('../models')
 
 const transfer = (buyer, seller, amt) => {
     if (buyer.balance < amt) return false;
@@ -22,14 +22,24 @@ const tradeShares = (buyer, share) => {
 }
 
 const buyShares = async (buyer, meme, amt) => {
+    if (!buyer || !meme) return; // if meme or buyer not found
+
     const shares = meme.shares;
 
-    // console.log(share.user);    
+    // console.log(meme);
 
     shares.forEach(async (share) => {
-        tradeShares(buyer, share);
-        await share.save();
-        await share.user.save();
+        // console.log(share);
+        if(tradeShares(buyer, share)) {
+            console.log('SAVING SHARES');
+            await share.save();
+            await share.user.save();
+            await Transaction.create({
+                buyer_id: buyer.id,
+                seller_id: share.user.id,
+                amount: share.bought_price
+            })
+        }
     });
 
     await buyer.save();

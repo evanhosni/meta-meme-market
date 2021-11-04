@@ -1,10 +1,6 @@
 const express = require('express');
 const router = express.Router();
-<<<<<<< HEAD
-const { User, Meme, Comments } = require('../../models');
-=======
 const { User, Meme, Comment } = require('../../models');
->>>>>>> dev
 const bcrypt = require("bcrypt");
 
 router.get("/", (req, res) => {
