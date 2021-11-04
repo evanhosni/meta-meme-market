@@ -18,7 +18,7 @@ Meme.init({
     // title: {
     //     type: DataTypes.STRING,
     //     allowNull: false,
-    //     unique: true,
+    //     unique: true,//TODO unique per user?
     //     validate: {
     //         len: [4, 50]
     //     }
