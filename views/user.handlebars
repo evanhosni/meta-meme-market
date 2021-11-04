@@ -1,0 +1,36 @@
+{{#if sameUser}}
+<h2 id="user_title">Welcome back, <span>{{username}}</span>.</h2>
+{{else}}
+<h2 id="user_title">You're peepin' <span>{{username}}</span>'s User Page.</h2>
+{{/if}}
+
+<div id="user_created"></div>
+    <h2 class="user_subtitle">Memes created by <span>{{username}}</span>:</h2>
+    <div id="user_created_memes">
+        {{#each memes}}
+            <div class="card">
+                <img class="meme" src={{img}}>
+                {{!-- <h4>Owner: {{user.username}}</h4> --}}
+                <p>Value: {{value}}</p>
+                {{!-- <button>Buy</button> --}}
+                <a href="/meme/{{id}}"></a>
+            </div>
+        {{/each}}
+    </div>
+</div>
+
+<div id="user_owned">
+    <h2 class="user_subtitle">Memes owned by <span>{{username}}</span>:</h2>
+    <div id="user_owned_memes">
+        {{#each memes}}
+            <div class="card">
+                <img class="meme" src={{img}}>
+                {{!-- <h4>Owner: {{user.username}}</h4> --}}
+                <p>Value: {{value}}</p>
+                {{!-- <button>Buy</button> --}}
+                <a href="/meme/{{id}}"></a>
+            </div>
+        {{/each}}
+    </div>
+    <script src="/js/user.js" type="text/javascript"></script>
+</div>
