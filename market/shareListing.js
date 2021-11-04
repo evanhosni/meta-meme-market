@@ -45,7 +45,9 @@ function IPO(seller, meme, amt, price) {
     }
 
     Share.bulkCreate(toCreate)
-    .then(created => console.log(created))
+    .then(created => {
+        console.log(created)
+    })
     .catch(err => console.error(err));
 }
 /*
