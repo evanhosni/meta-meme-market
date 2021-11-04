@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 
 router.get("/", (req, res) => {
     User.findAll({
-        include: [Meme, Group]
+        include: [Meme, Comments]
     }).then(dbUsers => {
         if (dbUsers.length) {
             res.json(dbUsers)
