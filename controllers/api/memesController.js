@@ -64,6 +64,7 @@ router.get('/buy/:id', async (req, res) => {
             where: {
                 id: req.session.user.id
             }});
+        
         await require('../../market/transaction')(buyer, meme, amt);
         // console.log(meme);
         // console.log(meme.shares[0]);
@@ -73,6 +74,25 @@ router.get('/buy/:id', async (req, res) => {
         console.error(err);
         res.status(500).json({ message: 'an error occured', err: err })
     }
+});
+
+router.get('/sell/:id', (req, res) => {
+    const amt = 1;
+    User.findOne({
+        where: {
+            id: req.session.id
+        },
+        include: {
+            model: Share,
+            where: {
+                meme_id: req.params.id
+            },
+            limit: amt
+        }
+    })
+    .then(async (share) => {
+
+    });
 });
 
 router.post("/", (req, res) => {
