@@ -54,6 +54,13 @@ body {
     text-decoration: none;
 }
 
+.create-message,
+.create-form,
+.welcome,
+#login-form {
+    margin-left: 10px;
+}
+
 #topnav a {
     color: var(--white);
 }
@@ -68,6 +75,10 @@ body {
 
 .link {
     padding: 1vw;
+}
+
+h1 span {
+    color: var(--gold);
 }
 
 #home {
