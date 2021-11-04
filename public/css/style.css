@@ -517,3 +517,45 @@ body {
     width: 150px;
 }
 
+#portfolio {
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway';
+    font-weight: 400;
+    font-size: 3em;
+    color: #9A12B3;
+  }
+  
+  
+  
+  .letterDrop {
+    position: relative;
+    top: 0;  
+    display: inline-block;
+    text-transform: uppercase; 
+    letter-spacing: 0.5em;
+    opacity: 0.8;
+    transform: rotateX(-90deg);
+    animation: letterDrop 1.2s ease 1 normal forwards;
+  }
+  
+  @keyframes letterDrop {
+      10% {
+          opacity: 0.5;
+      }
+      20% {
+          opacity: 0.8;
+          top: 3.75em;
+          transform: rotateX(-360deg);
+      }
+      100% {
+          opacity: 1;
+          top: 4.50em;
+          transform: rotateX(360deg);
+      }
+  }
+  
+  
+  span:nth-child(2n) {
+    color: #663399;
+  }

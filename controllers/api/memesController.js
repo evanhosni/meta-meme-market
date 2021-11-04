@@ -2,7 +2,7 @@ const express = require("express");
 // const { now } = require("sequelize/types/lib/utils");
 const router = express.Router();
 const { Meme, User, Comments, Share } = require("../../models");
-const IPO = require('../../market/shareListing');
+const { IPO, sellShares } = require('../../market/shareListing');
 const { Op } = require('sequelize');
 // const session = require('session')
 
@@ -41,6 +41,9 @@ const { Op } = require('sequelize');
 //   });
 // });
 router.get('/buy/:id', async (req, res) => {
+    if (!req.session.user) {
+        return res.status(401).send("You must be logged in to buy!")
+    }
     const amt = 1;
     try {
         const meme = await Meme.findOne({
@@ -50,7 +53,10 @@ router.get('/buy/:id', async (req, res) => {
         include: {
             model: Share,
             where: {
-                [Op.not]: { listed_at: null }
+                [Op.and]: {
+                    [Op.not]: { listed_at: null },
+                    [Op.not]: { user_id: req.session.user.id }
+                }
             },
             order: [
                 ['bought_price', 'ASC'],
@@ -66,9 +72,7 @@ router.get('/buy/:id', async (req, res) => {
             }});
         
         await require('../../market/transaction')(buyer, meme, amt);
-        // console.log(meme);
-        // console.log(meme.shares[0]);
-        // console.log(req.session);
+        console.log(meme);
         res.status(200).json()
     } catch (err) {
         console.error(err);
@@ -79,11 +83,14 @@ router.get('/buy/:id', async (req, res) => {
 router.get('/sell/:id', (req, res) => {
     // const quantity = req.body.quantity;
     // const price = req.body.price;
+    if (!req.session.user) {
+        return res.status(401).send("You must be logged in to sell!")
+    }
     const quantity = 1;
-    const price = 2;
+    const price = 1;
     User.findOne({
         where: {
-            id: req.session.id
+            id: req.session.user.id
         },
         include: {
             model: Share,
@@ -91,12 +98,43 @@ router.get('/sell/:id', (req, res) => {
                 meme_id: req.params.id,
                 listed_at: null
             },
-            limit: amt
+            limit: quantity
         }
     })
-    .then(async (user) => {
-
+    .then(async (seller) => {
+        await sellShares(seller, price);
+        res.status(200).send('Shares sold!');
+    })
+    .catch(err => {
+        console.error(err);
+        res.status(500).json(err);
     });
+});
+
+router.get('/stake/:id', async (req, res) => {
+    if (!req.session.user) {
+        return res.status(401).send("You must be logged in to see your stake in this meme!")
+    }
+    const owned = await Share.count({
+        where: { 
+            meme_id: req.params.id,
+            user_id: req.session.user.id
+        }
+    });
+    console.log(owned);
+    Meme.findOne({
+        where: {
+            id: req.params.id
+        },
+        attributes: ['number_shares']
+    }).then(meme => {
+        if (!meme) res.status(404).send('No meme with that id exists!');
+        const ratio = owned / meme.number_shares;
+        res.status(200).json({ stake: ratio });
+    }).catch(err => {
+        console.error(err);
+        res.status(500).json(err);
+    })
 });
 
 router.post("/", (req, res) => {
@@ -111,7 +149,7 @@ router.post("/", (req, res) => {
     created_at: req.body.created_at,
     user_id: req.session.user.id,
   }).then(newMeme => {
-    console.log(newMeme);
+    // console.log(newMeme);
 
     IPO(req.session.user.id, newMeme, newMeme.number_shares, newMeme.share_price);
     res.json(newMeme.toJSON());
