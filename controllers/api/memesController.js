@@ -105,6 +105,7 @@ router.post("/", (req, res) => {
   }
   Meme.create({
     img: req.body.img,
+    title: req.body.title,
     number_shares: req.body.number_shares,
     share_price: req.body.share_price,
     is_initial: true,
