@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
         const hbsMemes = memeData.map(meme => meme.get({ plain: true }))
         // res.json(hbsMemes)
         res.render("home", {
-            ...hbsMemes, loggedIn: req.session.loggedIn,
+            ...hbsMemes, loggedIn: req.session.loggedIn, currentUser: req.session.user.username,
             memes: hbsMemes
         })
     }).catch(err => {
@@ -47,9 +47,38 @@ router.get("/meme/:id", (req, res) => {//TODO change id to title so it's "/meme/
         const hbsMeme = memeData.get({plain:true})
         // res.json(hbsMemes)
         res.render("meme", {
-            ...hbsMeme, loggedIn: req.session.loggedIn, 
+            ...hbsMeme, loggedIn: req.session.loggedIn, currentUser: req.session.user.username,
             meme: hbsMeme
         })
+    }).catch(err => {
+        console.log(err)
+        res.status(500).json(err)
+    })
+})
+
+router.get("/user/:username", (req, res) => {
+    User.findOne({
+        where: {
+            username: req.params.username
+        },
+        include: [{
+            model: Meme,
+            attributes: ['id','img','share_price','number_shares','user_id']
+        }]
+    }).then(userData => {
+        console.log(userData.toJSON())
+        const hbsUser = userData.get({plain:true})
+        if(req.session.loggedIn && req.session.user.username == req.params.username) {
+            res.render("user", {
+                ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user.username, sameUser: true,
+                user: hbsUser
+            })
+        } else {
+            res.render("user", {
+                ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user.username, sameUser: false,
+                user: hbsUser
+            })
+        }
     }).catch(err => {
         console.log(err)
         res.status(500).json(err)
@@ -68,7 +97,7 @@ router.get("/login", (req, res) => {
     if (!req.session.user) {
         res.render("login")
     } else {
-        return res.redirect("/profile")
+        return res.redirect("/")
     }
 })
 
@@ -80,21 +109,6 @@ router.get("/upload", (req, res) => {
     }
 })
 
-router.get("/profile", (req, res) => {
-    if (!req.session.user) {
-        return res.redirect("/login")
-    } else {
-        console.log(req.session.user.id);
-        User.findByPk(req.session.user.id,{
-            include:[Meme]
-        }).then(userData=>{
-            const hbsUser = userData.get({plain:true});
-            res.render("profile",{
-                ...hbsUser, loggedIn: req.session.loggedIn
-            })
-        })
-    }
-})
 
 router.get('/buy', (req, res) => {
     if (!req.session.user) {
