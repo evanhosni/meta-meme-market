@@ -11,9 +11,9 @@ User.hasMany(Transaction);
 User.hasMany(Transaction, { as: 'Buyer', foreignKey: 'buyer_id' });
 User.hasMany(Transaction, { as: 'Seller', foreignKey: 'seller_id' });
 
-// User.hasMany(Comments)
 Meme.hasMany(Share);
 Meme.hasMany(Comments);
+Meme.hasMany(Transaction);
 Meme.belongsTo(User);
 
 Share.belongsTo(User);
@@ -23,14 +23,7 @@ Comments.belongsTo(User);
 Comments.belongsTo(Meme);
 
 Transaction.belongsTo(User);
-
-// User.belongsToMany(Group,{
-//     through:"UserGroup"
-// })
-
-// Group.belongsToMany(User,{
-//     through:"UserGroup"
-// })
+Transaction.belongsTo(Meme);
 
 module.exports = {
     User,
