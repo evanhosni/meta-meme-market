@@ -77,7 +77,10 @@ router.get('/buy/:id', async (req, res) => {
 });
 
 router.get('/sell/:id', (req, res) => {
-    const amt = 1;
+    // const quantity = req.body.quantity;
+    // const price = req.body.price;
+    const quantity = 1;
+    const price = 2;
     User.findOne({
         where: {
             id: req.session.id
@@ -85,12 +88,13 @@ router.get('/sell/:id', (req, res) => {
         include: {
             model: Share,
             where: {
-                meme_id: req.params.id
+                meme_id: req.params.id,
+                listed_at: null
             },
             limit: amt
         }
     })
-    .then(async (share) => {
+    .then(async (user) => {
 
     });
 });

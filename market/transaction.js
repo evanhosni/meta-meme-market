@@ -45,8 +45,12 @@ const buyShares = async (buyer, meme, amt) => {
     await buyer.save();
 }
 
-const sellShares = async (seller, shares, amt) => {
-    const shares = sel
+const sellShares = async (seller, quantity, price) => {
+    const shares = seller.shares;
+
+    for (share of shares) {
+        share.listed_at = Date.now();
+    }
 }
 
 module.exports = buyShares;
