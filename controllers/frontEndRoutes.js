@@ -84,6 +84,7 @@ router.get("/profile", (req, res) => {
     if (!req.session.user) {
         return res.redirect("/login")
     } else {
+        console.log(req.session.user.id);
         User.findByPk(req.session.user.id,{
             include:[Meme]
         }).then(userData=>{

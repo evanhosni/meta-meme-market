@@ -1,5 +1,5 @@
 const sequelize = require("../config/sequelize");
-const { User, Meme, Share, Comments } = require("../models")
+const { User, Meme, Share, Comments, Transaction } = require("../models")
 
 const seed = async () => {
 
@@ -114,175 +114,175 @@ const seed = async () => {
             meme_id: 5
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
             is_initial: true
         },
         {
-            bought_price: 1,
+            bought_price: 2,
             user_id: 3,
             meme_id: 3,
         listed_at: Date.now(),
