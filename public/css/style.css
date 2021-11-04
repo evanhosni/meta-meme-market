@@ -22,11 +22,11 @@ body {
 
 .card {
     position: relative;
-    margin: 2vw;
+    margin: 1.6vw;
     box-shadow: black 0 0 20px;
     border-radius: 15px;
     text-align: center;
-    padding-bottom: 15px;
+    padding-bottom: 12px;
     max-width: 80vw;
 }
 
@@ -56,7 +56,15 @@ body {
     max-width: 80vw;
     max-height: 80vw;
     object-fit: cover;
+    padding-bottom: 12px;
 }
+
+.color-text {
+    background-image: linear-gradient(to right, rgb(255, 0, 13), rgb(255, 0, 255), rgb(106, 255, 0), rgb(0, 217, 255));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 
 #main {
     position: fixed;
@@ -96,10 +104,16 @@ body {
     left: 0;
     right: 0;
     text-align: center;
+    background-image: linear-gradient(to right, rgb(255, 255, 255),rgb(255, 255, 255), rgb(0, 217, 255));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
 }
 
 #title span {
-    color: var(--gold);
+    background-image: linear-gradient(to right, goldenrod, goldenrod, goldenrod 0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .link {
@@ -345,8 +359,8 @@ body {
 }
 
 #spacer {
-    height: 8vw;
-    min-height: 80px;
+    height: 1vw;
+    min-height: 20px;
 }
 
 #home {

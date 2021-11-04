@@ -49,7 +49,7 @@ User.init({
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            isAlpha: true
+            // isAlpha: true
         }
     },
     account_number: {
