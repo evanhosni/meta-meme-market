@@ -4,7 +4,6 @@ const session = require("express-session");
 const exphbs = require('express-handlebars');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-
 // Sets up the Express App
 // =============================================================
 const app = express();
@@ -20,13 +19,10 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.use(express.static("public"));
 
-
 //cloudinary
 
 const signupload = require('./controllers/signupload')
 app.use('/api/upload', signupload)
-
-
 
 // Sets up the Express app to handle data parsing
 
@@ -42,10 +38,8 @@ app.use(session({
      })
   }))
 
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 
 app.use(routes)
 
