@@ -56,9 +56,6 @@ User.init({
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
-        validate: {
-            isNumeric: true
-        }
     },
     routing_number: {
         type: DataTypes.INTEGER,
