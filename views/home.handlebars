@@ -3,8 +3,8 @@
     {{#each memes}}
         <div class="card">
             <img class="meme" src={{img}}>
-            <h4>Owner: {{user.username}}</h4>
-            <p>Value: {{value}}</p>
+            <h4 class="color-text">@{{user.username}}</h4>
+            <p>${{value}}</p>
             {{!-- <button>Buy</button> --}}
             <a href="/meme/{{id}}"></a>
         </div>
