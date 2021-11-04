@@ -1,9 +1,20 @@
 <div id="meme">
-    <div class="card">
-        <img class="meme" src={{meme.img}}>
-        <h4>Owner: {{meme.user.username}}</h4>
-        <h5>Price: {{meme.share_price}}</h5>
-        <p>Shares: {{meme.number_shares}}</p>
-        <button>Buy</button>
+    <div class="memepage_meme">
+        <img src={{meme.img}}>
     </div>
+    <div class="stats">
+        <h1>FUZZY|DAZE</h1>
+        <p>created by {{meme.user.username}}</p>
+    </div>
+    {{!-- <div class="stats">
+        <button><span style="font-size:xx-large; background: red; padding: 0px 30px">BUY</span></button>
+        <h2>💰50</h2>
+        <p>current<br>share price</p>
+    </div> --}}
+    {{!-- <div class="stats">
+        <p>Owner: {{meme.user.username}}</p>
+        <p>Current Price: 💰{{meme.share_price}}</p>
+        <p>Shares: {{meme.number_shares}}</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur, dolorum autem eligendi quo molestias et culpa natus molestiae. Quas, magnam culpa exercitationem quasi necessitatibus quibusdam accusantium ratione laborum maxime ipsam.</p>
+    </div> --}}
 </div>

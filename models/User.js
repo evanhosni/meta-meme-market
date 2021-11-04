@@ -62,7 +62,7 @@ User.init({
         allowNull: false,
         validate: {
             isNumeric: true,
-            len: [9.9]
+            // len: [9.9]
         }
     },
     balance: {
