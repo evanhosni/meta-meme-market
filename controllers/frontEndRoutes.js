@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
         order: [
             ["created_at", 'DESC']
         ],
-        attributes: ['img','share_price'],
+        attributes: ['img','share_price','id'],
         include: [{
             model: User,
             attributes: ['username']

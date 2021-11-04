@@ -6,11 +6,14 @@
 }
 
 * {
-    /* overflow-y: hidden; */
     margin: 0;
     background: var(--black);
     font-family: 'Bungee', sans-serif;
     text-decoration: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 body {
@@ -18,12 +21,23 @@ body {
 }
 
 .card {
+    position: relative;
     margin: 2vw;
-    /* border: 3px solid black; */
     box-shadow: black 0 0 20px;
     border-radius: 15px;
     text-align: center;
-    /* padding: 20px; */
+    padding-bottom: 15px;
+    max-width: 80vw;
+}
+
+.card a {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    opacity: 0;
 }
 
 .card img {
@@ -32,20 +46,27 @@ body {
 
 .card:hover {
     box-shadow: var(--white) 0 0 20px;
+    transform: scale(1.025);
+    transition: transform .2s;
 }
 
 .meme {
     width: 300px;
     height: 300px;
+    max-width: 80vw;
+    max-height: 80vw;
     object-fit: cover;
+}
+
+#main {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
 }
 
 #topnav {
     display: flex;
     justify-content: space-between;
-    /* position: fixed; */
-    /* width: 100%; */
-    margin-bottom: 20px;
     align-items: center;
     padding: 15px 30px;
     border-bottom: 3px solid black;
@@ -59,7 +80,15 @@ body {
 }
 
 #title {
+    display: block;
     font-size: 2.5vw;
+    position: absolute;
+    margin-left: auto;
+    width: 30vw;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
 }
 
 #title span {
@@ -70,22 +99,59 @@ body {
     padding: 1vw;
 }
 
+#spacer {
+    height: 8vw;
+    min-height: 80px;
+}
+
 #home {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    /* padding-top: 8vw;
-    padding-bottom: 4vw; */
-    /* overflow-y: scroll; */
-    color: var(--silver);
+    color: var(--white);
+    margin: 2vw;
 }
 
+/* #home .card {
+    max-width: 80vw;
+} */
+
 #meme {
+    margin: 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    color: var(--white);
+    max-width: 100vw;
+}
+/*TODO set img max dimension instead of max width/max height*/
+.memepage_meme {
     display: flex;
     justify-content: space-around;
-    flex-wrap: wrap;
-    color: var(--silver);
+    height: 600px;
+    width: 600px;
+    max-height: 90vw;
+    max-width: 90vw;
+    padding: 0px 200px;
+    /* display: block; */
 }
+
+.memepage_meme img {
+    max-width: 100%;
+    max-height: 100%;
+    box-shadow: black 0 0 20px;
+    border-radius: 15px;
+}
+
+.stats {
+    padding: 2vw;
+    max-width: 500px;
+    font-size: 20px;
+    text-align: center;
+}
+
 
 #upload {
     padding: 50px;

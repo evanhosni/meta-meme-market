@@ -7,7 +7,7 @@ const cloudName = cloudinary.config().cloud_name;
 const apiKey = cloudinary.config().api_key;
 const apiSecret = cloudinary.config().api_secret;
 
-const signuploadform = () => {
+const signuploadform = () => {//TODO limit file size
     const timestamp = Math.round((new Date).getTime()/1000);
   
     const signature = cloudinary.utils.api_sign_request({
