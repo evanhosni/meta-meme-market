@@ -17,6 +17,7 @@ router.get("/", (req, res) => {
         const hbsMemes = memeData.map(meme => meme.get({ plain: true }))
         // res.json(hbsMemes)
         res.render("home", {
+            ...hbsMemes, loggedIn: req.session.loggedIn,
             memes: hbsMemes
         })
     }).catch(err => {
@@ -41,12 +42,20 @@ router.get("/meme/:id", (req, res) => {
         const hbsMeme = memeData.get({plain:true})
         // res.json(hbsMemes)
         res.render("meme", {
+            ...hbsMeme, loggedIn: req.session.loggedIn, 
             meme: hbsMeme
         })
     }).catch(err => {
         console.log(err)
         res.status(500).json(err)
     })
+})
+
+router.get("/signup", (req,res)=>{
+    if(req.session.user){
+        req.session.destroy()
+    }
+    res.render("signup")
 })
 
 //Renders login page unless already logged in
@@ -62,7 +71,7 @@ router.get("/upload", (req, res) => {
     if (!req.session.user) {
         return res.redirect("/login")
     } else {
-        res.render("upload")
+        res.render("upload", {loggedIn: req.session.loggedIn})
     }
 })
 
@@ -74,7 +83,9 @@ router.get("/profile", (req, res) => {
             include:[Meme]
         }).then(userData=>{
             const hbsUser = userData.get({plain:true});
-            res.render("profile",hbsUser)
+            res.render("profile",{
+                ...hbsUser, loggedIn: req.session.loggedIn
+            })
         })
     }
 })
@@ -83,7 +94,7 @@ router.get('/buy', (req, res) => {
     if (!req.session.user) {
         return res.redirect("/login")
     } else {
-        res.render("buy")
+        res.render("buy", {loggedIn: req.session.loggedIn})
     }
 })
 
@@ -91,7 +102,7 @@ router.get('/sell', (req, res) => {
     if (!req.session.user) {
         return res.redirect("/login")
     } else {
-        res.render("sell")
+        res.render("sell", {loggedIn: req.session.loggedIn})
     }
 })
 

@@ -39,7 +39,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/create", (req, res) => {
     User.create({
         username: req.body.username,
         email: req.body.email,
@@ -47,8 +47,21 @@ router.post("/", (req, res) => {
         state_identification: req.body.state_identification,
         bank_name: req.body.bank_name,
         account_number: req.body.account_number,
-        routing_numer: req.body.routing_numer
+        routing_number: req.body.routing_number
     }).then(newUser => {
+        req.session.save(()=>{
+            req.session.loggedIn = true        
+        })
+        req.session.user = {
+            username: newUser.username,
+            email: newUser.email,
+            id: newUser.id
+        }
+        
+        // loggedIn: true
+
+        console.log(req.session)
+        console.log(req.session.user)
         res.json(newUser);
     }).catch(err => {
         console.log(err);
@@ -72,6 +85,7 @@ router.post("/login", (req, res) => {
                     email: foundUser.email,
                     id: foundUser.id
                 }
+                req.session.loggedIn = true
                 res.json(foundUser)
             } else {
                 req.session.destroy()
@@ -86,7 +100,7 @@ router.post("/login", (req, res) => {
 
 router.get("/logout", (req, res) => {
     req.session.destroy();
-    res.redirect("/login")
+    res.redirect("/")
 })
 
 router.delete("/:id", (req, res) => {
