@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const signData = await signResponse.json();
 
   const url = "https://api.cloudinary.com/v1_1/" + signData.cloudname + "/auto/upload";
-  const form = document.querySelector("form");
+  const form = document.getElementById("file");
 
   form.addEventListener("change", (e) => {
       e.preventDefault();
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 const yeet = document.getElementById("yeet")
 yeet.addEventListener("click", (e) => {
   e.preventDefault();
-  
+
   const memeObj={
       img: src,
       title: document.getElementById("meme_title").value,

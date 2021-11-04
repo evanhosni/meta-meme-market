@@ -16,6 +16,10 @@
     display: none;
 }
 
+input {
+    background-color: white;
+}
+
 body {
     color: var(--white);
 }
@@ -132,8 +136,9 @@ body {
 #buyme{
     width:200px;
     height:70px;
-    background: linear-gradient(to left top, #0adc3b 50%, #07481d 50%);
+    background: linear-gradient(to left top, #0adc3b 25%, #07481d 75%);
     border-style: none;
+    border-radius: 15px;
     color:#fff;
     font-size: 23px;
     letter-spacing: 3px;
@@ -251,8 +256,9 @@ body {
 #sellme{
     width:200px;
     height:70px;
-    background: linear-gradient(to left top, #fc0905 50%, #920a07 50%);
+    background: linear-gradient(to left top, #fc0905 25%, #920a07 75%);
     border-style: none;
+    border-radius: 15px;
     color:#fff;
     font-size: 23px;
     letter-spacing: 3px;
@@ -367,6 +373,52 @@ body {
     margin: 2vw;
 }
 
+#user_title {
+    font-size: 200%;
+    text-align: center;
+    margin: 1vw;
+}
+
+#user_title span {
+    font-size: 120%;
+    color: var(--gold);
+}
+
+.user_subtitle {
+    margin: 2vw 5vw 0;
+    /* opacity: 0.8; */
+}
+
+.user_subtitle span {
+    font-size: 120%;
+    color: var(--gold);
+}
+
+#user_created {
+    border-top: solid rgb(0, 0, 0, 0.35) 3px;
+}
+
+#user_created_memes {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    color: var(--white);
+    margin: 0 2vw 2vw 2vw;
+}
+
+#user_owned {
+    border-top: solid rgb(0, 0, 0, 0.35) 3px;
+    margin-top: 3vw;
+}
+
+#user_owned_memes {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    color: var(--white);
+    margin: 0 2vw 2vw 2vw;
+}
+
 #meme {
     margin: 2vw;
     display: flex;
@@ -409,7 +461,7 @@ body {
     border-radius: 15px;
 }
 
-.stats {
+.stats {/*TODO this covers box shadow of meme*/
     padding: 2vw;
     max-width: 500px;
     font-size: 20px;
