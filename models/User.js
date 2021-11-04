@@ -49,16 +49,13 @@ User.init({
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            isAlpha: true
+            // isAlpha: true
         }
     },
     account_number: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
-        validate: {
-            isNumeric: true
-        }
     },
     routing_number: {
         type: DataTypes.INTEGER,
@@ -85,13 +82,13 @@ User.init({
             newUser.account_number = bcrypt.hashSync(newUser.account_number, 5);
             return newUser;
         },
-        beforeUpdate(updatedUser) {
-            updatedUser.username = updatedUser.username.toLowerCase();
-            updatedUser.password = bcrypt.hashSync(updatedUser.password, 5);
-            updatedUser.account_number = updatedUser.account_number.toString();
-            updatedUser.account_number = bcrypt.hashSync(updatedUser.account_number, 5);
-            return updatedUser;
-        }
+        // beforeUpdate(updatedUser) {
+        //     updatedUser.username = updatedUser.username.toLowerCase();
+        //     updatedUser.password = bcrypt.hashSync(updatedUser.password, 5);
+        //     updatedUser.account_number = updatedUser.account_number.toString();
+        //     updatedUser.account_number = bcrypt.hashSync(updatedUser.account_number, 5);
+        //     return updatedUser;
+        // }
     },
     sequelize,
     freezeTableName: true,

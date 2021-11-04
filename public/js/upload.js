@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 const yeet = document.getElementById("yeet")
 yeet.addEventListener("click", async (e) => {
   e.preventDefault();
-  
+
   const memeObj={
       img: src,
       title: document.getElementById('meme_title').value,

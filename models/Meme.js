@@ -59,4 +59,4 @@ Meme.init({
     modelName: 'meme'
 });
 
-module.exports = Meme
+module.exports = Meme;
