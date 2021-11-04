@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
         order: [
             ["created_at", 'DESC']
         ],
-        attributes: ['img','share_price'],
+        attributes: ['img','share_price','id'],
         include: [{
             model: User,
             attributes: ['username']
@@ -26,13 +26,13 @@ router.get("/", (req, res) => {
     })
 })
 
-router.get("/meme/:id", (req, res) => {
+router.get("/meme/:id", (req, res) => {//TODO change id to title so it's "/meme/:title"
     // res.render("meme")
     Meme.findOne({
         where: {
             id: req.params.id
         },
-        attributes: ['img','share_price','number_shares'],
+        attributes: ['img','share_price','number_shares','user_id'],
         include: [{
             model: User,
             attributes: ['username']
