@@ -26,7 +26,33 @@ router.get("/", (req, res) => {
     })
 })
 
-router.get("/meme/:id", (req, res) => {//TODO change id to title so it's "/meme/:title"
+//changed id to title so it's "/meme/:title"
+router.get("/meme/:title", (req, res) => {
+    // res.render("meme")
+    Meme.findOne({
+        where: {
+            id: req.params.title
+        },
+        attributes: ['img','share_price','number_shares','user_id'],
+        include: [{
+            model: User,
+            attributes: ['username']
+        }]
+    }).then(memeData => {
+        console.log(memeData.toJSON())
+        const hbsMeme = memeData.get({plain:true})
+        // res.json(hbsMemes)
+        res.render("meme", {
+            ...hbsMeme, loggedIn: req.session.loggedIn, 
+            meme: hbsMeme
+        })
+    }).catch(err => {
+        console.log(err)
+        res.status(500).json(err)
+    })
+})
+
+router.get("/meme/:id", (req, res) => {
     // res.render("meme")
     Meme.findOne({
         where: {
