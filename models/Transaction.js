@@ -1,5 +1,4 @@
 const { Model, DataTypes } = require('sequelize');
-const { User } = require('.');
 
 const sequelize = require('../config/sequelize');
 
@@ -16,7 +15,7 @@ Transaction.init({
         type:DataTypes.INTEGER,
         allowNull:false,
         references: {
-            model: User,
+            model: 'user',
             key: 'id'
         }
     },
@@ -24,7 +23,15 @@ Transaction.init({
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: User,
+            model: 'user',
+            key: 'id'
+        }
+    },
+    meme_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'meme',
             key: 'id'
         }
     },
