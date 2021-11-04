@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Meme, User } = require('../models');
+const { Meme, User, Share } = require('../models');
 
 //Homepage shows all memes sorted descending by created most recently
 router.get("/", (req, res) => {
@@ -36,9 +36,14 @@ router.get("/meme/:id", (req, res) => {//TODO change id to title so it's "/meme/
         include: [{
             model: User,
             attributes: ['username']
+        }, {
+            model: Share,
+            where: { is_initial: true },
+            attributes: ['id', 'is_initial', 'listed_at', 'bought_price', 'meme_id'],
+            required: false
         }]
     }).then(memeData => {
-        console.log(memeData.toJSON())
+        // console.log(memeData)
         const hbsMeme = memeData.get({plain:true})
         // res.json(hbsMemes)
         res.render("meme", {
