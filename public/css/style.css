@@ -26,13 +26,8 @@ body {
 
 .card {
     position: relative;
-<<<<<<< HEAD
-    margin: 1.6vw;
-    box-shadow: rgb(207, 196, 196) 0 0 8px;
-=======
     margin: 1.4vw;
     box-shadow: rgb(216, 203, 203) 0 0 5px;
->>>>>>> dev
     border-radius: 15px;
     text-align: center;
     padding-bottom: 12px;
@@ -154,17 +149,11 @@ h1 {
     border-style: none;
     border-radius: 15px;
     color:#fff;
-<<<<<<< HEAD
+
     font-size: 20px;
     letter-spacing: 2px;
     font-family: 'Bungee', sans-serif;
     font-weight: 300;
-=======
-    font-size: 23px;
-    letter-spacing: 3px;
-    font-family: 'Bungee', sans-serif;
-    font-weight: 600;
->>>>>>> dev
     outline: none;
     cursor: pointer;
     position: relative;
@@ -281,17 +270,10 @@ h1 {
     border-style: none;
     border-radius: 15px;
     color:#fff;
-<<<<<<< HEAD
     font-size: 20px;
     letter-spacing: 2px;
     font-family: 'Bungee', sans-serif;
     font-weight: 300;
-=======
-    font-size: 23px;
-    letter-spacing: 3px;
-    font-family: 'Bungee', sans-serif;
-    font-weight: 600;
->>>>>>> dev
     outline: none;
     cursor: pointer;
     position: relative;
@@ -483,17 +465,14 @@ h1 {
     max-width: 90vh;
     max-height: 90vh;
     box-shadow: rgb(187, 177, 177) 0 0 4px;
+    z-index: 2;
     border-radius: 15px;
     z-index: 2;
 }
 
-<<<<<<< HEAD
+
 .stats {
     padding: 1em;
-=======
-.stats {/*TODO this covers box shadow of meme*/
-    padding: 2vw;
->>>>>>> dev
     max-width: 500px;
     font-size: 20px;
     text-align: center;
@@ -544,8 +523,5 @@ h1 {
     text-align: center;
     border-radius: 10px;
     width: 150px;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> dev
+

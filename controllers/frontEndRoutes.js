@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
         const hbsMemes = memeData.map(meme => meme.get({ plain: true }))
         // res.json(hbsMemes)
         res.render("home", {
-            ...hbsMemes, loggedIn: req.session.loggedIn, currentUser: req.session.user.username,
+            ...hbsMemes, loggedIn: req.session.loggedIn, currentUser: req.session.user,
             memes: hbsMemes
         })
     }).catch(err => {
@@ -26,13 +26,13 @@ router.get("/", (req, res) => {
     })
 })
 
-router.get("/meme/:id", (req, res) => {//TODO change id to title so it's "/meme/:title"
+router.get("/meme/:id", (req, res) => {
     // res.render("meme")
     Meme.findOne({
         where: {
             id: req.params.id
         },
-        attributes: ['img','share_price','number_shares','user_id'],
+        attributes: ['img','title','share_price','number_shares','user_id'],
         include: [{
             model: User,
             attributes: ['username']
@@ -47,7 +47,7 @@ router.get("/meme/:id", (req, res) => {//TODO change id to title so it's "/meme/
         const hbsMeme = memeData.get({plain:true})
         // res.json(hbsMemes)
         res.render("meme", {
-            ...hbsMeme, loggedIn: req.session.loggedIn, currentUser: req.session.user.username,
+            ...hbsMeme, loggedIn: req.session.loggedIn, currentUser: req.session.user,
             meme: hbsMeme
         })
     }).catch(err => {
@@ -70,12 +70,12 @@ router.get("/user/:username", (req, res) => {
         const hbsUser = userData.get({plain:true})
         if(req.session.loggedIn && req.session.user.username == req.params.username) {
             res.render("user", {
-                ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user.username, sameUser: true,
+                ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: true,
                 user: hbsUser
             })
         } else {
             res.render("user", {
-                ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user.username, sameUser: false,
+                ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: false,
                 user: hbsUser
             })
         }
