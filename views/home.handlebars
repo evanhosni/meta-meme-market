@@ -2,11 +2,12 @@
 <div id="home">
     {{#each memes}}
         <div class="card">
+            <a href="/meme/{{id}}">
             <img class="meme" src={{img}}>
             <h4 class="color-text">@{{user.username}}</h4>
             <p>${{value}}</p>
+            </a>
             {{!-- <button>Buy</button> --}}
-            <a href="/meme/{{id}}"></a>
         </div>
     {{/each}}
 

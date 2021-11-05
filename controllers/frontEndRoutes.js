@@ -26,7 +26,7 @@ router.get("/", (req, res) => {
         //     })
         // }
         res.render("home", {
-            ...hbsMemes, loggedIn: req.session.loggedIn, currentUser: req.session.user,
+            ...hbsMemes, loggedIn: req.session.loggedIn, currentUser: req.session.user.username,
             memes: hbsMemes
         })
     }).catch(err => {
@@ -79,7 +79,7 @@ router.get("/user/:username", (req, res) => {
         const hbsUser = userData.get({ plain: true })
         if (req.session.loggedIn && req.session.user.username == req.params.username) {
             res.render("user", {
-                ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: true,
+                ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user.username, sameUser: true,
                 user: hbsUser
             })
         } else {
