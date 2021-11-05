@@ -15,7 +15,7 @@
             {{!-- <a href="/upload" class="link">Upload</a> --}}
             <a id="title" href="/"><span>Meta</span>MemeMarket</a>
             <a href="/logout">Logout</a>
-            <a href="/user/{{currentUser}}" class="link">{{currentUser}} 💰<span style="font-size: 10px;">x</span>420</a>
+            <a href="/user/{{currentUser.username}}" class="link">{{currentUser.username}} 💰<span style="font-size: 10px;">x</span>{{balance}}</a>
 
             {{else}}
             <a href="/signup" class="link">Sign up</a>
