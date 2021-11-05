@@ -17,7 +17,7 @@
                     <p>No available shares!</p>
                 {{/if}}
                 {{!-- <button>Buy</button> --}}
-                <a href="/meme/{{id}}"></a>
+                <a id="card_link" href="/meme/{{id}}"></a>
             </div>
         {{/each}}
     </div>
@@ -37,9 +37,15 @@
                     <p>No available shares!</p>
                 {{/if}}
                 {{!-- <button>Buy</button> --}}
-                <a href="/meme/{{id}}"></a>
+                <a id="card_link" href="/meme/{{id}}"></a>
             </div>
         {{/each}}
     </div>
-    <script src="/js/user.js" type="text/javascript"></script>
 </div>
+{{#if sameUser}}
+<div id="user_logout">
+    <a href="/logout">Logout</a>
+</div>
+{{/if}}
+
+<script src="/js/user.js" type="text/javascript"></script>
