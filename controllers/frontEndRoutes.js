@@ -53,8 +53,8 @@ router.get("/", async (req, res) => {
         //     })
         // }
         res.render("home", {
-            ...hbsMemes, loggedIn: req.session.loggedIn, currentUser: req.session.user,
-            memes: hbsMemes, balance
+            ...hbsMemes, loggedIn: req.session.loggedIn, currentUser: req.session.user.username,
+            memes: hbsMemes
         })
     }).catch(err => {
         console.log(err)
@@ -139,8 +139,8 @@ router.get("/user/:username", async (req, res) => {
             user: plainUser, balance})
         if(req.session.loggedIn && req.session.user.username == req.params.username) {
             res.render("user", {
-                ...plainUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: true,
-                user: plainUser, balance
+                ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user.username, sameUser: true,
+                user: hbsUser
             })
         } else {
             res.render("user", {
