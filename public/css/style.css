@@ -90,14 +90,13 @@ body {
 .create-message,
 .create-form,
 .welcome,
+.create-check,
 #login-form {
     margin-left: 10px;
 }
 
-#topnav a {
-    background-image: linear-gradient(to right, goldenrod,rgb(255, 255, 255), rgb(170, 0, 255));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.create-form button {
+    color: white;
 }
 
 #title {
@@ -110,28 +109,25 @@ body {
     left: 0;
     right: 0;
     text-align: center;
-    background-image: linear-gradient(to right, goldenrod,rgb(255, 255, 255), rgb(170, 0, 255));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
 }
 
-#title span {
-    background-image: linear-gradient(to right, goldenrod, goldenrod, goldenrod 0);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+#title_gold {
+    color: var(--gold)
+}
+
+#title_white {
+    color: var(--white)
+}
+
+#title_gray {
+    color: gray
 }
 
 .link {
     padding: 1vw;
+    color: var(--white);
 }
 
-h1 {
-    background-image: linear-gradient(to right, goldenrod,rgb(255, 255, 255), rgb(170, 0, 255));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 10px;
-}
 
 #buy-btn {
     position: absolute;
@@ -426,6 +422,18 @@ h1 {
     flex-wrap: wrap;
     color: var(--white);
     margin: 0 2vw 2vw 2vw;
+}
+
+#user_logout {
+    border-top: solid rgb(0, 0, 0, 0.35) 3px;
+    margin-top: 3vw;
+    text-align: center;
+    padding: 4vw
+}
+
+#user_logout a {
+    color: var(--white);
+    font-size: x-large;
 }
 
 #meme {

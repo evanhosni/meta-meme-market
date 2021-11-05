@@ -64,7 +64,7 @@ yeet.addEventListener("click", async (e) => {
             return err;
         } else {
             res.json().then(data=>{
-                // location.href = `/meme/${data.id}`
+                location.href = `/meme/${data.id}`
             })
         }
     })

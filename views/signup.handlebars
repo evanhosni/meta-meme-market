@@ -7,18 +7,18 @@
 <div class="create-form">
     <form id="signup-form">
         <label for="signup-username">Username:</label><br>
-        <input type="text" id="signup-username" placeholder="username"><br>
+        <input type="text" id="signup-username" placeholder="4 characters min"><br>
 
         <label for="signup-email">Email:</label><br>
-        <input type="email" id="signup-email" placeholder="email"><br>
+        <input type="email" id="signup-email" placeholder="Email"><br>
 
         <label for="password1">Password:</label><br>
         <input type="password" id="password1" placeholder="Password"><br>
 
         <label for="password2">Confirm Password:</label><br>
-        <input type="password" id="password2" placeholder="Confirm Password"><br>
+        <input type="password" id="password2" placeholder="Confirm Password"><br><br>
 
-        <label for="state-id">State identification number:</label><br>
+        {{!-- <label for="state-id">State identification number:</label><br>
         <input type="text" id="state-id" placeholder="License number"><br>
 
         <label for="bank-name">Name of Financial Institution:</label><br>
@@ -27,15 +27,15 @@
         <label for="account-number">Account Number:</label><br>
         <input type="number" id="account-number" placeholder="Bank account number"><br>
 
-        <label for="bank-routing">Account Routing Number:</label><br>
-        <input type="number" id="bank-routing" placeholder="Bank routing number"><br><br>
+        <label for="bank-routing">Bank Routing Number:</label><br>
+        <input type="number" id="bank-routing" placeholder="9 digit routing number"><br><br> --}}
 
-        <button>YEET!</button>
+        <button><strong>Submit</strong></button>
     </form>
 </div>
 
 <div class="create-check">
-    <h3>Already have an account?<a href="/login">  Login</a> instead.</h3>
+   <br> <h3>Already have an account?<a href="/login">  Login</a> instead.</h3>
 </div>
 
 <script src="/js/signup.js"></script>

@@ -14,14 +14,15 @@
             {{#if loggedIn}}
             <a href="/upload" class="link">Upload</a>
             {{!-- <a href="/upload" class="link">Upload</a> --}}
-            <a id="title" href="/"><span>Meta</span>MemeMarket</a>
+            <a id="title" href="/"><span id="title_gold">Meta</span><span id="title_white">Meme</span><span id="title_gray">Market</span></a>
             {{!-- <a href="/logout">Logout</a> --}}
             <a href="/user/{{currentUser.username}}" class="link">{{currentUser.username}} 💰<span style="font-size: 10px;">x</span>{{balance}}</a>
 
             {{else}}
-            <a href="/signup" class="link">Sign up</a>
-            <a id="title" href="/"><span>Meta</span>MemeMarket</a>
-            <a href="/login" class="link">Login</a>
+            <div></div>
+            <a id="title" href="/"><span id="title_gold">Meta</span><span id="title_white">Meme</span><span id="title_gray">Market</span></a>
+                <a href="/login" class="link">Sign up / Login</a>
+                {{!-- <a style="display: inline;" href="/login" class="link">Login</a> --}}
             {{/if}}
         {{!-- <a href="/login">Login</a> --}}
         {{!-- <a href="/api/users/logout">logout</a> --}}
