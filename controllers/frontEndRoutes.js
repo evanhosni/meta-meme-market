@@ -26,7 +26,7 @@ router.get("/", (req, res) => {
     })
 })
 
-router.get("/meme/:id", (req, res) => {//TODO change id to title so it's "/meme/:title"
+router.get("/meme/:id", (req, res) => {
     // res.render("meme")
     Meme.findOne({
         where: {
