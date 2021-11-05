@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
         order: [
             ["created_at", 'DESC']
         ],
-        attributes: ['img','share_price','id'],
+        attributes: ['img', 'share_price', 'id'],
         include: [{
             model: User,
             attributes: ['username']
@@ -43,9 +43,22 @@ router.get("/", async (req, res) => {
             return plainMeme;
         });
         // res.json(hbsMemes)
+        // if (req.session.id) {
+        //     res.render("home")
+        // }
+        // else {
+        //     res.render("home", {
+        //         ...hbsMemes, loggedIn: req.session.loggedIn, currentUser: req.session.user.username,
+        //         memes: hbsMemes
+        //     })
+        // }
         res.render("home", {
             ...hbsMemes, loggedIn: req.session.loggedIn, currentUser: req.session.user,
+<<<<<<< HEAD
             memes: hbsMemes, balance
+=======
+            memes: hbsMemes
+>>>>>>> dev
         })
     }).catch(err => {
         console.log(err)
@@ -53,7 +66,11 @@ router.get("/", async (req, res) => {
     })
 })
 
+<<<<<<< HEAD
 router.get("/meme/:id", async (req, res) => {//TODO change id to title so it's "/meme/:title"
+=======
+router.get("/meme/:id", (req, res) => {
+>>>>>>> dev
     // res.render("meme")
     let balance;
     if (req.session.user){
@@ -63,7 +80,7 @@ router.get("/meme/:id", async (req, res) => {//TODO change id to title so it's "
         where: {
             id: req.params.id
         },
-        attributes: ['img','share_price','number_shares','user_id'],
+        attributes: ['img', 'share_price', 'number_shares', 'user_id'],
         include: [{
             model: User,
             attributes: ['username']
@@ -75,12 +92,17 @@ router.get("/meme/:id", async (req, res) => {//TODO change id to title so it's "
         }]
     }).then(memeData => {
         // console.log(memeData)
-        const hbsMeme = memeData.get({plain:true})
+        const hbsMeme = memeData.get({ plain: true })
         // res.json(hbsMemes)
         res.render("meme", {
             ...hbsMeme, loggedIn: req.session.loggedIn, currentUser: req.session.user,
+<<<<<<< HEAD
             meme: hbsMeme, balance
         });
+=======
+            meme: hbsMeme
+        })
+>>>>>>> dev
     }).catch(err => {
         console.log(err)
         res.status(500).json(err)
@@ -99,6 +121,7 @@ router.get("/user/:username", async (req, res) => {
         attributes: ['username'],
         include: [{
             model: Meme,
+<<<<<<< HEAD
             attributes: ['id','img','share_price','number_shares','user_id'],
             include: {
                 model: Share,
@@ -137,6 +160,22 @@ router.get("/user/:username", async (req, res) => {
             res.render("user", {
                 ...plainUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: false,
                 user: plainUser, balance
+=======
+            attributes: ['id', 'img', 'share_price', 'number_shares', 'user_id']
+        }]
+    }).then(userData => {
+        console.log(userData.toJSON())
+        const hbsUser = userData.get({ plain: true })
+        if (req.session.loggedIn && req.session.user.username == req.params.username) {
+            res.render("user", {
+                ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: true,
+                user: hbsUser
+            })
+        } else {
+            res.render("user", {
+                ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: false,
+                user: hbsUser
+>>>>>>> dev
             })
         }
     }).catch(err => {
@@ -145,8 +184,8 @@ router.get("/user/:username", async (req, res) => {
     })
 })
 
-router.get("/signup", (req,res)=>{
-    if(req.session.user){
+router.get("/signup", (req, res) => {
+    if (req.session.user) {
         req.session.destroy()
     }
     res.render("signup")
@@ -165,7 +204,7 @@ router.get("/upload", (req, res) => {
     if (!req.session.user) {
         return res.redirect("/login")
     } else {
-        res.render("upload", {loggedIn: req.session.loggedIn})
+        res.render("upload", { loggedIn: req.session.loggedIn })
     }
 })
 
@@ -174,7 +213,7 @@ router.get('/buy', (req, res) => {
     if (!req.session.user) {
         return res.redirect("/login")
     } else {
-        res.render("buy", {loggedIn: req.session.loggedIn})
+        res.render("buy", { loggedIn: req.session.loggedIn })
     }
 })
 
@@ -182,16 +221,16 @@ router.get('/sell', (req, res) => {
     if (!req.session.user) {
         return res.redirect("/login")
     } else {
-        res.render("sell", {loggedIn: req.session.loggedIn})
+        res.render("sell", { loggedIn: req.session.loggedIn })
     }
 })
 
-router.get('/logout', (req,res)=>{
+router.get('/logout', (req, res) => {
     req.session.destroy()
     res.redirect('/')
 })
 
-router.get('*', (req,res)=>{
+router.get('*', (req, res) => {
     res.redirect('/')
 })
 
