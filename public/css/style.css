@@ -16,14 +16,23 @@
     display: none;
 }
 
+input {
+    background-color: white;
+}
+
 body {
     color: var(--white);
 }
 
 .card {
     position: relative;
+<<<<<<< HEAD
     margin: 1.6vw;
     box-shadow: rgb(207, 196, 196) 0 0 8px;
+=======
+    margin: 1.4vw;
+    box-shadow: rgb(216, 203, 203) 0 0 5px;
+>>>>>>> dev
     border-radius: 15px;
     text-align: center;
     padding-bottom: 12px;
@@ -32,8 +41,8 @@ body {
 
 .card a {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
     top: 0;
     left: 0;
     z-index: 2;
@@ -53,8 +62,8 @@ body {
 .meme {
     width: 300px;
     height: 300px;
-    max-width: 80vw;
-    max-height: 80vw;
+    max-width: 50vw;
+    max-height: 50vw;
     object-fit: cover;
     padding-bottom: 12px;
 }
@@ -141,13 +150,21 @@ h1 {
 #buyme{
     width:200px;
     height:70px;
-    background: linear-gradient(to left top, #0adc3b 50%, #07481d 50%);
+    background: linear-gradient(to left top, #0adc3b 25%, #07481d 75%);
     border-style: none;
+    border-radius: 15px;
     color:#fff;
+<<<<<<< HEAD
     font-size: 20px;
     letter-spacing: 2px;
     font-family: 'Bungee', sans-serif;
     font-weight: 300;
+=======
+    font-size: 23px;
+    letter-spacing: 3px;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 600;
+>>>>>>> dev
     outline: none;
     cursor: pointer;
     position: relative;
@@ -260,13 +277,21 @@ h1 {
 #sellme{
     width:200px;
     height:70px;
-    background: linear-gradient(to left top, #fc0905 50%, #920a07 50%);
+    background: linear-gradient(to left top, #fc0905 25%, #920a07 75%);
     border-style: none;
+    border-radius: 15px;
     color:#fff;
+<<<<<<< HEAD
     font-size: 20px;
     letter-spacing: 2px;
     font-family: 'Bungee', sans-serif;
     font-weight: 300;
+=======
+    font-size: 23px;
+    letter-spacing: 3px;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 600;
+>>>>>>> dev
     outline: none;
     cursor: pointer;
     position: relative;
@@ -375,6 +400,52 @@ h1 {
     margin: 2vw;
 }
 
+#user_title {
+    font-size: 200%;
+    text-align: center;
+    margin: 1vw;
+}
+
+#user_title span {
+    font-size: 120%;
+    color: var(--gold);
+}
+
+.user_subtitle {
+    margin: 2vw 5vw 0;
+    /* opacity: 0.8; */
+}
+
+.user_subtitle span {
+    font-size: 120%;
+    color: var(--gold);
+}
+
+#user_created {
+    border-top: solid rgb(0, 0, 0, 0.35) 3px;
+}
+
+#user_created_memes {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    color: var(--white);
+    margin: 0 2vw 2vw 2vw;
+}
+
+#user_owned {
+    border-top: solid rgb(0, 0, 0, 0.35) 3px;
+    margin-top: 3vw;
+}
+
+#user_owned_memes {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    color: var(--white);
+    margin: 0 2vw 2vw 2vw;
+}
+
 #meme {
     margin-top: 1.5em;
     display: flex;
@@ -416,8 +487,13 @@ h1 {
     z-index: 2;
 }
 
+<<<<<<< HEAD
 .stats {
     padding: 1em;
+=======
+.stats {/*TODO this covers box shadow of meme*/
+    padding: 2vw;
+>>>>>>> dev
     max-width: 500px;
     font-size: 20px;
     text-align: center;
@@ -468,4 +544,8 @@ h1 {
     text-align: center;
     border-radius: 10px;
     width: 150px;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> dev
