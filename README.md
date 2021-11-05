@@ -8,7 +8,7 @@ GitHub: https://github.com/evanhosni/meta-meme-market
 
 Bringing crypto and memes together, creators now have the opportunity to allow investors to buy part, or all, of the ownership of memes they've created. By allowing investment, creators now have the opportunity to fund their hobbies or careers. 
 
-On upload, the creator chooses how many shares to be offered and their initial price to be offered to the community. The creator will then receive the same number of shares to ensure a minimum 50% control of the meme, but will be able to re-buy shares to increase their control, or sell a portion of their held shares for greater profit.
+On upload, the creator chooses how many shares to be offered and their initial price to be offered to the community. The creator will then receive half of the shares to ensure a minimum 50% control of the meme, but will be able to re-buy shares to increase their control, or sell a portion of their held shares for greater profit.
 
 Users can, like the stock market, now invest in uploaded works by buying shares of content, either on the initial offering of shares, or taking advantage of the opportunity to buy shares other users have been put up for sale. Currently, as long as they're available, the initial offered shares will retain the creator set price. However, users can start selling their shares of a meme whenever they choose, even undercutting prices if so desired.
 
