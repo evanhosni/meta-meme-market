@@ -54,9 +54,24 @@ router.get("/", async (req, res) => {
 
 router.get("/meme/:id", async (req, res) => {//TODO change id to title so it's "/meme/:title"
     // res.render("meme")
+    let user;
     let balance;
     if (req.session.user){
-        balance = (await User.findByPk(req.session.user.id)).balance;
+        try {
+            user = await User.findByPk(req.session.user.id, {
+                include: {
+                    model: Share,
+                    where: {
+                        meme_id: req.params.id
+                    },
+                    required: false
+                }
+            });
+            balance = user.balance;
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json(err);
+        }
     }
     Meme.findOne({
         where: {
@@ -68,15 +83,23 @@ router.get("/meme/:id", async (req, res) => {//TODO change id to title so it's "
             attributes: ['username']
         }, {
             model: Share,
-            where: { is_initial: true },
+            where: { [Op.not]: { listed_at: null } },
             attributes: ['id', 'is_initial', 'listed_at', 'bought_price', 'meme_id'],
             required: false
         }]
     }).then(memeData => {
+        if (!memeData) return res.status(404).send('No meme with this id found!');
+        let numShares = 'no';
+        let stake = null;
+        if (user) {
+            numShares = user.shares.length;
+            console.log(user.shares.length, memeData.number_shares);
+            stake = (Math.round((user.shares.length / memeData.number_shares) * 100));
+        }
         const hbsMeme = memeData.get({ plain: true })
         res.render("meme", {
             ...hbsMeme, loggedIn: req.session.loggedIn, currentUser: req.session.user,
-            meme: hbsMeme, balance
+            meme: hbsMeme, balance, numShares, stake
         });
     }).catch(err => {
         console.log(err)

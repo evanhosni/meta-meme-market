@@ -110,8 +110,13 @@ main {
 .create-message,
 .create-form,
 .welcome,
+.create-check,
 #login-form {
     margin-left: 10px;
+}
+
+.create-form button {
+    color: white;
 }
 
 #title {

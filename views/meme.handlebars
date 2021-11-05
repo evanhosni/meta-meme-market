@@ -19,7 +19,15 @@
     </div> --}}
 
 
-<div id="buy-sell">
+<div id="buy-sell"> 
+  {{#if loggedIn}}
+    <p>You own {{numShares}} shares of this meme!</p>
+    {{#if stake}}
+      <p>You own {{stake}}% of this meme!</p>
+    {{/if}}
+  {{else}}
+    <p>Log in to buy shares!</p>
+  {{/if}}
 
 {{!-- <div class="sell-btn"> --}}
   <button id ="sellme">
