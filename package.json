@@ -1,5 +1,5 @@
 {
-  "name": "sequelizestuff",
+  "name": "meta-meme-market",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,14 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Rufasa85/sequelizestuff.git"
+    "url": "git+https://github.com/evanhosni/meta-meme-market.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Rufasa85/sequelizestuff/issues"
+    "url": "https://github.com/evanhosni/meta-meme-market/issues"
   },
-  "homepage": "https://github.com/Rufasa85/sequelizestuff#readme",
+  "homepage": "https://github.com/evanhosni/meta-meme-market#readme",
   "dependencies": {
     "@cloudinary/url-gen": "^1.1.0",
     "bcrypt": "^5.0.1",
@@ -31,6 +32,5 @@
     "mysql2": "^2.3.2",
     "nodemon": "^2.0.14",
     "sequelize": "^6.9.0"
-  },
-  "keywords": []
+  }
 }
