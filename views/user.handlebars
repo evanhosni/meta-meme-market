@@ -9,7 +9,7 @@
     <div id="user_created_memes">
         {{#each memes}}
             <div class="card">
-                <img class="meme" src={{img}}>
+                <img class="meme" src={{this.img}}>
                 {{!-- <h4>Owner: {{user.currentUser.username}}</h4> --}}
                 {{#if this.value}}
                     <p>Value: ${{this.value}}</p>

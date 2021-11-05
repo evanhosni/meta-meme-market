@@ -5,7 +5,10 @@ const { Op } = require('sequelize');
 
 //Homepage shows all memes sorted descending by created most recently
 router.get("/", async (req, res) => {
-    const balance = (await User.findByPk(req.session.user.id)).balance;
+    let balance;
+    if (req.session.user){
+        balance = (await User.findByPk(req.session.user.id)).balance;
+    }
     Meme.findAll({
         order: [
             ["created_at", 'DESC']
@@ -52,7 +55,10 @@ router.get("/", async (req, res) => {
 
 router.get("/meme/:id", async (req, res) => {//TODO change id to title so it's "/meme/:title"
     // res.render("meme")
-    const balance = (await User.findByPk(req.session.user.id)).balance;
+    let balance;
+    if (req.session.user){
+        balance = (await User.findByPk(req.session.user.id)).balance;
+    }
     Meme.findOne({
         where: {
             id: req.params.id
@@ -82,7 +88,10 @@ router.get("/meme/:id", async (req, res) => {//TODO change id to title so it's "
 })
 
 router.get("/user/:username", async (req, res) => {
-    const balance = (await User.findByPk(req.session.user.id)).balance;
+    let balance;
+    if (req.session.user){
+        balance = (await User.findByPk(req.session.user.id)).balance;
+    }
     User.findOne({
         where: {
             username: req.params.username
@@ -121,7 +130,7 @@ router.get("/user/:username", async (req, res) => {
             user: plainUser, balance})
         if(req.session.loggedIn && req.session.user.username == req.params.username) {
             res.render("user", {
-                plainUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: true,
+                ...plainUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: true,
                 user: plainUser, balance
             })
         } else {

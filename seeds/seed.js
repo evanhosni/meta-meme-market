@@ -47,7 +47,7 @@ const seed = async () => {
     const memesData = await Meme.bulkCreate([
         {
 
-            img: "https://res.cloudinary.com/metamememarket/image/upload/v1635878183/e4rkyhci8mnlniz8nj9b.jpg",
+            img: "http://res.cloudinary.com/metamememarket/image/upload/v1636062462/exiswl5ch5mygy3xzihr.png",
             title: "Meme1",
             number_shares: 100,
             share_price: 24.72,
@@ -56,7 +56,7 @@ const seed = async () => {
             user_id: 1
         },
         {
-            img: "https://res.cloudinary.com/metamememarket/image/upload/v1635878163/w8miibcytqlp9go9tidn.jpg",
+            img: "http://res.cloudinary.com/metamememarket/image/upload/v1636073098/jyjiuibeyoa9fnh0xnc0.jpg",
             title: "Meme2",
             number_shares: 200,
             share_price: 22.88,
@@ -65,7 +65,7 @@ const seed = async () => {
             user_id: 1
         },
         {
-            img: "https://res.cloudinary.com/metamememarket/image/upload/v1635877853/wfszlgnzn5fo5skg00wy.png",
+            img: "http://res.cloudinary.com/metamememarket/image/upload/v1636073138/vebfzozvokzg3ml7ewlj.png",
             title: "Meme3",
             number_shares: 300,
             share_price: 20.34,
@@ -74,7 +74,7 @@ const seed = async () => {
             user_id: 2
         },
         {
-            img: "https://res.cloudinary.com/metamememarket/image/upload/v1635877832/zfms4sepxjc5xfpe07xp.png",
+            img: "http://res.cloudinary.com/metamememarket/image/upload/v1636073215/iaorn68rpihycqqrw8ov.jpg",
             title: "Meme4",
             number_shares: 400,
             share_price: 17.77,
@@ -83,7 +83,7 @@ const seed = async () => {
             user_id: 1
         },
         {
-            img: "https://res.cloudinary.com/metamememarket/image/upload/v1635877509/pmmepebomj5cclqnhktk.jpg",
+            img: "http://res.cloudinary.com/metamememarket/image/upload/v1636073239/uswmfj5ghldwe5vn3ut6.webp",
             title: "Meme5",
             number_shares: 500,
             share_price: 15.55,
@@ -92,7 +92,7 @@ const seed = async () => {
             user_id: 3
         },
         {
-            img: "https://res.cloudinary.com/metamememarket/image/upload/v1635876315/w2hryq5hyswrxaflul9u.png",
+            img: "http://res.cloudinary.com/metamememarket/image/upload/v1636073281/jdevnpb5scawkahan3ac.png",
             title: "Meme6",
             number_shares: 9,
             share_price: 108.94,
@@ -100,6 +100,15 @@ const seed = async () => {
             created_at: 10 / 11 / 2021,
             user_id: 2
         },
+        {
+            img: "http://res.cloudinary.com/metamememarket/image/upload/v1636073423/ty5oxmkkjctoq54alugb.png",
+            title: "Meme7",
+            number_shares: 9,
+            share_price: 108.94,
+            is_initial: false,
+            created_at: 10 / 11 / 2021,
+            user_id: 2
+        }
     ])
 
     const shareData = await Share.bulkCreate([
