@@ -5,8 +5,11 @@
             <a href="/meme/{{id}}">
             <img class="meme" src={{img}}>
             <h4 class="color-text">@{{user.username}}</h4>
-            <p>${{value}}</p>
-            </a>
+            {{#if value}}
+                <p>${{value}}</p>
+            {{else}}
+                <p>No available shares!</p>
+            {{/if}}
             {{!-- <button>Buy</button> --}}
         </div>
     {{/each}}
