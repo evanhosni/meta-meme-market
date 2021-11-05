@@ -25,7 +25,7 @@ signUpForm.addEventListener("submit", async (e) => {
         // } else if (routing_number.length != 9) {
         //     alert("Your routing number must be 9 digits.")
         } else {
-            fetch("/api/users/create", {
+            fetch("/api/users/", {
                 method: "POST",
                 body: JSON.stringify({
                     username: username,

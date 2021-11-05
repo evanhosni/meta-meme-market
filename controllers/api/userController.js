@@ -54,7 +54,7 @@ router.get("/", (req, res) => {
     })
 });
 
-router.post("/create", (req, res) => {
+router.post("/", (req, res) => {
     User.create({
         username: req.body.username,
         email: req.body.email,
@@ -72,11 +72,7 @@ router.post("/create", (req, res) => {
             email: newUser.email,
             id: newUser.id
         }
-        
-        // loggedIn: true
-
-        console.log(req.session)
-        console.log(req.session.user)
+        req.session.loggedIn = true
         res.json(newUser);
     }).catch(err => {
         console.log(err);
