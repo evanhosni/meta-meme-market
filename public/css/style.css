@@ -23,11 +23,11 @@ body {
 .card {
     position: relative;
     margin: 1.6vw;
-    box-shadow: black 0 0 20px;
+    box-shadow: rgb(207, 196, 196) 0 0 8px;
     border-radius: 15px;
     text-align: center;
     padding-bottom: 12px;
-    max-width: 80vw;
+    max-width: 60vw;
 }
 
 .card a {
@@ -60,7 +60,7 @@ body {
 }
 
 .color-text {
-    background-image: linear-gradient(to right, rgb(255, 0, 13), rgb(255, 0, 255), rgb(106, 255, 0), rgb(0, 217, 255));
+    background-image: linear-gradient(to right, goldenrod,rgb(255, 255, 255), rgb(170, 0, 255), rgb(170, 0, 255));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -91,7 +91,9 @@ body {
 }
 
 #topnav a {
-    color: var(--white);
+    background-image: linear-gradient(to right, goldenrod,rgb(255, 255, 255), rgb(170, 0, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 #title {
@@ -104,7 +106,7 @@ body {
     left: 0;
     right: 0;
     text-align: center;
-    background-image: linear-gradient(to right, rgb(255, 255, 255),rgb(255, 255, 255), rgb(0, 217, 255));
+    background-image: linear-gradient(to right, goldenrod,rgb(255, 255, 255), rgb(170, 0, 255));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
@@ -118,6 +120,13 @@ body {
 
 .link {
     padding: 1vw;
+}
+
+h1 {
+    background-image: linear-gradient(to right, goldenrod,rgb(255, 255, 255), rgb(170, 0, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
 }
 
 #buy-btn {
@@ -135,10 +144,10 @@ body {
     background: linear-gradient(to left top, #0adc3b 50%, #07481d 50%);
     border-style: none;
     color:#fff;
-    font-size: 23px;
-    letter-spacing: 3px;
-    font-family: 'Lato';
-    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 2px;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 300;
     outline: none;
     cursor: pointer;
     position: relative;
@@ -254,10 +263,10 @@ body {
     background: linear-gradient(to left top, #fc0905 50%, #920a07 50%);
     border-style: none;
     color:#fff;
-    font-size: 23px;
-    letter-spacing: 3px;
-    font-family: 'Lato';
-    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 2px;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 300;
     outline: none;
     cursor: pointer;
     position: relative;
@@ -351,16 +360,11 @@ body {
 
 #sellme:hover{
     transition: all .5s;
-    transform: rotate(-3deg) scale(1.1);
+    transform: rotate(3deg) scale(1.1);
     box-shadow: 0px 3px 5px rgba(0,0,0,.4);
 }
 #sellme:hover span{
     animation-play-state: paused;
-}
-
-#spacer {
-    height: 1vw;
-    min-height: 20px;
 }
 
 #home {
@@ -372,7 +376,7 @@ body {
 }
 
 #meme {
-    margin: 2vw;
+    margin-top: 1.5em;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -383,7 +387,7 @@ body {
 }
 
 #buy-sell {
-    margin: 2vw;
+    /* margin: 1em; */
     display: inline-block;
     flex-direction: column;
     justify-content: center;
@@ -397,31 +401,32 @@ body {
 .memepage_meme {
     display: flex;
     justify-content: space-around;
-    height: 520px;
-    width: 100%;
-    max-height: 90vw;
-    max-width: 90vw;
+    max-height: 100vh;
+    max-width: 100vh;
     /*bruh*/
     /* padding: 0px 200px; */
     /* display: block; */
 }
 
 .memepage_meme img {
-    max-width: 100%;
-    max-height: 100%;
-    box-shadow: black 0 0 20px;
+    max-width: 90vh;
+    max-height: 90vh;
+    box-shadow: rgb(187, 177, 177) 0 0 4px;
     border-radius: 15px;
+    z-index: 2;
 }
 
 .stats {
-    padding: 2vw;
+    padding: 1em;
     max-width: 500px;
     font-size: 20px;
     text-align: center;
 }
 
 .stats a {
-    color: var(--gold);
+    background-image: linear-gradient(to right, rgb(255, 0, 13), rgb(255, 0, 255), rgb(106, 255, 0), rgb(0, 217, 255));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 
@@ -464,46 +469,3 @@ body {
     border-radius: 10px;
     width: 150px;
 }
-
-#portfolio {
-    margin: 0;
-    padding: 0;
-    font-family: 'Raleway';
-    font-weight: 400;
-    font-size: 3em;
-    color: #9A12B3;
-  }
-  
-  
-  
-  .letterDrop {
-    position: relative;
-    top: 0;  
-    display: inline-block;
-    text-transform: uppercase; 
-    letter-spacing: 0.5em;
-    opacity: 0.8;
-    transform: rotateX(-90deg);
-    animation: letterDrop 1.2s ease 1 normal forwards;
-  }
-  
-  @keyframes letterDrop {
-      10% {
-          opacity: 0.5;
-      }
-      20% {
-          opacity: 0.8;
-          top: 3.75em;
-          transform: rotateX(-360deg);
-      }
-      100% {
-          opacity: 1;
-          top: 4.50em;
-          transform: rotateX(360deg);
-      }
-  }
-  
-  
-  span:nth-child(2n) {
-    color: #663399;
-  }
