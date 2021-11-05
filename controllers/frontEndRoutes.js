@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
         order: [
             ["created_at", 'DESC']
         ],
-        attributes: ['img','share_price','id'],
+        attributes: ['img', 'share_price', 'id'],
         include: [{
             model: User,
             attributes: ['username']
@@ -16,8 +16,17 @@ router.get("/", (req, res) => {
     }).then(memeData => {
         const hbsMemes = memeData.map(meme => meme.get({ plain: true }))
         // res.json(hbsMemes)
+        // if (req.session.id) {
+        //     res.render("home")
+        // }
+        // else {
+        //     res.render("home", {
+        //         ...hbsMemes, loggedIn: req.session.loggedIn, currentUser: req.session.user.username,
+        //         memes: hbsMemes
+        //     })
+        // }
         res.render("home", {
-            ...hbsMemes, loggedIn: req.session.loggedIn, currentUser: req.session.user.username,
+            ...hbsMemes, loggedIn: req.session.loggedIn, currentUser: req.session.user,
             memes: hbsMemes
         })
     }).catch(err => {
@@ -32,7 +41,7 @@ router.get("/meme/:id", (req, res) => {
         where: {
             id: req.params.id
         },
-        attributes: ['img','share_price','number_shares','user_id'],
+        attributes: ['img', 'share_price', 'number_shares', 'user_id'],
         include: [{
             model: User,
             attributes: ['username']
@@ -44,10 +53,10 @@ router.get("/meme/:id", (req, res) => {
         }]
     }).then(memeData => {
         // console.log(memeData)
-        const hbsMeme = memeData.get({plain:true})
+        const hbsMeme = memeData.get({ plain: true })
         // res.json(hbsMemes)
         res.render("meme", {
-            ...hbsMeme, loggedIn: req.session.loggedIn, currentUser: req.session.user.username,
+            ...hbsMeme, loggedIn: req.session.loggedIn, currentUser: req.session.user,
             meme: hbsMeme
         })
     }).catch(err => {
@@ -63,19 +72,19 @@ router.get("/user/:username", (req, res) => {
         },
         include: [{
             model: Meme,
-            attributes: ['id','img','share_price','number_shares','user_id']
+            attributes: ['id', 'img', 'share_price', 'number_shares', 'user_id']
         }]
     }).then(userData => {
         console.log(userData.toJSON())
-        const hbsUser = userData.get({plain:true})
-        if(req.session.loggedIn && req.session.user.username == req.params.username) {
+        const hbsUser = userData.get({ plain: true })
+        if (req.session.loggedIn && req.session.user.username == req.params.username) {
             res.render("user", {
-                ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user.username, sameUser: true,
+                ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: true,
                 user: hbsUser
             })
         } else {
             res.render("user", {
-                ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user.username, sameUser: false,
+                ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: false,
                 user: hbsUser
             })
         }
@@ -85,8 +94,8 @@ router.get("/user/:username", (req, res) => {
     })
 })
 
-router.get("/signup", (req,res)=>{
-    if(req.session.user){
+router.get("/signup", (req, res) => {
+    if (req.session.user) {
         req.session.destroy()
     }
     res.render("signup")
@@ -105,7 +114,7 @@ router.get("/upload", (req, res) => {
     if (!req.session.user) {
         return res.redirect("/login")
     } else {
-        res.render("upload", {loggedIn: req.session.loggedIn})
+        res.render("upload", { loggedIn: req.session.loggedIn })
     }
 })
 
@@ -114,7 +123,7 @@ router.get('/buy', (req, res) => {
     if (!req.session.user) {
         return res.redirect("/login")
     } else {
-        res.render("buy", {loggedIn: req.session.loggedIn})
+        res.render("buy", { loggedIn: req.session.loggedIn })
     }
 })
 
@@ -122,16 +131,16 @@ router.get('/sell', (req, res) => {
     if (!req.session.user) {
         return res.redirect("/login")
     } else {
-        res.render("sell", {loggedIn: req.session.loggedIn})
+        res.render("sell", { loggedIn: req.session.loggedIn })
     }
 })
 
-router.get('/logout', (req,res)=>{
+router.get('/logout', (req, res) => {
     req.session.destroy()
     res.redirect('/')
 })
 
-router.get('*', (req,res)=>{
+router.get('*', (req, res) => {
     res.redirect('/')
 })
 
