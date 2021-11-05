@@ -15,14 +15,14 @@ Meme.init({
         allowNull: false,
         unique: true
     },
-    // title: {
-    //     type: DataTypes.STRING,
-    //     allowNull: false,
-    //     unique: true,//TODO unique per user?
-    //     validate: {
-    //         len: [4, 50]
-    //     }
-    // },
+    title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,//TODO unique per user?
+        validate: {
+            len: [4, 50]
+        }
+    },
     number_shares: {
         type: DataTypes.INTEGER,
         allowNull: false,
