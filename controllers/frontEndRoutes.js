@@ -53,7 +53,7 @@ router.get("/", async (req, res) => {
         //     })
         // }
         res.render("home", {
-            ...hbsMemes, loggedIn: req.session.loggedIn, currentUser: req.session.user.username,
+            ...hbsMemes, loggedIn: req.session.loggedIn, currentUser: req.session.username,
             memes: hbsMemes
         })
     }).catch(err => {
