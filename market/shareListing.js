@@ -39,25 +39,28 @@ function IPO(seller, meme, amt, price) {
     const toCreate = [];
 
     for (let i = 0; i < amt; i++) {
-        toCreate.push({
-            listed_at: null,
-            bought_price: price,
-            is_initial: false,
-            user_id: seller,
-            meme_id: meme.id
-        });
-        toCreate.push({
-            listed_at: Date.now(),
-            bought_price: price,
-            is_initial: true,
-            user_id: seller,
-            meme_id: meme.id
-        });
+        if (i % 2 === 1) {
+            toCreate.push({
+                listed_at: null,
+                bought_price: price,
+                is_initial: false,
+                user_id: seller,
+                meme_id: meme.id
+            });
+        } else {
+            toCreate.push({
+                listed_at: Date.now(),
+                bought_price: price,
+                is_initial: true,
+                user_id: seller,
+                meme_id: meme.id
+            });
+        }
     }
 
     Share.bulkCreate(toCreate)
     .then(created => {
-        console.log(created)
+        // console.log(created)
     })
     .catch(err => console.error(err));
 }
