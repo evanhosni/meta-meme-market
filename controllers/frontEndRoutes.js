@@ -48,13 +48,13 @@ router.get("/", async (req, res) => {
         // }
         // else {
         //     res.render("home", {
-        //         ...hbsMemes, loggedIn: req.session.loggedIn, currentUser: req.session.user.username,
+        //         ...hbsMemes, loggedIn: req.session.loggedIn, currentUser: req.session,
         //         memes: hbsMemes
         //     })
         // }
         res.render("home", {
-            ...hbsMemes, loggedIn: req.session.loggedIn, currentUser: req.session.username,
-            memes: hbsMemes
+            ...hbsMemes, loggedIn: req.session.loggedIn, currentUser: req.session.user,
+            memes: hbsMemes, balance
         })
     }).catch(err => {
         console.log(err)
@@ -72,7 +72,7 @@ router.get("/meme/:id", async (req, res) => {//TODO change id to title so it's "
         where: {
             id: req.params.id
         },
-        attributes: ['img', 'share_price', 'number_shares', 'user_id'],
+        // attributes: ['img', 'title', 'share_price', 'number_shares', 'user_id'],
         include: [{
             model: User,
             attributes: ['username']
@@ -126,7 +126,7 @@ router.get("/user/:username", async (req, res) => {
             }
         }]
     }).then(userData => {
-        // const hbsUser = userData.get({plain:true})
+        const hbsUser = userData.get({plain:true})
         const plainUser = userData.get({ plain: true });
         for (meme of plainUser.memes) {
             if (meme.shares.length) {
@@ -139,8 +139,8 @@ router.get("/user/:username", async (req, res) => {
             user: plainUser, balance})
         if(req.session.loggedIn && req.session.user.username == req.params.username) {
             res.render("user", {
-                ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user.username, sameUser: true,
-                user: hbsUser
+                ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: true,
+                user: hbsUser, balance
             })
         } else {
             res.render("user", {
