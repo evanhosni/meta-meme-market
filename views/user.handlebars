@@ -1,0 +1,51 @@
+{{#if sameUser}}
+<h2 id="user_title">Welcome back, <span>{{currentUser.username}}</span>.<br>You're peepin' your own user page.</h2>
+{{else}}
+<h2 id="user_title">You're peepin' <span>{{user.username}}</span>'s User Page.</h2>
+{{/if}}
+
+<div id="user_created"></div>
+    <h2 class="user_subtitle">Memes created by <span>{{user.username}}</span>:</h2>
+    <div id="user_created_memes">
+        {{#each memes}}
+            <div class="card">
+                <img class="meme" src={{this.img}}>
+                {{!-- <h4>Owner: {{user.currentUser.username}}</h4> --}}
+                {{#if this.value}}
+                    <p>Value: ${{this.value}}</p>
+                {{else}}
+                    <p>No available shares!</p>
+                {{/if}}
+                {{!-- <button>Buy</button> --}}
+                <a id="card_link" href="/meme/{{id}}"></a>
+            </div>
+        {{/each}}
+    </div>
+</div>
+
+<div id="user_owned">
+    <h2 class="user_subtitle">Memes owned by <span>{{user.username}}</span>:</h2>
+    <div id="user_owned_memes">
+        {{#each memes}}
+            {{log 'memes' this}}
+            <div class="card">
+                <img class="meme" src={{img}}>
+                {{!-- <h4>Owner: {{user.currentUser.username}}</h4> --}}
+                {{#if this.value}}
+                    <p>Value: ${{this.value}}</p>
+                {{else}}
+                    <p>No available shares!</p>
+                {{/if}}
+                {{!-- <button>Buy</button> --}}
+                <a id="card_link" href="/meme/{{id}}"></a>
+            </div>
+        {{/each}}
+    </div>
+</div>
+{{#if sameUser}}
+<div id="user_logout">
+    <a href="/logout">Logout</a>
+</div>
+{{/if}}
+
+<script src="/js/user.js" type="text/javascript"></script>

@@ -1,0 +1,57 @@
+<div id="meme">
+    <div class="memepage_meme">
+        <img src={{meme.img}}>
+    </div>
+    <div class="stats">
+        <h1>{{meme.title}}</h1>
+        <p>created by <a href="/user/{{meme.user.username}}">{{meme.user.username}}</a></p>
+    </div>
+    {{!-- <div class="stats">
+        <button><span style="font-size:xx-large; background: red; padding: 0px 30px">BUY</span></button>
+        <h2>💰50</h2>
+        <p>current<br>share price</p>
+    </div> --}}
+    {{!-- <div class="stats">
+        <p>Owner: {{meme.user.username}}</p>
+        <p>Current Price: 💰{{meme.share_price}}</p>
+        <p>Shares: {{meme.number_shares}}</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur, dolorum autem eligendi quo molestias et culpa natus molestiae. Quas, magnam culpa exercitationem quasi necessitatibus quibusdam accusantium ratione laborum maxime ipsam.</p>
+    </div> --}}
+
+
+<div id="buy-sell"> 
+  {{#if loggedIn}}
+    <p>You own {{numShares}} shares of this meme!</p>
+    {{#if stake}}
+      <p>You own {{stake}}% of this meme!</p>
+    {{/if}}
+  {{else}}
+    <p>Log in to buy shares!</p>
+  {{/if}}
+
+{{!-- <div class="sell-btn"> --}}
+  <button id ="sellme">
+    SELL 
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+{{!-- </div> --}}
+
+{{!-- <div class="buy-btn"> --}}
+  <button id ="buyme">
+    BUY 
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+{{!-- </div> --}}
+
+
+</div>
+
+</div>
+
+

@@ -1,0 +1,36 @@
+{
+  "name": "meta-meme-market",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "seed": "node seeds/seed.js",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evanhosni/meta-meme-market.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/evanhosni/meta-meme-market/issues"
+  },
+  "homepage": "https://github.com/evanhosni/meta-meme-market#readme",
+  "dependencies": {
+    "@cloudinary/url-gen": "^1.1.0",
+    "bcrypt": "^5.0.1",
+    "cloudinary": "^1.27.1",
+    "connect-session-sequelize": "^7.1.2",
+    "cron": "^1.8.2",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.4",
+    "express-session": "^1.17.2",
+    "mysql2": "^2.3.2",
+    "nodemon": "^2.0.14",
+    "sequelize": "^6.9.0"
+  }
+}
