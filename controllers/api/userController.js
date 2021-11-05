@@ -59,10 +59,10 @@ router.post("/create", (req, res) => {
         username: req.body.username,
         email: req.body.email,
         password: req.body.password,
-        state_identification: req.body.state_identification,
-        bank_name: req.body.bank_name,
-        account_number: req.body.account_number,
-        routing_number: req.body.routing_number
+        // state_identification: req.body.state_identification,
+        // bank_name: req.body.bank_name,
+        // account_number: req.body.account_number,
+        // routing_number: req.body.routing_number
     }).then(newUser => {
         req.session.save(()=>{
             req.session.loggedIn = true        

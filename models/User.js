@@ -37,34 +37,34 @@ User.init({
             // isAlphanumeric:true
         }
     },
-    state_identification: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-        validate: {
-            isAlphanumeric: true
-        }
-    },
-    bank_name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            // isAlpha: true
-        }
-    },
-    account_number: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-    },
-    routing_number: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        validate: {
-            isNumeric: true,
-            // len: [9.9]
-        }
-    },
+    // state_identification: {
+    //     type: DataTypes.STRING,
+    //     allowNull: false,
+    //     unique: true,
+    //     validate: {
+    //         isAlphanumeric: true
+    //     }
+    // },
+    // bank_name: {
+    //     type: DataTypes.STRING,
+    //     allowNull: false,
+    //     validate: {
+    //         // isAlpha: true
+    //     }
+    // },
+    // account_number: {
+    //     type: DataTypes.STRING,
+    //     allowNull: false,
+    //     unique: true,
+    // },
+    // routing_number: {
+    //     type: DataTypes.INTEGER,
+    //     allowNull: false,
+    //     validate: {
+    //         isNumeric: true,
+    //         // len: [9.9]
+    //     }
+    // },
     balance: {
         type: DataTypes.INTEGER,
         allowNull: false,
