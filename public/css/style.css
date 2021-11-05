@@ -7,7 +7,6 @@
 
 * {
     margin: 0;
-    background: var(--black);
     font-family: 'Bungee', sans-serif;
     text-decoration: none;
 }
@@ -18,10 +17,18 @@
 
 input {
     background-color: white;
+    text-align: center;
+    border-radius: 10px;
+}
+
+button {
+    border-radius: 10px;
 }
 
 body {
     color: var(--white);
+    background: var(--black);
+    /* background-image: linear-gradient(to right, var(--black), rgb(10, 10, 10)); */
 }
 
 .card {
@@ -57,8 +64,8 @@ body {
 .meme {
     width: 300px;
     height: 300px;
-    max-width: 50vw;
-    max-height: 50vw;
+    max-width: 100vw;
+    max-height: 100vw;
     object-fit: cover;
     padding-bottom: 12px;
 }
@@ -70,7 +77,7 @@ body {
 }
 
 
-#main {
+main {
     position: fixed;
     width: 100%;
     z-index: 999;
@@ -80,11 +87,24 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
+    padding: 15px 2vw;
+    margin: auto;
+    top: 0;
+    background: var(--black);
     border-bottom: 3px solid black;
     box-shadow: black 0 0 20px;
     font-size: 1.5vw;
     text-decoration: none;
+}
+
+#topnav_user_link {
+    display: flex;
+    align-items: center;
+}
+
+#spacer {
+    height: 8vw;
+    min-height: 80px;
 }
 
 .create-message,
@@ -124,7 +144,19 @@ body {
 }
 
 
-#buy-btn {
+#buy-sell {
+    /* margin: 1em; */
+    display: inline-block;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    color: var(--white);
+    max-width: 100vw;
+}
+
+
+/* #buy-btn {
     position: absolute;
     top:50%;
     left:50%;
@@ -132,7 +164,7 @@ body {
     width: fit-content;
     height:auto;
     display: inline-block;
-}
+} */
 #buyme{
     width:200px;
     height:70px;
@@ -245,7 +277,7 @@ body {
     animation-play-state: paused;
 }
 
-#sell-btn {
+/* #sell-btn {
     position: relative;
     top:50%;
     left:50%;
@@ -253,7 +285,7 @@ body {
     width: fit-content;
     height:auto;
     display: inline-block
-}
+} */
 #sellme{
     width:200px;
     height:70px;
@@ -442,18 +474,6 @@ body {
     max-width: 100vw;
 }
 
-#buy-sell {
-    /* margin: 1em; */
-    display: inline-block;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    color: var(--white);
-    max-width: 100vw;
-}
-
-
 .memepage_meme {
     display: flex;
     justify-content: space-around;
@@ -496,8 +516,8 @@ body {
 }
 
 #meme_upload_container {
-    height: 300px;
-    width: 300px;
+    height: 420px;
+    width: 420px;
     display: flex;
     margin: auto;
     align-items: center;
@@ -512,8 +532,8 @@ body {
     margin: auto;
     align-items: center;
     justify-content: space-around;
-    height: 250px;
-    width: 250px;
+    height: 380px;
+    width: 380px;
     border: 5px dashed gray;
     border-radius: 15px;
 }
@@ -521,12 +541,12 @@ body {
 #meme_img img {
     box-shadow: black 0 0 20px;
     border-radius: 15px;
+    height: 380px;
+    width: 100%
 }
 
 #upload input {
     margin: 10px;
-    text-align: center;
-    border-radius: 10px;
     width: 150px;
 }
 

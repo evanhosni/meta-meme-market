@@ -7,25 +7,29 @@
     <title>MetaMemeMarket</title>
     <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
+
 </head>
 <body>
-    <div id="topnav">
-            {{#if loggedIn}}
-            <a href="/upload" class="link">Upload</a>
-            {{!-- <a href="/upload" class="link">Upload</a> --}}
-            <a id="title" href="/"><span id="title_gold">Meta</span><span id="title_white">Meme</span><span id="title_gray">Market</span></a>
-            {{!-- <a href="/logout">Logout</a> --}}
-            <a href="/user/{{currentUser.username}}" class="link">{{currentUser.username}} 💰<span style="font-size: 10px;">x</span>{{balance}}</a>
+    <main>
+        <div id="topnav">
+                {{#if loggedIn}}
+                <a href="/upload" class="link">Upload</a>
+                {{!-- <a href="/upload" class="link">Upload</a> --}}
+                <a id="title" href="/"><span id="title_gold">Meta</span><span id="title_white">Meme</span><span id="title_gray">Market</span></a>
+                {{!-- <a href="/logout">Logout</a> --}}
+                <a id="topnav_user_link" href="/user/{{currentUser.username}}" class="link">{{currentUser.username}} &nbsp<img src="/assets/metameme_coin.png" style="height: 1.75vw; width: 1.75vw;" alt="$"> <span style="color:green">&nbsp{{balance}}</span></a>
 
-            {{else}}
-            <div></div>
-            <a id="title" href="/"><span id="title_gold">Meta</span><span id="title_white">Meme</span><span id="title_gray">Market</span></a>
-                <a href="/signup" class="link">Sign up / Login</a>
-                {{!-- <a style="display: inline;" href="/login" class="link">Login</a> --}}
-            {{/if}}
-        {{!-- <a href="/login">Login</a> --}}
-        {{!-- <a href="/api/users/logout">logout</a> --}}
-    </div>
+                {{else}}
+                <div></div>
+                <a id="title" href="/"><span id="title_gold">Meta</span><span id="title_white">Meme</span><span id="title_gray">Market</span></a>
+                    <a href="/signup" class="link">Login / Sign up</a>
+                    {{!-- <a style="display: inline;" href="/login" class="link">Login</a> --}}
+                {{/if}}
+            {{!-- <a href="/login">Login</a> --}}
+            {{!-- <a href="/api/users/logout">logout</a> --}}
+        </div>
+    </main>
+        <div id="spacer"></div>
     {{!-- <div id="spacer"></div> --}}
     {{{body}}}
 </body>
