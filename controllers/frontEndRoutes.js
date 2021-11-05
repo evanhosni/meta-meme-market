@@ -62,7 +62,7 @@ router.get("/meme/:id", async (req, res) => {//TODO change id to title so it's "
         where: {
             id: req.params.id
         },
-        attributes: ['img', 'share_price', 'number_shares', 'user_id'],
+        // attributes: ['img', 'title', 'share_price', 'number_shares', 'user_id'],
         include: [{
             model: User,
             attributes: ['username']
