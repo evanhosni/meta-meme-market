@@ -42,19 +42,9 @@ router.get("/", async (req, res) => {
             }
             return plainMeme;
         });
-        // res.json(hbsMemes)
-        // if (req.session.id) {
-        //     res.render("home")
-        // }
-        // else {
-        //     res.render("home", {
-        //         ...hbsMemes, loggedIn: req.session.loggedIn, currentUser: req.session.user.username,
-        //         memes: hbsMemes
-        //     })
-        // }
         res.render("home", {
-            ...hbsMemes, loggedIn: req.session.loggedIn, currentUser: req.session.username,
-            memes: hbsMemes
+            ...hbsMemes, loggedIn: req.session.loggedIn, currentUser: req.session.user,
+            memes: hbsMemes, balance
         })
     }).catch(err => {
         console.log(err)
@@ -83,9 +73,7 @@ router.get("/meme/:id", async (req, res) => {//TODO change id to title so it's "
             required: false
         }]
     }).then(memeData => {
-        // console.log(memeData)
         const hbsMeme = memeData.get({ plain: true })
-        // res.json(hbsMemes)
         res.render("meme", {
             ...hbsMeme, loggedIn: req.session.loggedIn, currentUser: req.session.user,
             meme: hbsMeme, balance
@@ -126,26 +114,25 @@ router.get("/user/:username", async (req, res) => {
             }
         }]
     }).then(userData => {
-        // const hbsUser = userData.get({plain:true})
-        const plainUser = userData.get({ plain: true });
-        for (meme of plainUser.memes) {
+        const hbsUser = userData.get({ plain: true });
+        for (meme of hbsUser.memes) {
             if (meme.shares.length) {
                 meme.value = meme.shares[0].bought_price;
             } else {
                 meme.value = null;
             }
         }
-        console.log({...plainUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: false,
-            user: plainUser, balance})
+        // console.log({...plainUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: false,
+        //     user: plainUser, balance})
         if(req.session.loggedIn && req.session.user.username == req.params.username) {
             res.render("user", {
-                ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user.username, sameUser: true,
-                user: hbsUser
+                ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: true,
+                user: hbsUser, balance
             })
         } else {
             res.render("user", {
-                ...plainUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: false,
-                user: plainUser, balance
+                ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: false,
+                user: hbsUser, balance
             })
         }
     }).catch(err => {
@@ -170,28 +157,40 @@ router.get("/login", (req, res) => {
     }
 })
 
-router.get("/upload", (req, res) => {
+router.get("/upload", async (req, res) => {
+    let balance;
+    if (req.session.user){
+        balance = (await User.findByPk(req.session.user.id)).balance;
+    }
     if (!req.session.user) {
         return res.redirect("/login")
     } else {
-        res.render("upload", { loggedIn: req.session.loggedIn })
+        res.render("upload", { loggedIn: req.session.loggedIn, currentUser: req.session.user, balance })
     }
 })
 
 
-router.get('/buy', (req, res) => {
+router.get('/buy', async (req, res) => {
+    let balance;
+    if (req.session.user){
+        balance = (await User.findByPk(req.session.user.id)).balance;
+    }
     if (!req.session.user) {
         return res.redirect("/login")
     } else {
-        res.render("buy", { loggedIn: req.session.loggedIn })
+        res.render("buy", { loggedIn: req.session.loggedIn, currentUser: req.session.user, balance })
     }
 })
 
-router.get('/sell', (req, res) => {
+router.get('/sell', async (req, res) => {
+    let balance;
+    if (req.session.user){
+        balance = (await User.findByPk(req.session.user.id)).balance;
+    }
     if (!req.session.user) {
         return res.redirect("/login")
     } else {
-        res.render("sell", { loggedIn: req.session.loggedIn })
+        res.render("sell", { loggedIn: req.session.loggedIn, currentUser: req.session.user, balance })
     }
 })
 

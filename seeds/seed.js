@@ -46,7 +46,6 @@ const seed = async () => {
 
     const memesData = await Meme.bulkCreate([
         {
-
             img: "http://res.cloudinary.com/metamememarket/image/upload/v1636062462/exiswl5ch5mygy3xzihr.png",
             title: "Meme1",
             number_shares: 100,
