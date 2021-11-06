@@ -19,7 +19,8 @@
     </div> --}}
 
 
-<div id="buy-sell"> 
+<div id="buy-sell">
+  <div id="sold-shares"></div>
   {{#if loggedIn}}
     <p>You own {{numShares}} shares of this meme!</p>
     {{#if stake}}
@@ -52,4 +53,5 @@
 
 </div>
 
+<script src="/js/transaction.js"></script>
 

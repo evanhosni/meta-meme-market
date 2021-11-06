@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Meme, User, Share } = require('../models');
 const { Op } = require('sequelize');
+const { getMeme } = require('../market/getModels');
 
 //Homepage shows all memes sorted descending by created most recently
 router.get("/", async (req, res) => {
@@ -52,48 +53,50 @@ router.get("/", async (req, res) => {
     })
 })
 
-router.get("/meme/:id", async (req, res) => {//TODO change id to title so it's "/meme/:title"
+router.get("/meme", async (req, res) => {//TODO change id to title so it's "/meme/:title"
     // res.render("meme")
     let user;
     let balance;
-    if (req.session.user){
-        try {
-            user = await User.findByPk(req.session.user.id, {
-                include: {
-                    model: Share,
-                    where: {
-                        meme_id: req.params.id
-                    },
-                    required: false
-                }
-            });
-            balance = user.balance;
-        } catch (err) {
-            console.error(err);
-            return res.status(500).json(err);
+    try {
+        if (req.session.user){
+            try {
+                user = await User.findByPk(req.session.user.id, {
+                    include: {
+                        model: Share,
+                        where: {
+                            meme_id: req.query.id
+                        },
+                        required: false
+                    }
+                });
+                balance = user.balance;
+            } catch (err) {
+                console.error(err);
+                return res.status(500).json(err);
+            }
         }
-    }
-    Meme.findOne({
-        where: {
-            id: req.params.id
-        },
-        // attributes: ['img', 'title', 'share_price', 'number_shares', 'user_id'],
-        include: [{
-            model: User,
-            attributes: ['username']
-        }, {
-            model: Share,
-            where: { [Op.not]: { listed_at: null } },
-            attributes: ['id', 'is_initial', 'listed_at', 'bought_price', 'meme_id'],
-            required: false
-        }]
-    }).then(memeData => {
+
+        // Meme.findOne({
+        //     where: {
+        //         id: req.query.id
+        //     },
+        //     // attributes: ['img', 'title', 'share_price', 'number_shares', 'user_id'],
+        //     include: [{
+        //         model: User,
+        //         attributes: ['username']
+        //     }, {
+        //         model: Share,
+        //         where: { [Op.not]: { listed_at: null } },
+        //         attributes: ['id', 'is_initial', 'listed_at', 'bought_price', 'meme_id'],
+        //         required: false
+        //     }]
+        const memeData = await getMeme(req.query.id);
         if (!memeData) return res.status(404).send('No meme with this id found!');
         let numShares = 'no';
         let stake = null;
         if (user) {
             numShares = user.shares.length;
-            console.log(user.shares.length, memeData.number_shares);
+            // console.log(user.shares.length, memeData.number_shares);
             stake = (Math.round((user.shares.length / memeData.number_shares) * 100));
         }
         const hbsMeme = memeData.get({ plain: true })
@@ -101,11 +104,11 @@ router.get("/meme/:id", async (req, res) => {//TODO change id to title so it's "
             ...hbsMeme, loggedIn: req.session.loggedIn, currentUser: req.session.user,
             meme: hbsMeme, balance, numShares, stake
         });
-    }).catch(err => {
+    } catch(err) {
         console.log(err)
         res.status(500).json(err)
-    })
-})
+    }
+});
 
 router.get("/user/:username", async (req, res) => {
     let balance;

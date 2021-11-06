@@ -4,6 +4,7 @@ const router = express.Router();
 const { Meme, User, Comments, Share } = require("../../models");
 const { IPO, sellShares } = require('../../market/shareListing');
 const { Op } = require('sequelize');
+const { getMeme, getUserShares } = require('../../market/getModels');
 // const session = require('session')
 
 // router.get("/:id", (req, res) => {
@@ -72,8 +73,9 @@ router.get('/buy/:id', async (req, res) => {
             }});
         
         await require('../../market/transaction')(buyer, meme, amt);
-        console.log(meme);
-        res.status(200).json()
+        const memeData = await getMeme(req.params.id);
+        // console.log(memeData);
+        res.status(200).json(memeData.toJSON());
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'an error occured', err: err })
@@ -102,8 +104,20 @@ router.get('/sell/:id', (req, res) => {
         }
     })
     .then(async (seller) => {
+        const soldSuccess = seller.shares.length ? true : false;
         await sellShares(seller, price);
-        res.status(200).send('Shares sold!');
+        const memeData = await getMeme(req.params.id);
+        const userData = await getUserShares(req.session.user.id, req.params.id);
+        let stake = null;
+        let listedShares = (userData.shares.filter(share => share.dataValues.listed_at !== null).length)
+        if (userData) {
+            numShares = userData.shares.length;
+            // console.log(userData.shares.length, memeData.number_shares);
+            stake = (Math.round((userData.shares.length / memeData.number_shares) * 100));
+        }
+        console.log(memeData);
+        console.log(userData, numShares, stake, listedShares);
+        res.status(200).json({ numShares: numShares, stake: stake, listedShares: listedShares, soldSuccess: soldSuccess });
     })
     .catch(err => {
         console.error(err);
