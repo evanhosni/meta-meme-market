@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Meme, User, Share } = require('../models');
 const { Op } = require('sequelize');
-const { getMeme } = require('../market/getModels');
+const { getListedMeme } = require('../market/getModels');
 
 //Homepage shows all memes sorted descending by created most recently
 router.get("/", async (req, res) => {
@@ -90,7 +90,7 @@ router.get("/meme", async (req, res) => {//TODO change id to title so it's "/mem
         //         attributes: ['id', 'is_initial', 'listed_at', 'bought_price', 'meme_id'],
         //         required: false
         //     }]
-        const memeData = await getMeme(req.query.id);
+        const memeData = await getListedMeme(req.query.id);
         if (!memeData) return res.status(404).send('No meme with this id found!');
         let numShares = 'no';
         let stake = null;
@@ -194,7 +194,6 @@ router.get("/upload", async (req, res) => {
         res.render("upload", { loggedIn: req.session.loggedIn, currentUser: req.session.user, balance })
     }
 })
-
 
 router.get('/buy', async (req, res) => {
     let balance;

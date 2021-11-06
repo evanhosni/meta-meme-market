@@ -4,7 +4,9 @@ const router = express.Router();
 const { Meme, User, Comments, Share } = require("../../models");
 const { IPO, sellShares } = require('../../market/shareListing');
 const { Op } = require('sequelize');
-const { getMeme, getUserShares } = require('../../market/getModels');
+const { getListedMeme, getUserShares } = require('../../market/getModels');
+const { buyShares } = require('../../market/transaction');
+const { sequelize } = require("../../models/User");
 // const session = require('session')
 
 // router.get("/:id", (req, res) => {
@@ -59,23 +61,36 @@ router.get('/buy/:id', async (req, res) => {
                     [Op.not]: { user_id: req.session.user.id }
                 }
             },
+            attributes: ['id', 'listed_at', 'bought_price', 'user_id', 'meme_id', [sequelize.fn('SUM', sequelize.col('bought_price')), 'total']],
+            group: 'bought_price',
             order: [
                 ['bought_price', 'ASC'],
                 ['listed_at', 'ASC']
             ],
-            include: [User],
+            include: {
+                model: User,
+                attributes: ['username']
+            },
             limit: amt
         }
         });
+
+        if (!meme) return res.status(404).send('Meme not found!');
+
+        console.log(meme.shares);
+
         const buyer = await User.findOne({
             where: {
                 id: req.session.user.id
             }});
+
+        if (!buyer) return res.status(404).send('User not found!');
         
-        await require('../../market/transaction')(buyer, meme, amt);
-        const memeData = await getMeme(req.params.id);
+        const boughtCount = await buyShares(buyer, meme, amt);
+        // if (boughtCount < amt)
+        const memeData = await getListedMeme(req.params.id);
         // console.log(memeData);
-        res.status(200).json(memeData.toJSON());
+        res.status(200).json({ boughtCount: boughtCount, memeData: memeData.toJSON() });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'an error occured', err: err })

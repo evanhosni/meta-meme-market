@@ -41,11 +41,13 @@ async function buyShares(e) {
         // body: JSON.stringify(data)
     }).then(async (res) => {
         // console.log(await res.json());
-        const { numShares, stake, listedShares, soldSuccess } = await res.json();
-        console.log(numShares, stake, listedShares, soldSuccess);
+        const { boughtCount, memeData } = await res.json();
+        // console.log(numShares, stake, listedShares, soldSuccess);
+        console.log(`You bought ${boughtCount} shares!`);
+        console.log(boughtCount, memeData);
         const seller = document.getElementById('sold-shares');
         if (soldSuccess) {
-            seller.textContent = `Listed ${1} shares!`;
+            seller.textContent = `Bought ${1} shares!`;
         } else {
             seller.textContent = 'No shares to sell.';
         }

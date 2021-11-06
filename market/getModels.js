@@ -1,7 +1,8 @@
 const { Meme, Share, User } = require('../models');
 const { Op } = require('sequelize');
 
-async function getMeme(id) {
+// Finds meme matching id including all shares currently listed.
+async function getListedMeme(id) {
     const meme = await Meme.findByPk(id,
         {
         // attributes: ['img', 'title', 'share_price', 'number_shares', 'user_id'],
@@ -33,4 +34,8 @@ async function getUserShares(id, memeId) {
     return user;
 }
 
-module.exports = { getMeme, getUserShares };
+async function getStake(user, meme) {
+    return (Math.round((user.shares.length / memeData.number_shares) * 100));
+}
+
+module.exports = { getListedMeme, getUserShares };
