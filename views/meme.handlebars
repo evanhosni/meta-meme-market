@@ -19,9 +19,9 @@
     </div> --}}
 
 
-<div id="buy-sell"> 
+<div class="buy-sell"> 
   {{#if loggedIn}}
-    <p>You own {{numShares}} shares of this meme!</p>
+    {{!-- <p>You own {{numShares}} shares of this meme!</p> --}}
     {{#if stake}}
       <p>You own {{stake}}% of this meme!</p>
     {{/if}}
@@ -29,7 +29,6 @@
     <p>Log in to buy shares!</p>
   {{/if}}
 
-{{!-- <div class="sell-btn"> --}}
   <button id ="sellme">
     SELL 
     <span></span>
@@ -37,21 +36,46 @@
     <span></span>
     <span></span>
   </button>
-{{!-- </div> --}}
 
-{{!-- <div class="buy-btn"> --}}
-  <button id ="buyme">
+
+  <button id ="buyMe">
     BUY 
     <span></span>
     <span></span>
     <span></span>
     <span></span>
   </button>
-{{!-- </div> --}}
-
-
 </div>
 
+<div id="buyModal" class="buymodal">
+  <div class="modal-buy">
+    <span class="closeBuy">close</span>
+    <p>hello</p>
+  </div>
+</div>
+
+  <table id="prices">
+    <tr>
+      <th>Bid</th>
+      <th>Ask</th>
+    </tr>
+    <tr>
+      <th>${{bought_price}}</th>
+      <th>${{bought_price}}</th>
+    </tr>
+    <tr>
+      <th>${{bought_price}}</th>
+      <th>${{bought_price}}</th>
+    </tr>
+    <tr>
+      <th>${{bought_price}}</th>
+      <th>${{bought_price}}</th>
+    </tr>
+    <tr>
+      <th>${{bought_price}}</th>
+      <th>${{bought_price}}</th>
+    </tr>
+  </table>
 </div>
 
 

@@ -71,7 +71,7 @@ body {
 }
 
 .color-text {
-    background-image: linear-gradient(to right, goldenrod,rgb(255, 255, 255), rgb(170, 0, 255), rgb(170, 0, 255));
+    background-image: linear-gradient(to right, rgb(78, 0, 93), rgb(201, 92, 255));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -80,7 +80,7 @@ body {
 main {
     position: fixed;
     width: 100%;
-    z-index: 999;
+    z-index: 3;
 }
 
 #topnav {
@@ -149,7 +149,7 @@ main {
 }
 
 
-#buy-sell {
+.buy-sell {
     /* margin: 1em; */
     display: inline-block;
     flex-direction: column;
@@ -170,7 +170,7 @@ main {
     height:auto;
     display: inline-block;
 } */
-#buyme{
+#buyMe{
     width:200px;
     height:70px;
     background: linear-gradient(to left top, #0adc3b 25%, #07481d 75%);
@@ -190,11 +190,11 @@ main {
     transition: all .5s;
     box-shadow: 0px 1px 2px rgba(0,0,0,.2);
 }
-#buyme span{
+#buyMe span{
     position: absolute;
     display: inline-block;
 }
-#buyme span:nth-child(1){
+#buyMe span:nth-child(1){
     height: 3px;
     width:200px;
     top:0px;
@@ -214,7 +214,7 @@ main {
         left:200px;
     }
 }
-#buyme span:nth-child(2){
+#buyMe span:nth-child(2){
     height: 70px;
     width: 3px;
     top:-70px;
@@ -233,7 +233,7 @@ main {
         top:70px;
     }
 }
-#buyme span:nth-child(3){
+#buyMe span:nth-child(3){
     height:3px;
     width:200px;
     right:-200px;
@@ -253,7 +253,7 @@ main {
     }
 }
 
-#buyme span:nth-child(4){
+#buyMe span:nth-child(4){
     height:70px;
     width:3px;
     bottom:-70px;
@@ -273,12 +273,12 @@ main {
     }
 }
 
-#buyme:hover{
+#buyMe:hover{
     transition: all .5s;
-    transform: rotate(-3deg) scale(1.1);
+    transform: rotate(3deg) scale(1.1);
     box-shadow: 0px 3px 5px rgba(0,0,0,.4);
 }
-#buyme:hover span{
+#buyMe:hover span{
     animation-play-state: paused;
 }
 
@@ -395,7 +395,7 @@ main {
 
 #sellme:hover{
     transition: all .5s;
-    transform: rotate(3deg) scale(1.1);
+    transform: rotate(-3deg) scale(1.1);
     box-shadow: 0px 3px 5px rgba(0,0,0,.4);
 }
 #sellme:hover span{
@@ -554,3 +554,64 @@ main {
     margin: 10px;
     width: 150px;
 }
+
+#prices {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 40%;
+    margin-top: 15px;
+  }
+  
+  #prices td, #prices th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #prices tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #prices tr:hover {background-color: #ddd;}
+  
+  #prices th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #111111;
+    color: white;
+  }
+
+  #buyModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: white; /* Fallback color */
+    background-color: white; /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  #buyModal {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .closeBuy {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .closeBuy:hover,
+  .closeBuy:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+  }
