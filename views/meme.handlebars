@@ -1,7 +1,7 @@
 <div id="meme">
-    <div class="memepage_meme">
-        <img src={{meme.img}}>
-    </div>
+      <div class="memepage_meme">
+          <img src={{meme.img}}>
+      </div>
     <div class="stats">
         <h1>{{meme.title}}</h1>
         <p>created by <a href="/user/{{meme.user.username}}">{{meme.user.username}}</a></p>
@@ -30,6 +30,16 @@
     <p>Log in to buy shares!</p>
   {{/if}}
 
+{{!-- <div class="sell-btn"> --}}
+  <button id ="sellme">
+    SELL 
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+{{!-- </div> --}}
+
 {{!-- <div class="buy-btn"> --}}
   <button id ="buyme">
     BUY 
@@ -40,15 +50,7 @@
   </button>
 {{!-- </div> --}}
 
-{{!-- <div class="sell-btn"> --}}
-  <button id ="sellme">
-    SELL 
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-{{!-- </div> --}}
+
 </div>
 
 </div>

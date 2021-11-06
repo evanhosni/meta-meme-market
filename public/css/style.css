@@ -7,7 +7,6 @@
 
 * {
     margin: 0;
-    background: var(--black);
     font-family: 'Bungee', sans-serif;
     text-decoration: none;
 }
@@ -18,10 +17,18 @@
 
 input {
     background-color: white;
+    text-align: center;
+    border-radius: 10px;
+}
+
+button {
+    border-radius: 10px;
 }
 
 body {
     color: var(--white);
+    background: var(--black);
+    /* background-image: linear-gradient(to right, var(--black), rgb(10, 10, 10)); */
 }
 
 .card {
@@ -57,20 +64,20 @@ body {
 .meme {
     width: 300px;
     height: 300px;
-    max-width: 50vw;
-    max-height: 50vw;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: cover;
     padding-bottom: 12px;
 }
 
 .color-text {
-    background-image: linear-gradient(to right, goldenrod,rgb(255, 255, 255), rgb(170, 0, 255), rgb(170, 0, 255));
+    background-image: linear-gradient(to right, rgb(78, 0, 93), rgb(201, 92, 255));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 
-#main {
+main {
     position: fixed;
     width: 100%;
     z-index: 999;
@@ -80,11 +87,24 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
+    padding: 15px 2vw;
+    margin: auto;
+    top: 0;
+    background: var(--black);
     border-bottom: 3px solid black;
     box-shadow: black 0 0 20px;
     font-size: 1.5vw;
     text-decoration: none;
+}
+
+#topnav_user_link {
+    display: flex;
+    align-items: center;
+}
+
+#spacer {
+    height: 8vw;
+    min-height: 80px;
 }
 
 .create-message,
@@ -129,15 +149,17 @@ body {
 }
 
 
-#buy-btn {
-    position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%, -50%);
-    width: fit-content;
-    height:auto;
+#buy-sell {
+    /* margin: 1em; */
     display: inline-block;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    color: var(--white);
+    max-width: 100vw;
 }
+
 #buyme{
     width:200px;
     height:70px;
@@ -250,15 +272,6 @@ body {
     animation-play-state: paused;
 }
 
-#sell-btn {
-    position: relative;
-    top:50%;
-    left:50%;
-    transform: translate(-50%, -50%);
-    width: fit-content;
-    height:auto;
-    display: inline-block
-}
 #sellme{
     width:200px;
     height:70px;
@@ -447,28 +460,12 @@ body {
     max-width: 100vw;
 }
 
-#buy-sell {
-    /* margin: 1em; */
-    display: inline-block;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    color: var(--white);
-    max-width: 100vw;
-}
-
-
 .memepage_meme {
     display: flex;
     justify-content: space-around;
-    height: 600px;
-    /* width: 600px; */
-    max-height: 90vw;
+    object-fit: cover;
+    height: 25vw;
     max-width: 90vw;
-    /*bruh*/
-    /* padding: 0px 200px; */
-    /* display: block; */
 }
 
 .memepage_meme img {
@@ -477,7 +474,6 @@ body {
     box-shadow: rgb(187, 177, 177) 0 0 4px;
     z-index: 2;
     border-radius: 15px;
-    z-index: 2;
 }
 
 
@@ -501,8 +497,8 @@ body {
 }
 
 #meme_upload_container {
-    height: 300px;
-    width: 300px;
+    height: 420px;
+    width: 420px;
     display: flex;
     margin: auto;
     align-items: center;
@@ -517,8 +513,8 @@ body {
     margin: auto;
     align-items: center;
     justify-content: space-around;
-    height: 250px;
-    width: 250px;
+    height: 380px;
+    width: 380px;
     border: 5px dashed gray;
     border-radius: 15px;
 }
@@ -526,12 +522,64 @@ body {
 #meme_img img {
     box-shadow: black 0 0 20px;
     border-radius: 15px;
+    height: 380px;
+    width: 100%
 }
 
 #upload input {
     margin: 10px;
-    text-align: center;
-    border-radius: 10px;
     width: 150px;
 }
 
+@media screen and (max-width: 768px) {
+
+    main {
+        position: absolute;
+    }
+
+    #topnav {
+        flex-wrap: wrap;
+        justify-content: space-around;
+        height: 120px;
+    }
+    
+    #spacer {
+        height: 150px;
+    }
+
+    .link {
+        font-size: large;
+    }
+
+    #title {
+        width: 100%;
+        font-size: x-large;
+        position: relative;
+    }
+
+    .memepage_meme {
+        height: 100%;
+        width: 90vw;
+    }
+
+    .memepage_meme img {
+        width: 100%;
+    }
+
+
+
+
+    #user_title {
+        font-size: medium;
+    }
+
+    .user_subtitle {
+        font-size: medium;
+        text-align: center;
+    }
+    
+    #user_logout a {
+        font-size: large;
+    }
+
+}

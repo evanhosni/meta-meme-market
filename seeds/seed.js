@@ -8,37 +8,21 @@ const seed = async () => {
             username: "joe",
             email: "joe@joe.joe",
             password: "password",  //'$2b$05$4C9TpL09IiPxekQ/T50ct.Oy0liVAgolrw1z6frO9Guz.NUoeeSey',
-            state_identification: 'joe123',
-            bank_name: 'bank of america',
-            account_number: 123456789,
-            routing_number: 100000001
         },
         {
             username: "louis",
             email: "louis@joe.joe",
             password: "password",  //'$2b$05$4C9TpL09IiPxekQ/T50ct.Oy0liVAgolrw1z6frO9Guz.NUoeeSey',
-            state_identification: 'louis123',
-            bank_name: 'chase',
-            account_number: 234567890,
-            routing_number: 100000002
         },
         {
             username: "brett",
             email: "brett@joe.joe",
             password: "password",  //'$2b$05$4C9TpL09IiPxekQ/T50ct.Oy0liVAgolrw1z6frO9Guz.NUoeeSey',
-            state_identification: 'brett123',
-            bank_name: 'seafirst',
-            account_number: 345678901,
-            routing_number: 100000003
         },
         {
             username: "michael",
             email: "michael@joe.joe",
             password: "password",  //'$2b$05$4C9TpL09IiPxekQ/T50ct.Oy0liVAgolrw1z6frO9Guz.NUoeeSey',
-            state_identification: 'michael123',
-            bank_name: 'washington mutual',
-            account_number: 456789012,
-            routing_number: 100000004
         },
     ], {
         individualHooks: true
