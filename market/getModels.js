@@ -20,6 +20,7 @@ async function getListedMeme(id) {
     return meme;
 }
 
+// Get user by ID and all shares attached to meme with id memeId.
 async function getUserShares(id, memeId) {
     const user = await User.findByPk(id,
         {

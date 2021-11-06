@@ -1,5 +1,4 @@
 const express = require("express");
-// const { now } = require("sequelize/types/lib/utils");
 const router = express.Router();
 const { Meme, User, Comments, Share } = require("../../models");
 const { IPO, sellShares } = require('../../market/shareListing');
@@ -7,42 +6,7 @@ const { Op } = require('sequelize');
 const { getListedMeme, getUserShares } = require('../../market/getModels');
 const { buyShares } = require('../../market/transaction');
 const { sequelize } = require("../../models/User");
-// const session = require('session')
 
-// router.get("/:id", (req, res) => {
-//   Meme.findOne({
-//     where: {
-//       id: req.params.id
-//     },
-//     attributes: ['img', 'number_shares', 'share_price', 'created_at'],
-//     include: [{
-//       model: User,
-//       attributes: ['username']
-//     }, {
-//       model: Comments,
-//       order: [
-//         ['created_at', 'DESC']
-//       ],
-//       attributes: ['comment_text', 'created_at'],
-//       include: { model: User, attributes: "username" }
-//     },
-//     {
-//       model: Share,
-//       where: { is_initial: true },
-//       // attributes: ['id', 'listed_at', 'bought_price', 'meme_id']
-//     }
-//     ]
-//   }).then(dbMemes => {
-//     if (dbMemes.length) {
-//       res.json(dbMemes);
-//     } else {
-//       res.status(404).json({ message: "No memes found!" });
-//     }
-//   }).catch(err => {
-//     console.log(err);
-//     res.status(500).json({ message: "an error occured", err: err });
-//   });
-// });
 router.get('/buy/:id', async (req, res) => {
     if (!req.session.user) {
         return res.status(401).send("You must be logged in to buy!")
@@ -67,10 +31,7 @@ router.get('/buy/:id', async (req, res) => {
                 ['bought_price', 'ASC'],
                 ['listed_at', 'ASC']
             ],
-            include: {
-                model: User,
-                attributes: ['username']
-            },
+            include: [User],
             limit: amt
         }
         });
@@ -121,7 +82,7 @@ router.get('/sell/:id', (req, res) => {
     .then(async (seller) => {
         const soldSuccess = seller.shares.length ? true : false;
         await sellShares(seller, price);
-        const memeData = await getMeme(req.params.id);
+        const memeData = await getListedMeme(req.params.id);
         const userData = await getUserShares(req.session.user.id, req.params.id);
         let stake = null;
         let listedShares = (userData.shares.filter(share => share.dataValues.listed_at !== null).length)

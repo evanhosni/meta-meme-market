@@ -177,8 +177,11 @@ router.get("/signup", (req, res) => {
 //Renders login page unless already logged in
 router.get("/login", (req, res) => {
     if (!req.session.user) {
+        
         res.render("login")
     } else {
+        console.log('HELP!');
+        console.log(req.session);
         return res.redirect("/")
     }
 })
