@@ -459,7 +459,6 @@ main {
 #meme {
     margin-top: 3.5em;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
@@ -485,14 +484,13 @@ main {
 
 
 .stats {
-    padding: 1em;
+    padding: 4vw;
     max-width: 500px;
     font-size: 20px;
     text-align: center;
     color: rgb(16, 16, 15);
 	-webkit-text-stroke-width: 0.1px;
     -webkit-text-stroke-color: rgb(255, 255, 255);
-}
 }
 
 .stats a {
@@ -605,8 +603,8 @@ main {
 }
   
 #prices1 th {
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     text-align: center;
     color: rgb(16, 16, 15);
 	-webkit-text-stroke-width: 0.1px;
@@ -644,6 +642,14 @@ p {
         justify-content: space-around;
         /* height: 20px; */
     }
+/* 
+    #home {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        color: var(--white);
+        margin-top: 20vw;
+    } */
     
     /* #spacer {
         height: 100px;
@@ -743,7 +749,7 @@ p {
         justify-content: space-around;
         flex-wrap: wrap;
         color: var(--white);
-        margin-top: 11vw;
+        margin-top: 20vw;
     }
     
     #upload input {
