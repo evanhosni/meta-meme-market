@@ -47,11 +47,12 @@ router.get('/buy/:id', async (req, res) => {
 
         if (!buyer) return res.status(404).send('User not found!');
         
-        const boughtCount = await buyShares(buyer, meme, amt);
+        const { buyCount, totalCost } = await buyShares(buyer, meme, amt);
+        // console.log(`Boughtcount: ${boughtCount}, totalCost: ${totalCost}`);
         // if (boughtCount < amt)
         const memeData = await getListedMeme(req.params.id);
         // console.log(memeData);
-        res.status(200).json({ boughtCount: boughtCount, memeData: memeData.toJSON() });
+        res.status(200).json({ boughtCount: buyCount, memeData: memeData.toJSON(), totalCost: totalCost });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'an error occured', err: err })
