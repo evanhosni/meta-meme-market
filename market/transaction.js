@@ -20,11 +20,11 @@ const tradeShares = (buyer, share) => {
 }
 
 const buyShares = async (buyer, meme, amt) => {
-    if (!buyer || !meme) return;
+    let buyCount = 0;
 
     const shares = meme.shares;
 
-    shares.forEach(async (share) => {
+    for (const share of shares) {
         const price = share.bought_price;
         if(tradeShares(buyer, share)) {
             await share.save();
@@ -35,10 +35,13 @@ const buyShares = async (buyer, meme, amt) => {
                 meme_id: share.meme_id,
                 amount: price
             });
+            buyCount++;
         }
-    });
+    }
 
     await buyer.save();
+
+    return buyCount;
 }
 
-module.exports = buyShares;
+module.exports = { buyShares };
