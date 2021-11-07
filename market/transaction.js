@@ -1,4 +1,4 @@
-const { Meme, Share, User, Transaction } = require('../models')
+const { Transaction } = require('../models')
 
 const transfer = (buyer, seller, amt) => {
     if (buyer.balance < amt) return false;

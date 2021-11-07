@@ -48,10 +48,7 @@ router.get('/buy/:id', async (req, res) => {
         if (!buyer) return res.status(404).send('User not found!');
         
         const { buyCount, totalCost } = await buyShares(buyer, meme, amt);
-        // console.log(`Boughtcount: ${boughtCount}, totalCost: ${totalCost}`);
-        // if (boughtCount < amt)
         const memeData = await getListedMeme(req.params.id);
-        // console.log(memeData);
         res.status(200).json({ boughtCount: buyCount, memeData: memeData.toJSON(), totalCost: totalCost });
     } catch (err) {
         console.error(err);
@@ -92,8 +89,6 @@ router.get('/sell/:id', (req, res) => {
             // console.log(userData.shares.length, memeData.number_shares);
             stake = (Math.round((userData.shares.length / memeData.number_shares) * 100));
         }
-        // console.log(memeData);
-        // console.log(userData, numShares, stake, listedShares);
         res.status(200).json({ numShares: numShares, stake: stake, listedShares: listedShares, soldSuccess: soldSuccess, memeData: memeData });
     })
     .catch(err => {
@@ -152,8 +147,6 @@ router.post("/", (req, res) => {
     created_at: req.body.created_at,
     user_id: req.session.user.id,
   }).then(newMeme => {
-    // console.log(newMeme);
-
     IPO(req.session.user.id, newMeme, newMeme.number_shares, newMeme.share_price);
     res.json(newMeme.toJSON());
   }).catch(err => {
