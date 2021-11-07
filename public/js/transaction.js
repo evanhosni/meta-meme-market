@@ -1,5 +1,6 @@
 const buyButton = document.querySelector('#buyMe');
 const sellButton = document.querySelector('#sellme');
+// const 
 // const memeId = 
 
 async function sellShare(e) {
@@ -57,25 +58,46 @@ async function buyShares(e) {
     });
 }
 
+function renderTable() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+    fetch(`/api/memes/meme/${id}`, {
+        method: 'GET',
+        // credentials: 'same-origin',
+        headers:{
+            "Content-Type":"application/json"
+        },
+        // body: JSON.stringify(data)
+    }).then(async (res) => {
+        // console.log(await res.json());
+        const memeData = await res.json();
+        if (res.ok) {
+            updateTable(memeData.shares);
+        }
+    });
+}
+
 function updateTable(shares) {
     console.log(shares);
     let table = document.getElementById('prices');
+    const tbody = document.getElementById('table-body');
+    tbody.innerHTML = '';
     // table.setAttribute("id", "prices")
-    let row = table.insertRow(0);
-    let thead = document.createElement('thead');
-    let tbody = document.createElement('tbody');
+    // let row = table.insertRow(0);
+    // let thead = document.createElement('thead');
+    // let tbody = document.createElement('tbody');
 
-    table.appendChild(thead);
-    table.appendChild(tbody);
+    // table.appendChild(thead);
+    // table.appendChild(tbody);
 
-    let heading_1 = document.createElement('th');
-    heading_1.innerHTML = "$$";
-    let heading_2 = document.createElement('th');
-    heading_2.innerHTML = "# Shares";
-    row_1 = document.createElement('tr');
-    row_1.appendChild(heading_1);
-    row_1.appendChild(heading_2);
-    thead.appendChild(row_1);
+    // let heading_1 = document.createElement('th');
+    // heading_1.innerHTML = "$$";
+    // let heading_2 = document.createElement('th');
+    // heading_2.innerHTML = "# Shares";
+    // row_1 = document.createElement('tr');
+    // row_1.appendChild(heading_1);
+    // row_1.appendChild(heading_2);
+    // thead.appendChild(row_1);
 
     const toList = shares.length >= 5 ? 5 : shares.length;
 
@@ -94,8 +116,9 @@ function updateTable(shares) {
     }
 
     // Adding the entire table to the body tag
-    document.getElementById('buy-sell').appendChild(table);
+    // document.getElementById('buy-sell').appendChild(table);
 }
 
+renderTable();
 sellButton.addEventListener('click', sellShare);
 buyButton.addEventListener('click', buyShares);
