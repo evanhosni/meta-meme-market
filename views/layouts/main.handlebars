@@ -19,7 +19,8 @@
                 <a id="title" href="/"><span id="title_gold">meta<span id="title_white">meme<span id="title_gray">market</span></a>
                 <a href="/upload" class="link">upload</a>
                 {{!-- <a href="/logout">Logout</a> --}}
-                <a id="topnav_user_link" href="/user/{{currentUser.username}}" class="link">{{currentUser.username}}  <img src="/assets/metameme_coin.png" style="height: 2vw; width: 2vw; float: center;" alt="$"> <span style="color:#51ff0D">{{balance}}</span></a>
+                <a id="topnav_user_link" href="/user/{{currentUser.username}}" class="link">{{currentUser.username}}  <img src="/assets/metameme_coin.png" style="height: 2vw; width: 2vw; float: center;" alt="$"> <span id="balance" style="color:#51ff0D">{{balance}}</span><img src="/assets/METAMEME.png" style="height: 2vh; width: 2vh;" alt="$"></a>
+
 
                 {{else}}
                 <div><img src="/assets/METAMEME.png" style="height: 7vh; width: 7vh;" alt="$"></div>
