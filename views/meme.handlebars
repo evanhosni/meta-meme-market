@@ -22,7 +22,7 @@
 <div id="buy-sell">
   <div id="sold-shares"></div>
   {{#if loggedIn}}
-    <p>You own {{numShares}} shares of this meme!</p>
+    {{!-- <p>You own {{numShares}} shares of this meme!</p> --}}
     {{#if stake}}
       <p>You own {{stake}}% of this meme!</p>
     {{/if}}
@@ -30,7 +30,6 @@
     <p>Log in to buy shares!</p>
   {{/if}}
 
-{{!-- <div class="sell-btn"> --}}
   <button id ="sellme">
     SELL 
     <span></span>
@@ -38,21 +37,25 @@
     <span></span>
     <span></span>
   </button>
-{{!-- </div> --}}
 
-{{!-- <div class="buy-btn"> --}}
-  <button id ="buyme">
+  <button id ="buyMe">
     BUY 
     <span></span>
     <span></span>
     <span></span>
     <span></span>
   </button>
-{{!-- </div> --}}
-
-
-</div>
-
+  <table id="prices1" style="width: 100%">
+    <tr>
+      <th>Price & Quantity</th>
+    </tr>
+  </table>
+  <table id="prices" style="width: 100%">
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </table>
 </div>
 
 <script src="/js/transaction.js"></script>

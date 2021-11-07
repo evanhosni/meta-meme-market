@@ -20,6 +20,7 @@ async function getListedMeme(id) {
                 ['listed_at', 'ASC']
             ],
             required: false
+            
         }],
         group: ['bought_price']
     });
