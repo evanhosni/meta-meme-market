@@ -14,9 +14,10 @@
     <main>
         <div id="topnav">
                 {{#if loggedIn}}
-                <a href="/upload" class="link">Upload</a>
+
                 {{!-- <a href="/upload" class="link">Upload</a> --}}
                 <a id="title" href="/"><span id="title_gold">Meta</span><span id="title_white">Meme</span><span id="title_gray">Market</span></a>
+                <a href="/upload" class="link">Upload</a>
                 {{!-- <a href="/logout">Logout</a> --}}
                 <a id="topnav_user_link" href="/user/{{currentUser.username}}" class="link">{{currentUser.username}} &nbsp<img src="/assets/metameme_coin.png" style="height: 1.75vw; width: 1.75vw;" alt="$"> <span style="color:green">&nbsp{{balance}}</span></a>
 

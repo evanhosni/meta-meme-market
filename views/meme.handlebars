@@ -1,7 +1,7 @@
 <div id="meme">
-    <div class="memepage_meme">
-        <img src={{meme.img}}>
-    </div>
+      <div class="memepage_meme">
+          <img src={{meme.img}}>
+      </div>
     <div class="stats">
         <h1>{{meme.title}}</h1>
         <p>created by <a href="/user/{{meme.user.username}}">{{meme.user.username}}</a></p>
@@ -19,7 +19,8 @@
     </div> --}}
 
 
-<div class="buy-sell"> 
+<div id="buy-sell">
+  <div id="sold-shares"></div>
   {{#if loggedIn}}
     {{!-- <p>You own {{numShares}} shares of this meme!</p> --}}
     {{#if stake}}
@@ -68,4 +69,5 @@
   </table>
 </div>
 
+<script src="/js/transaction.js"></script>
 

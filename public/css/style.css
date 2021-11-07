@@ -64,8 +64,8 @@ body {
 .meme {
     width: 300px;
     height: 300px;
-    max-width: 100vw;
-    max-height: 100vw;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: cover;
     padding-bottom: 12px;
 }
@@ -160,18 +160,8 @@ main {
     max-width: 100vw;
 }
 
-
-/* #buy-btn {
-    position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%, -50%);
-    width: fit-content;
-    height:auto;
-    display: inline-block;
-} */
-#buyMe{
-    width:150px;
+#buyme{
+    width:200px;
     height:70px;
     background: linear-gradient(to left top, #0adc3b 25%, #07481d 75%);
     border-style: none;
@@ -282,15 +272,6 @@ main {
     animation-play-state: paused;
 }
 
-/* #sell-btn {
-    position: relative;
-    top:50%;
-    left:50%;
-    transform: translate(-50%, -50%);
-    width: fit-content;
-    height:auto;
-    display: inline-block
-} */
 #sellme{
     width:150px;
     height:70px;
@@ -486,13 +467,9 @@ main {
 .memepage_meme {
     display: flex;
     justify-content: space-around;
-    height: 600px;
-    /* width: 600px; */
-    max-height: 90vw;
+    object-fit: cover;
+    height: 25vw;
     max-width: 90vw;
-    /*bruh*/
-    /* padding: 0px 200px; */
-    /* display: block; */
 }
 
 .memepage_meme img {
@@ -501,7 +478,6 @@ main {
     box-shadow: rgb(187, 177, 177) 0 0 4px;
     z-index: 2;
     border-radius: 15px;
-    z-index: 2;
 }
 
 
@@ -587,3 +563,55 @@ main {
 
 
 
+@media screen and (max-width: 768px) {
+
+    main {
+        position: absolute;
+    }
+
+    #topnav {
+        flex-wrap: wrap;
+        justify-content: space-around;
+        height: 120px;
+    }
+    
+    #spacer {
+        height: 150px;
+    }
+
+    .link {
+        font-size: large;
+    }
+
+    #title {
+        width: 100%;
+        font-size: x-large;
+        position: relative;
+    }
+
+    .memepage_meme {
+        height: 100%;
+        width: 90vw;
+    }
+
+    .memepage_meme img {
+        width: 100%;
+    }
+
+
+
+
+    #user_title {
+        font-size: medium;
+    }
+
+    .user_subtitle {
+        font-size: medium;
+        text-align: center;
+    }
+    
+    #user_logout a {
+        font-size: large;
+    }
+
+}
