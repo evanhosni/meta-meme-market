@@ -47,7 +47,6 @@ signUpForm.addEventListener("submit", async (e) => {
                     console.log(res)
                     console.log(res.err)
                     alert("Username or email already used.")
-                    alert(res.err)
                 }
             })
         }
