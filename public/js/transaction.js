@@ -1,4 +1,4 @@
-const buyButton = document.querySelector('#buyme');
+const buyButton = document.querySelector('#buyMe');
 const sellButton = document.querySelector('#sellme');
 // const memeId = 
 
@@ -52,13 +52,16 @@ async function buyShares(e) {
             updateTable(memeData.shares);
         } else {
             seller.textContent = 'No shares to sell.';
+            textContent.setAttribute("id", "classSet")
         }
     });
 }
 
 function updateTable(shares) {
     console.log(shares);
-    let table = document.createElement('table');
+    let table = document.getElementById('prices');
+    // table.setAttribute("id", "prices")
+    let row = table.insertRow(0);
     let thead = document.createElement('thead');
     let tbody = document.createElement('tbody');
 
@@ -66,9 +69,9 @@ function updateTable(shares) {
     table.appendChild(tbody);
 
     let heading_1 = document.createElement('th');
-    heading_1.innerHTML = "Ask Price";
+    heading_1.innerHTML = "$$";
     let heading_2 = document.createElement('th');
-    heading_2.innerHTML = "Quantity";
+    heading_2.innerHTML = "# Shares";
     row_1 = document.createElement('tr');
     row_1.appendChild(heading_1);
     row_1.appendChild(heading_2);

@@ -17,14 +17,15 @@
 
                 {{!-- <a href="/upload" class="link">Upload</a> --}}
                 <a id="title" href="/"><span id="title_gold">Meta</span><span id="title_white">Meme</span><span id="title_gray">Market</span></a>
-                <a href="/upload" class="link">Upload</a>
+                <a href="/upload" class="link"><img src="/assets/METAMEME.png" style="height: 3vh; width: 3vh;" alt="$">Upload</a>
                 {{!-- <a href="/logout">Logout</a> --}}
-                <a id="topnav_user_link" href="/user/{{currentUser.username}}" class="link">{{currentUser.username}} &nbsp<img src="/assets/metameme_coin.png" style="height: 1.75vw; width: 1.75vw;" alt="$"> <span style="color:green">&nbsp{{balance}}</span></a>
+                <a id="topnav_user_link" href="/user/{{currentUser.username}}" class="link">{{currentUser.username}}  <img src="/assets/metameme_coin.png" style="height: 2vw; width: 2vw;" alt="$"> <span style="color:green">{{balance}}</span></a>
 
                 {{else}}
-                <div></div>
+                <div><img src="/assets/METAMEME.png" style="height: 7vh; width: 7vh;" alt="$"></div>
                 <a id="title" href="/"><span id="title_gold">Meta</span><span id="title_white">Meme</span><span id="title_gray">Market</span></a>
-                    <a href="/login" class="link">Login / Sign up</a>
+                    <a href="/login" class="link">Login</a>
+                    
                     {{!-- <a style="display: inline;" href="/login" class="link">Login</a> --}}
                 {{/if}}
             {{!-- <a href="/login">Login</a> --}}

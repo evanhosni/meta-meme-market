@@ -38,7 +38,7 @@ body {
     border-radius: 15px;
     text-align: center;
     padding-bottom: 12px;
-    max-width: 60vw;
+    max-width: 90vw;
 }
 
 #card_link {
@@ -87,7 +87,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 2vw;
+    /* padding: 15px 2vw; */
     margin: auto;
     top: 0;
     background: var(--black);
@@ -111,7 +111,7 @@ main {
 .create-form,
 .welcome,
 .create-check,
-#login-form {
+#login-form1, #login-form2, #login-form3 {
     margin-left: 10px;
 }
 
@@ -160,8 +160,8 @@ main {
     max-width: 100vw;
 }
 
-#buyme{
-    width:200px;
+#buyMe{
+    width:150px;
     height:70px;
     background: linear-gradient(to left top, #0adc3b 25%, #07481d 75%);
     border-style: none;
@@ -538,28 +538,71 @@ main {
 #prices {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 40%;
+    width: 100%;
     margin-top: 15px;
 }
   
 #prices td, #prices th {
-    border: 1px solid #ddd;
+    border: 1px solid white;
     padding: 8px;
+    text-align: center;
 }
   
-#prices tr:nth-child(even){background-color: #f2f2f2;}
+#prices tr:nth-child(even){
+    background-color: #111111;
+    text-align: center;
+}
   
-#prices tr:hover {background-color: #ddd;
+#prices tr:hover {background-color: rgb(49, 44, 44);
 }
   
 #prices th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
+    text-align: center;
     background-color: #111111;
     color: white;
 }
+
+#prices1 {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 15px;
+}
   
+#prices1 td, #prices1 th {
+    border: 1px solid white;
+    padding: 8px;
+}
+  
+#prices1 tr:nth-child(even){
+    background-color: #111111;
+    text-align: center;
+}
+  
+#prices1 tr:hover {background-color: rgb(49, 44, 44);
+}
+  
+#prices1 th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #111111;
+    color: white;
+}
+
+p {
+    text-align: center;
+}
+
+#sold-shares, #ownership {
+    background-image: linear-gradient(to right, rgb(255, 0, 13), rgb(255, 0, 13), rgb(106, 255, 0), rgb(106, 255, 0));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  margin-bottom: 3px;
+}
 
 
 
@@ -572,12 +615,12 @@ main {
     #topnav {
         flex-wrap: wrap;
         justify-content: space-around;
-        height: 120px;
+        /* height: 20px; */
     }
     
-    #spacer {
-        height: 150px;
-    }
+    /* #spacer {
+        height: 100px;
+    } */
 
     .link {
         font-size: large;
@@ -599,8 +642,6 @@ main {
     }
 
 
-
-
     #user_title {
         font-size: medium;
     }
@@ -614,4 +655,102 @@ main {
         font-size: large;
     }
 
+}
+
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+
+    #choose_meme {
+        width: 60vw;
+        height: 30vh;
+        cursor: pointer;
+        display: flex;
+        /* margin: auto; */
+        align-items: center;
+        /* justify-content: space-around; */
+        max-height: 30vh;
+        max-width: 30vh;
+        border: 5px dashed gray;
+        /* border-radius: 15px; */
+    }
+    #meme_upload_container {
+        max-height: 50vh;
+        max-width: 60vw;
+        display: flex;
+        margin: auto;
+        align-items: center;
+        justify-content: space-around;
+    }
+    
+    #meme_img img {
+        box-shadow: black 0 0 20px;
+        border-radius: 15px;
+        height: 30vh;
+        width: 20vh;
+    }
+    
+    #upload input {
+        margin: 10px;
+        width: 150px;
+    }
+
+    .card {
+        position: relative;
+        margin: 1.4vw;
+        box-shadow: rgb(216, 203, 203) 0 0 5px;
+        border-radius: 15px;
+        text-align: center;
+        padding-bottom: 12px;
+        max-width: 90vw;
+        margin-top: 30px;
+    }
+    
+}    
+      
+
+.welcome {
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    display: flex;
+    margin-top: 65px;
+}
+
+#login-form1, #login-form2, #login-form3, .create-check, .login-btn, .create-form {
+    justify-content: center;
+    text-align: center;
+    margin: 30px;
+   display: flex;
+   /* margin: auto; */
+}
+
+.login-btn, strong {
+    margin: auto;
+    color: goldenrod;
+    width: 100px;
+}
+
+.login-btn:hover {
+    transition: all .5s;
+    transform: rotate(-1deg) scale(1.1);
+    box-shadow: 0px 3px 5px rgba(0,0,0,.4);
+}
+.login-btn:hover span{
+    animation-play-state: paused;
+}
+
+.logo-card {
+        position: relative;
+        margin: auto;
+        /* box-shadow: rgb(216, 203, 203) 0 0 5px; */
+        border-radius: 15px;
+        text-align: center;
+        padding-bottom: 12px;
+        /* max-width: 60vw; */
+}
+
+#signup-username, #signup-email, #password1, #password2 {
+    margin: 7px;
 }
