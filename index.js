@@ -38,10 +38,10 @@ app.use(session({
      })
   }))
 
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use(routes)
+app.use(routes);
 
 sequelize.sync({ force: false }).then(function() {
     app.listen(PORT, function() {

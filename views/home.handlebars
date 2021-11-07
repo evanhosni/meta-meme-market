@@ -3,14 +3,16 @@
     {{#each memes}}
         <div class="card">
             <img class="meme" src={{img}}>
-            <h4 class="color-text">@{{user.username}}</h4>
+            <h4 class="color-text">@{{user.username}}<img src="/assets/METAMEME.png" style="height: 1vh; width: 1vh;" alt="$">
+
+</h4>
             {{#if value}}
-                <p>${{value}}</p>
+                <p><img src="/assets/metameme_coin.png" style="height: 12px; width: 12px; float: center;" alt="$">{{value}}</p>
             {{else}}
-                <p>No available shares!</p>
+                <p>sold out!</p>
             {{/if}}
             {{!-- <button>Buy</button> --}}
-            <a id="card_link" href="/meme/{{id}}"></a>
+            <a id="card_link" href="/meme?id={{id}}"></a>
         </div>
     {{/each}}
 

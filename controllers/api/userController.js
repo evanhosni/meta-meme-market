@@ -64,9 +64,9 @@ router.post("/", (req, res) => {
         // account_number: req.body.account_number,
         // routing_number: req.body.routing_number
     }).then(newUser => {
-        req.session.save(()=>{
-            req.session.loggedIn = true        
-        })
+        // req.session.save(()=>{
+        //     req.session.loggedIn = true        
+        // })
         req.session.user = {
             username: newUser.username,
             email: newUser.email,

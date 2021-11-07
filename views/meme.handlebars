@@ -1,10 +1,20 @@
 <div id="meme">
-    <div class="memepage_meme">
-        <img src={{meme.img}}>
-    </div>
+      <div class="memepage_meme">
+          <img src={{meme.img}}>
+      </div>
     <div class="stats">
-        <h1>{{meme.title}}</h1>
-        <p>created by <a href="/user/{{meme.user.username}}">{{meme.user.username}}</a></p>
+        <h1><img src="/assets/METAMEME.png" style="height: 2vh; width: 2vh;" alt="$"> {{meme.title}} <img src="/assets/METAMEME.png" style="height: 2vh; width: 2vh;" alt="$"></h1>
+        <p>
+  <span style='color: goldenrod'>C</span>
+  <span style='color: #fff'>r</span>
+  <span style='color: #cccccc'>e</span>
+  <span style='color: #fff'>a</span>
+  <span style='color: #51ff0d'>t</span>
+  <span style='color: #fff'>e</span>
+  <span style='color: #cccccc'>d</span> 
+  <span style='color: #fff'> b</span>
+  <span style='color: goldenrod'>y</span>
+</p> <a href="/user/{{meme.user.username}}">{{meme.user.username}}</a></p>
     </div>
     {{!-- <div class="stats">
         <button><span style="font-size:xx-large; background: red; padding: 0px 30px">BUY</span></button>
@@ -19,9 +29,10 @@
     </div> --}}
 
 
-<div id="buy-sell"> 
+<div id="buy-sell">
+  <div id="sold-shares"></div>
   {{#if loggedIn}}
-    <p>You own {{numShares}} shares of this meme!</p>
+    {{!-- <p>You own {{numShares}} shares of this meme!</p> --}}
     {{#if stake}}
       <p>You own {{stake}}% of this meme!</p>
     {{/if}}
@@ -29,7 +40,6 @@
     <p>Log in to buy shares!</p>
   {{/if}}
 
-{{!-- <div class="sell-btn"> --}}
   <button id ="sellme">
     SELL 
     <span></span>
@@ -37,21 +47,30 @@
     <span></span>
     <span></span>
   </button>
-{{!-- </div> --}}
 
-{{!-- <div class="buy-btn"> --}}
-  <button id ="buyme">
+  <button id ="buyMe">
     BUY 
     <span></span>
     <span></span>
     <span></span>
     <span></span>
   </button>
-{{!-- </div> --}}
-
-
+  <table id="prices1" style="width: 100%">
+    <tr>
+      <th>Price & Quantity</th>
+    </tr>
+  </table>
+  <table id="prices" style="width: 100%">
+    <thead>
+      <tr>
+        <th>$$</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody id="table-body"></tbody>
+    
+  </table>
 </div>
 
-</div>
-
+<script src="/js/transaction.js"></script>
 
