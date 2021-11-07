@@ -83,9 +83,10 @@ router.get("/meme", async (req, res) => {
             stake = (Math.round((user.shares.length / memeData.number_shares) * 100));
         }
         const hbsMeme = memeData.get({ plain: true })
+        console.log(hbsMeme)
         res.render("meme", {
             ...hbsMeme, loggedIn: req.session.loggedIn, currentUser: req.session.user,
-            meme: hbsMeme, balance, numShares, stake, username: user.username
+            meme: hbsMeme, balance, numShares, stake
         });
     } catch (err) {
         console.log(err)
