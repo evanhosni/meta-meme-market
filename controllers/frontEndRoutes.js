@@ -7,7 +7,7 @@ const { getListedMeme } = require('../market/getModels');
 //Homepage shows all memes sorted descending by created most recently
 router.get("/", async (req, res) => {
     let balance;
-    if (req.session.user){
+    if (req.session.user) {
         balance = (await User.findByPk(req.session.user.id)).balance;
     }
     Meme.findAll({
@@ -58,7 +58,7 @@ router.get("/meme", async (req, res) => {//TODO change id to title so it's "/mem
     let user;
     let balance;
     try {
-        if (req.session.user){
+        if (req.session.user) {
             try {
                 user = await User.findByPk(req.session.user.id, {
                     include: {
@@ -104,7 +104,7 @@ router.get("/meme", async (req, res) => {//TODO change id to title so it's "/mem
             ...hbsMeme, loggedIn: req.session.loggedIn, currentUser: req.session.user,
             meme: hbsMeme, balance, numShares, stake
         });
-    } catch(err) {
+    } catch (err) {
         console.log(err)
         res.status(500).json(err)
     }
@@ -112,7 +112,7 @@ router.get("/meme", async (req, res) => {//TODO change id to title so it's "/mem
 
 router.get("/user/:username", async (req, res) => {
     let balance;
-    if (req.session.user){
+    if (req.session.user) {
         balance = (await User.findByPk(req.session.user.id)).balance;
     }
     User.findOne({
@@ -122,7 +122,7 @@ router.get("/user/:username", async (req, res) => {
         attributes: ['username'],
         include: [{
             model: Meme,
-            attributes: ['id','img','share_price','number_shares','user_id'],
+            attributes: ['id', 'img', 'share_price', 'number_shares', 'user_id'],
             include: {
                 model: Share,
                 where: {
@@ -150,7 +150,7 @@ router.get("/user/:username", async (req, res) => {
         }
         // console.log({...plainUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: false,
         //     user: plainUser, balance})
-        if(req.session.loggedIn && req.session.user.username == req.params.username) {
+        if (req.session.loggedIn && req.session.user.username == req.params.username) {
             res.render("user", {
                 ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: true,
                 user: hbsUser, balance
@@ -177,7 +177,7 @@ router.get("/signup", (req, res) => {
 //Renders login page unless already logged in
 router.get("/login", (req, res) => {
     if (!req.session.user) {
-        
+
         res.render("login")
     } else {
         console.log('HELP!');
@@ -188,7 +188,7 @@ router.get("/login", (req, res) => {
 
 router.get("/upload", async (req, res) => {
     let balance;
-    if (req.session.user){
+    if (req.session.user) {
         balance = (await User.findByPk(req.session.user.id)).balance;
     }
     if (!req.session.user) {
@@ -200,7 +200,7 @@ router.get("/upload", async (req, res) => {
 
 router.get('/buy', async (req, res) => {
     let balance;
-    if (req.session.user){
+    if (req.session.user) {
         balance = (await User.findByPk(req.session.user.id)).balance;
     }
     if (!req.session.user) {
@@ -212,7 +212,7 @@ router.get('/buy', async (req, res) => {
 
 router.get('/sell', async (req, res) => {
     let balance;
-    if (req.session.user){
+    if (req.session.user) {
         balance = (await User.findByPk(req.session.user.id)).balance;
     }
     if (!req.session.user) {

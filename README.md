@@ -33,14 +33,19 @@ No special installation directions required.
 
 ## Credits
 
-1. jwhector
-2. evanhosni
-3. Rallen4
-4. davidabbey102
+1. [Evan Hosni](https://github.com/evanhosni)
+
+2. [Jared Hector](https://github.com/jwhector)
+
+3. [Ryan Allen](https://github.com/Rallen4)
+
+4. [David Abbey](https://github.com/davidabbey102)
 
 ## Features
 
-This project is straight forward and its features are self evident.
+BUY!!!! SELL!!!! CREATE!!!! OWN!!!!!
+
+Using cloudinary to store uploaded files, post memes you create to allow others to view, and invest in your creations.
 
 ## License
 
@@ -48,11 +53,7 @@ This project is protected by MIT.
 
 ## Contact
 
-Any questions or comments may be directed to us via our GitHub pages:
-[Evan Hosni](https://github.com/evanhosni)
-[Jared Hector](https://github.com/jwhector)
-[Ryan Allen](https://github.com/Rallen4)
-[David Abbey](https://github.com/davidabbey102)).
+Any questions or comments may be directed to us via our GitHub pages. (Linked in the credits section above.)
 
 
 
