@@ -1,5 +1,5 @@
 {{#if sameUser}}
-<h2 id="user_title"> <span>@{{currentUser.username}}</span>'s page</h2>
+<h2 id="user_title"> <span>@{{currentUser.username}}</span></h2>
 {{else}}
 <h2 id="user_title">You're peepin' <span>{{user.username}}</span>'s User Page.</h2>
 {{/if}}
@@ -7,13 +7,13 @@
 <div id="user_created"></div>
     <h2 class="user_subtitle"><span></span><p><img src="/assets/METAMEME.png" style="height: 2vh; width: 2vh;" alt="$">
   <span style='color: goldenrod'>C</span>
-  <span style='color: #fff'>r</span>
-  <span style='color: #cccccc'>e</span>
-  <span style='color: #fff'>a</span>
+  <span style='color: #0b0b0b'>r</span>
+  <span style='color: #0b0b0b'>e</span>
+  <span style='color: #0b0b0b'>a</span>
   <span style='color: #51ff0d'>t</span>
-  <span style='color: #fff'>i</span>
-  <span style='color: #cccccc'>o</span>
-  <span style='color: #fff'>n</span>
+  <span style='color: #0b0b0b'>i</span>
+  <span style='color: #0b0b0b'>o</span>
+  <span style='color: #0b0b0b'>n</span>
   <span style='color: goldenrod'>s</span> 
 </p></h2>
     <div id="user_created_memes">
@@ -22,7 +22,7 @@
                 <img class="meme" src={{this.img}}>
                 {{!-- <h4>Owner: {{user.currentUser.username}}</h4> --}}
                 {{#if this.value}}
-                    <p>${{this.value}}</p>
+                    <p><img src="/assets/metameme_coin.png" style="height: 12px; width: 12px; float: center;" alt="$">{{this.value}}</p>
                 {{else}}
                     <p>No available shares!</p>
                 {{/if}}
@@ -36,13 +36,13 @@
 <div id="user_owned">
     <h2 class="user_subtitle"> <span></span><p><img src="/assets/METAMEME.png" style="height: 2vh; width: 2vh;" alt="$">
   <span style='color: goldenrod'>P</span>
-  <span style='color: #fff'>o</span>
-  <span style='color: #cccccc'>r</span>
-  <span style='color: #fff'>t</span>
+  <span style='color: #0b0b0b'>o</span>
+  <span style='color: #0b0b0b'>r</span>
+  <span style='color: #0b0b0b'>t</span>
   <span style='color: #51ff0d'>f</span>
-  <span style='color: #fff'>o</span>
-  <span style='color: #cccccc'>l</span>
-  <span style='color: #fff'>i</span>
+  <span style='color: #0b0b0b'>o</span>
+  <span style='color: #0b0b0b'>l</span>
+  <span style='color: #0b0b0b'>i</span>
   <span style='color: goldenrod'>o</span>
 </p></h2>
     <div id="user_owned_memes">
@@ -52,9 +52,9 @@
                 <img class="meme" src={{img}}>
                 {{!-- <h4>Owner: {{user.currentUser.username}}</h4> --}}
                 {{#if this.value}}
-                    <p>${{this.value}}</p>
+                    <p><img src="/assets/metameme_coin.png" style="height: 12px; width: 12px; float: center;" alt="$">{{this.value}}</p>
                 {{else}}
-                    <p>No available shares!</p>
+                    <p>sold out!</p>
                 {{/if}}
                 {{!-- <button>Buy</button> --}}
                 <a id="card_link" href="/meme?id={{id}}"></a>
@@ -64,7 +64,16 @@
 </div>
 {{#if sameUser}}
 <div id="user_logout">
-    <a href="/logout">Logout</a>
+    <a href="/logout"><p>
+  <span style='color: #0b0b0b'>l</span>
+  <span style='color: #0b0b0b'>o</span>
+  <span style='color: #0b0b0b'>g</span>
+  <span style='color: #FF3131'>o</span>
+  <span style='color: #FF3131'>u</span>
+    <span style='color: #FF3131'>t</span>
+
+
+</p></a>
 </div>
 {{/if}}
 

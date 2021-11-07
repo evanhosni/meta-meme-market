@@ -679,6 +679,14 @@ p {
         max-width: 100vw;
     }
 
+    .welcome {
+        justify-content: center;
+        text-align: center;
+        margin: auto;
+        display: flex;
+        margin-top: 143px;
+    }
+
 
     #user_title {
         font-size: large;
@@ -729,6 +737,14 @@ p {
         height: 30vh;
         width: 20vh;
     }
+
+    #home {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        color: var(--white);
+        margin-top: 11vw;
+    }
     
     #upload input {
         margin: 10px;
@@ -754,7 +770,7 @@ p {
     text-align: center;
     margin: auto;
     display: flex;
-    margin-top: 65px;
+    margin-top: 126px;
 }
 
 #login-form1, #login-form2, #login-form3, .create-check, .login-btn, .create-form {
@@ -792,6 +808,11 @@ p {
 
 #signup-username, #signup-email, #password1, #password2 {
     margin: 7px;
+}
+
+#yeet {
+    color: goldenrod;
+    margin-top: 10px;
 }
 
 
