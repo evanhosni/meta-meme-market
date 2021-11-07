@@ -3,7 +3,9 @@
     {{#each memes}}
         <div class="card">
             <img class="meme" src={{img}}>
-            <h4 class="color-text">@{{user.username}}<img src="/assets/METAMEME.png" style="height: 1vh; width: 1vh;" alt="$"></h4>
+            <h4 class="color-text">@{{user.username}}<img src="/assets/METAMEME.png" style="height: 1vh; width: 1vh;" alt="$">
+
+</h4>
             {{#if value}}
                 <p><img src="/assets/metameme_coin.png" style="height: 12px; width: 12px; float: center;" alt="$">{{value}}</p>
             {{else}}
