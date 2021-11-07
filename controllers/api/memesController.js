@@ -22,7 +22,7 @@ router.get('/buy/:id', async (req, res) => {
             where: {
                 [Op.and]: {
                     [Op.not]: { listed_at: null },
-                    [Op.not]: { user_id: req.session.user.id }
+                    // [Op.not]: { user_id: req.session.user.id }
                 }
             },
             attributes: ['id', 'listed_at', 'bought_price', 'user_id', 'meme_id', [sequelize.fn('SUM', sequelize.col('bought_price')), 'total']],
@@ -58,47 +58,15 @@ router.get('/buy/:id', async (req, res) => {
     }
 });
 
-router.get('/sell/:id', (req, res) => {
-    // const quantity = req.body.quantity;
-    // const price = req.body.price;
-    if (!req.session.user) {
-        return res.status(401).send("You must be logged in to sell!")
-    }
-    const quantity = 1;
-    const price = 1;
-    User.findOne({
-        where: {
-            id: req.session.user.id
-        },
-        include: {
-            model: Share,
-            where: {
-                meme_id: req.params.id,
-                listed_at: null
-            },
-            limit: quantity
-        }
-    })
-    .then(async (seller) => {
-        const soldSuccess = seller.shares.length ? true : false;
-        await sellShares(seller, price);
+router.get('/meme/:id', async (req, res) => {
+    try {
         const memeData = await getListedMeme(req.params.id);
-        const userData = await getUserShares(req.session.user.id, req.params.id);
-        let stake = null;
-        let listedShares = (userData.shares.filter(share => share.dataValues.listed_at !== null).length)
-        if (userData) {
-            numShares = userData.shares.length;
-            // console.log(userData.shares.length, memeData.number_shares);
-            stake = (Math.round((userData.shares.length / memeData.number_shares) * 100));
-        }
-        // console.log(memeData);
-        // console.log(userData, numShares, stake, listedShares);
-        res.status(200).json({ numShares: numShares, stake: stake, listedShares: listedShares, soldSuccess: soldSuccess, memeData: memeData });
-    })
-    .catch(err => {
+        if (!memeData) return res.status(404).send('Meme not found!');
+        res.status(200).json(memeData.toJSON());
+    } catch (err) {
         console.error(err);
         res.status(500).json(err);
-    });
+    }
 });
 
 router.get('/stake/:id', async (req, res) => {
