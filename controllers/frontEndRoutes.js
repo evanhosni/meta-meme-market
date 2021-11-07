@@ -53,8 +53,7 @@ router.get("/", async (req, res) => {
     })
 })
 
-router.get("/meme", async (req, res) => {//TODO change id to title so it's "/meme/:title"
-    // res.render("meme")
+router.get("/meme", async (req, res) => {
     let user;
     let balance;
     try {
@@ -75,34 +74,18 @@ router.get("/meme", async (req, res) => {//TODO change id to title so it's "/mem
                 return res.status(500).json(err);
             }
         }
-
-        // Meme.findOne({
-        //     where: {
-        //         id: req.query.id
-        //     },
-        //     // attributes: ['img', 'title', 'share_price', 'number_shares', 'user_id'],
-        //     include: [{
-        //         model: User,
-        //         attributes: ['username']
-        //     }, {
-        //         model: Share,
-        //         where: { [Op.not]: { listed_at: null } },
-        //         attributes: ['id', 'is_initial', 'listed_at', 'bought_price', 'meme_id'],
-        //         required: false
-        //     }]
         const memeData = await getListedMeme(req.query.id);
         if (!memeData) return res.status(404).send('No meme with this id found!');
         let numShares = 'no';
         let stake = null;
         if (user) {
             numShares = user.shares.length;
-            // console.log(user.shares.length, memeData.number_shares);
             stake = (Math.round((user.shares.length / memeData.number_shares) * 100));
         }
         const hbsMeme = memeData.get({ plain: true })
         res.render("meme", {
             ...hbsMeme, loggedIn: req.session.loggedIn, currentUser: req.session.user,
-            meme: hbsMeme, balance, numShares, stake
+            meme: hbsMeme, balance, numShares, stake, username: user.username
         });
     } catch (err) {
         console.log(err)
@@ -148,9 +131,7 @@ router.get("/user/:username", async (req, res) => {
                 meme.value = null;
             }
         }
-        // console.log({...plainUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: false,
-        //     user: plainUser, balance})
-        if (req.session.loggedIn && req.session.user.username == req.params.username) {
+        if(req.session.loggedIn && req.session.user.username == req.params.username) {
             res.render("user", {
                 ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: true,
                 user: hbsUser, balance

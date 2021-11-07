@@ -1,4 +1,4 @@
-const { Meme, Share, User, Transaction } = require('../models')
+const { Transaction } = require('../models')
 
 const transfer = (buyer, seller, amt) => {
     if (buyer.balance < amt) return false;
@@ -21,6 +21,7 @@ const tradeShares = (buyer, share) => {
 
 const buyShares = async (buyer, meme, amt) => {
     let buyCount = 0;
+    let totalCost = 0
 
     const shares = meme.shares;
 
@@ -36,12 +37,15 @@ const buyShares = async (buyer, meme, amt) => {
                 amount: price
             });
             buyCount++;
+            totalCost += price;
         }
     }
 
     await buyer.save();
 
-    return buyCount;
+    console.log(buyCount, totalCost)
+
+    return { buyCount, totalCost };
 }
 
 module.exports = { buyShares };
