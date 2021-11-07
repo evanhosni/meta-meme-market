@@ -6,20 +6,19 @@
     <div class="stats">
         <h1>{{meme.title}}</h1>
         <p>
-            <span style='color: goldenrod'>C</span>
-            <span style='color: #fff'>r</span>
-            <span style='color: #cccccc'>e</span>
-            <span style='color: #fff'>a</span>
-            <span style='color: #51ff0d'>t</span>
-            <span style='color: #fff'>e</span>
-            <span style='color: #cccccc'>d</span> 
-            <span style='color: #fff'> b</span>
-            <span style='color: goldenrod'>y</span>
-        </p> 
-        <a href="/user/{{username}}">{{username}}</a>
-        </p>
 
-
+  <span style='color: goldenrod'>C</span>
+  <span style='color: #fff'>r</span>
+  <span style='color: #cccccc'>e</span>
+  <span style='color: #fff'>a</span>
+  <span style='color: #51ff0d'>t</span>
+  <span style='color: #fff'>e</span>
+  <span style='color: #cccccc'>d</span> 
+  <span style='color: #fff'> b</span>
+  <span style='color: goldenrod'>y</span>
+</p> <a href="/user/{{meme.user.username}}">{{meme.user.username}}</a></p>
+    </div>
+    
   <div id="buy-sell">
     <div id="sold-shares"></div>
     {{#if loggedIn}}
@@ -31,6 +30,7 @@
     {{else}}
       <p>Log in to buy shares!</p>
     {{/if}}
+
 
   <button id ="sellme">
     SELL 

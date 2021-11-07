@@ -16,6 +16,9 @@ async function getListedMeme(id) {
             ],
             required: false
             
+        },{
+            model: User,
+            attributes: ['username']
         }],
         group: ['bought_price']
     });
