@@ -72,16 +72,7 @@ router.post("/", (req, res) => {
             email: newUser.email,
             id: newUser.id
         }
-<<<<<<< HEAD
-        req.session.loggedIn = true;
-        
-        // loggedIn: true
-
-        console.log(req.session)
-        console.log(req.session.user)
-=======
         req.session.loggedIn = true
->>>>>>> dev
         res.json(newUser);
     }).catch(err => {
         console.log(err);

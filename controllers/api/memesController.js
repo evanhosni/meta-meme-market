@@ -91,9 +91,9 @@ router.get('/sell/:id', (req, res) => {
             // console.log(userData.shares.length, memeData.number_shares);
             stake = (Math.round((userData.shares.length / memeData.number_shares) * 100));
         }
-        console.log(memeData);
-        console.log(userData, numShares, stake, listedShares);
-        res.status(200).json({ numShares: numShares, stake: stake, listedShares: listedShares, soldSuccess: soldSuccess });
+        // console.log(memeData);
+        // console.log(userData, numShares, stake, listedShares);
+        res.status(200).json({ numShares: numShares, stake: stake, listedShares: listedShares, soldSuccess: soldSuccess, memeData: memeData });
     })
     .catch(err => {
         console.error(err);
