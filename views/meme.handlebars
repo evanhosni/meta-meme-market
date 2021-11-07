@@ -1,10 +1,12 @@
 <div id="meme">
-      <div class="memepage_meme">
-          <img src={{meme.img}}>
-      </div>
+    <div class="memepage_meme">
+      <img src={{meme.img}}>
+    </div>
+
     <div class="stats">
         <h1>{{meme.title}}</h1>
         <p>
+
   <span style='color: goldenrod'>C</span>
   <span style='color: #fff'>r</span>
   <span style='color: #cccccc'>e</span>
@@ -16,51 +18,42 @@
   <span style='color: goldenrod'>y</span>
 </p> <a href="/user/{{meme.user.username}}">{{meme.user.username}}</a></p>
     </div>
-    {{!-- <div class="stats">
-        <button><span style="font-size:xx-large; background: red; padding: 0px 30px">BUY</span></button>
-        <h2>💰50</h2>
-        <p>current<br>share price</p>
-    </div> --}}
-    {{!-- <div class="stats">
-        <p>Owner: {{meme.user.username}}</p>
-        <p>Current Price: 💰{{meme.share_price}}</p>
-        <p>Shares: {{meme.number_shares}}</p>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur, dolorum autem eligendi quo molestias et culpa natus molestiae. Quas, magnam culpa exercitationem quasi necessitatibus quibusdam accusantium ratione laborum maxime ipsam.</p>
-    </div> --}}
+    
+  <div id="buy-sell">
+    <div id="sold-shares"></div>
+    {{#if loggedIn}}
 
-
-<div id="buy-sell">
-  <div id="sold-shares"></div>
-  {{#if loggedIn}}
-    {{!-- <p>You own {{numShares}} shares of this meme!</p> --}}
     {{#if stake}}
       <p>You own {{stake}}% of this meme!</p>
     {{/if}}
-  {{else}}
-    <p>Log in to buy shares!</p>
-  {{/if}}
+
+    {{else}}
+      <p>Log in to buy shares!</p>
+    {{/if}}
 
 
   <button id ="sellme">
     SELL 
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
   </button>
 
   <button id ="buyMe">
     BUY 
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
   </button>
+
   <table id="prices1" style="width: 100%">
     <tr>
-      <th>Price & Quantity</th>
+      <th>MARKET LISTINGS</th>
     </tr>
   </table>
+
   <table id="prices" style="width: 100%">
     <thead>
       <tr>
@@ -68,10 +61,14 @@
         <th>Quantity</th>
       </tr>
     </thead>
+
     <tbody id="table-body"></tbody>
     
   </table>
+  </div>
+  
 </div>
+
 
 <script src="/js/transaction.js"></script>
 
