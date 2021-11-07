@@ -1,45 +1,12 @@
 const express = require("express");
-// const { now } = require("sequelize/types/lib/utils");
 const router = express.Router();
 const { Meme, User, Comments, Share } = require("../../models");
 const { IPO, sellShares } = require('../../market/shareListing');
 const { Op } = require('sequelize');
-// const session = require('session')
+const { getListedMeme, getUserShares } = require('../../market/getModels');
+const { buyShares } = require('../../market/transaction');
+const { sequelize } = require("../../models/User");
 
-// router.get("/:id", (req, res) => {
-//   Meme.findOne({
-//     where: {
-//       id: req.params.id
-//     },
-//     attributes: ['img', 'number_shares', 'share_price', 'created_at'],
-//     include: [{
-//       model: User,
-//       attributes: ['username']
-//     }, {
-//       model: Comments,
-//       order: [
-//         ['created_at', 'DESC']
-//       ],
-//       attributes: ['comment_text', 'created_at'],
-//       include: { model: User, attributes: "username" }
-//     },
-//     {
-//       model: Share,
-//       where: { is_initial: true },
-//       // attributes: ['id', 'listed_at', 'bought_price', 'meme_id']
-//     }
-//     ]
-//   }).then(dbMemes => {
-//     if (dbMemes.length) {
-//       res.json(dbMemes);
-//     } else {
-//       res.status(404).json({ message: "No memes found!" });
-//     }
-//   }).catch(err => {
-//     console.log(err);
-//     res.status(500).json({ message: "an error occured", err: err });
-//   });
-// });
 router.get('/buy/:id', async (req, res) => {
     if (!req.session.user) {
         return res.status(401).send("You must be logged in to buy!")
@@ -55,9 +22,11 @@ router.get('/buy/:id', async (req, res) => {
             where: {
                 [Op.and]: {
                     [Op.not]: { listed_at: null },
-                    [Op.not]: { user_id: req.session.user.id }
+                    // [Op.not]: { user_id: req.session.user.id }
                 }
             },
+            attributes: ['id', 'listed_at', 'bought_price', 'user_id', 'meme_id', [sequelize.fn('SUM', sequelize.col('bought_price')), 'total']],
+            group: 'bought_price',
             order: [
                 ['bought_price', 'ASC'],
                 ['listed_at', 'ASC']
@@ -66,49 +35,38 @@ router.get('/buy/:id', async (req, res) => {
             limit: amt
         }
         });
+
+        if (!meme) return res.status(404).send('Meme not found!');
+
+        console.log(meme.shares);
+
         const buyer = await User.findOne({
             where: {
                 id: req.session.user.id
             }});
+
+        if (!buyer) return res.status(404).send('User not found!');
         
-        await require('../../market/transaction')(buyer, meme, amt);
-        console.log(meme);
-        res.status(200).json()
+        const boughtCount = await buyShares(buyer, meme, amt);
+        // if (boughtCount < amt)
+        const memeData = await getListedMeme(req.params.id);
+        // console.log(memeData);
+        res.status(200).json({ boughtCount: boughtCount, memeData: memeData.toJSON() });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'an error occured', err: err })
     }
 });
 
-router.get('/sell/:id', (req, res) => {
-    // const quantity = req.body.quantity;
-    // const price = req.body.price;
-    if (!req.session.user) {
-        return res.status(401).send("You must be logged in to sell!")
-    }
-    const quantity = 1;
-    const price = 1;
-    User.findOne({
-        where: {
-            id: req.session.user.id
-        },
-        include: {
-            model: Share,
-            where: {
-                meme_id: req.params.id,
-                listed_at: null
-            },
-            limit: quantity
-        }
-    })
-    .then(async (seller) => {
-        await sellShares(seller, price);
-        res.status(200).send('Shares sold!');
-    })
-    .catch(err => {
+router.get('/meme/:id', async (req, res) => {
+    try {
+        const memeData = await getListedMeme(req.params.id);
+        if (!memeData) return res.status(404).send('Meme not found!');
+        res.status(200).json(memeData.toJSON());
+    } catch (err) {
         console.error(err);
         res.status(500).json(err);
-    });
+    }
 });
 
 router.get('/stake/:id', async (req, res) => {

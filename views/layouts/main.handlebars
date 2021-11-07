@@ -14,16 +14,18 @@
     <main>
         <div id="topnav">
                 {{#if loggedIn}}
-                <a href="/upload" class="link">Upload</a>
+
                 {{!-- <a href="/upload" class="link">Upload</a> --}}
-                <a id="title" href="/"><span id="title_gold">Meta</span><span id="title_white">Meme</span><span id="title_gray">Market</span></a>
+                <a id="title" href="/"><span id="title_gold">meta<span id="title_white">meme<span id="title_gray">market</span></a>
+                <a href="/upload" class="link"><img src="/assets/METAMEME.png" style="height: 2vh; width: 2vh;" alt="$">upload</a>
                 {{!-- <a href="/logout">Logout</a> --}}
-                <a id="topnav_user_link" href="/user/{{currentUser.username}}" class="link">{{currentUser.username}} &nbsp<img src="/assets/metameme_coin.png" style="height: 1.75vw; width: 1.75vw;" alt="$"> <span style="color:green">&nbsp{{balance}}</span></a>
+                <a id="topnav_user_link" href="/user/{{currentUser.username}}" class="link">{{currentUser.username}}  <img src="/assets/metameme_coin.png" style="height: 2vw; width: 2vw; float: center;" alt="$"> <span style="color:#51ff0D">{{balance}}</span><img src="/assets/METAMEME.png" style="height: 2vh; width: 2vh;" alt="$"></a>
 
                 {{else}}
-                <div></div>
+                <div><img src="/assets/METAMEME.png" style="height: 7vh; width: 7vh;" alt="$"></div>
                 <a id="title" href="/"><span id="title_gold">Meta</span><span id="title_white">Meme</span><span id="title_gray">Market</span></a>
-                    <a href="/signup" class="link">Login / Sign up</a>
+                    <a href="/login" class="link">Login</a>
+                    
                     {{!-- <a style="display: inline;" href="/login" class="link">Login</a> --}}
                 {{/if}}
             {{!-- <a href="/login">Login</a> --}}

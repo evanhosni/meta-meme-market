@@ -28,17 +28,18 @@ button {
 body {
     color: var(--white);
     background: var(--black);
+    background-image: linear-gradient(to bottom left, #0b0b0b, #090909);
     /* background-image: linear-gradient(to right, var(--black), rgb(10, 10, 10)); */
 }
 
 .card {
     position: relative;
     margin: 1.4vw;
-    box-shadow: rgb(216, 203, 203) 0 0 5px;
+    box-shadow: rgb(230, 221, 221) 0 0 5px;
     border-radius: 15px;
     text-align: center;
     padding-bottom: 12px;
-    max-width: 60vw;
+    max-width: 90vw;
 }
 
 #card_link {
@@ -56,7 +57,7 @@ body {
 }
 
 .card:hover {
-    box-shadow: var(--white) 0 0 20px;
+    box-shadow: var(--white) 0 0 10px;
     transform: scale(1.025);
     transition: transform .2s;
 }
@@ -64,14 +65,14 @@ body {
 .meme {
     width: 300px;
     height: 300px;
-    max-width: 100vw;
-    max-height: 100vw;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: cover;
     padding-bottom: 12px;
 }
 
 .color-text {
-    background-image: linear-gradient(to right, goldenrod,rgb(255, 255, 255), rgb(170, 0, 255), rgb(170, 0, 255));
+    background-image: linear-gradient(to right, rgb(78, 0, 93), rgb(201, 92, 255));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -80,14 +81,15 @@ body {
 main {
     position: fixed;
     width: 100%;
-    z-index: 999;
+    z-index: 3;
+    
 }
 
 #topnav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 2vw;
+    /* padding: 15px 2vw; */
     margin: auto;
     top: 0;
     background: var(--black);
@@ -95,23 +97,24 @@ main {
     box-shadow: black 0 0 20px;
     font-size: 1.5vw;
     text-decoration: none;
+    background-image: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(9, 9, 9));
 }
 
-#topnav_user_link {
+#topnav_link {
     display: flex;
     align-items: center;
 }
 
 #spacer {
-    height: 8vw;
-    min-height: 80px;
+    height: 6vw;
+    /* min-height: 80px; */
 }
 
 .create-message,
 .create-form,
 .welcome,
 .create-check,
-#login-form {
+#login-form1, #login-form2, #login-form3 {
     margin-left: 10px;
 }
 
@@ -149,7 +152,7 @@ main {
 }
 
 
-#buy-sell {
+.buy-sell {
     /* margin: 1em; */
     display: inline-block;
     flex-direction: column;
@@ -160,20 +163,10 @@ main {
     max-width: 100vw;
 }
 
-
-/* #buy-btn {
-    position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%, -50%);
-    width: fit-content;
-    height:auto;
-    display: inline-block;
-} */
-#buyme{
-    width:200px;
+#buyMe{
+    width:150px;
     height:70px;
-    background: linear-gradient(to left top, #0adc3b 25%, #07481d 75%);
+    background: linear-gradient(to left top, #51ff0d 25%, #090909 25%);
     border-style: none;
     border-radius: 15px;
     color:#fff;
@@ -190,16 +183,16 @@ main {
     transition: all .5s;
     box-shadow: 0px 1px 2px rgba(0,0,0,.2);
 }
-#buyme span{
+#buyMe span{
     position: absolute;
     display: inline-block;
 }
-#buyme span:nth-child(1){
+#buyMe span:nth-child(1){
     height: 3px;
     width:200px;
     top:0px;
     left:-200px;
-    background: linear-gradient(to right, rgba(0,0,0,0), #0adc3b);
+    background: linear-gradient(to right, rgba(0,0,0,0), #51ff0d);
     border-top-right-radius: 1px;
     border-bottom-right-radius: 1px;
     animation: span1 2s linear infinite;
@@ -214,12 +207,12 @@ main {
         left:200px;
     }
 }
-#buyme span:nth-child(2){
+#buyMe span:nth-child(2){
     height: 70px;
     width: 3px;
     top:-70px;
     right:0px;
-    background: linear-gradient(to bottom, rgba(0,0,0,0), #07481d);
+    background: linear-gradient(to bottom, rgba(0,0,0,0), #51ff0d);
     border-bottom-left-radius: 1px;
     border-bottom-right-radius: 1px;
     animation: span2 2s linear infinite;
@@ -233,12 +226,12 @@ main {
         top:70px;
     }
 }
-#buyme span:nth-child(3){
+#buyMe span:nth-child(3){
     height:3px;
     width:200px;
     right:-200px;
     bottom: 0px;
-    background: linear-gradient(to left, rgba(0,0,0,0), #07481d);
+    background: linear-gradient(to left, rgba(0,0,0,0), #51ff0d);
     border-top-left-radius: 1px;
     border-bottom-left-radius: 1px;
     animation: span3 2s linear infinite;
@@ -253,12 +246,12 @@ main {
     }
 }
 
-#buyme span:nth-child(4){
+#buyMe span:nth-child(4){
     height:70px;
     width:3px;
     bottom:-70px;
     left:0px;
-    background: linear-gradient(to top, rgba(0,0,0,0), #0adc3b);
+    background: linear-gradient(to top, rgba(0,0,0,0), #51ff0d);
     border-top-right-radius: 1px;
     border-top-left-radius: 1px;
     animation: span4 2s linear infinite;
@@ -273,28 +266,19 @@ main {
     }
 }
 
-#buyme:hover{
+#buyMe:hover{
     transition: all .5s;
-    transform: rotate(-3deg) scale(1.1);
+    transform: rotate(3deg) scale(1.1);
     box-shadow: 0px 3px 5px rgba(0,0,0,.4);
 }
-#buyme:hover span{
+#buyMe:hover span{
     animation-play-state: paused;
 }
 
-/* #sell-btn {
-    position: relative;
-    top:50%;
-    left:50%;
-    transform: translate(-50%, -50%);
-    width: fit-content;
-    height:auto;
-    display: inline-block
-} */
 #sellme{
-    width:200px;
+    width:150px;
     height:70px;
-    background: linear-gradient(to left top, #fc0905 25%, #920a07 75%);
+    background: linear-gradient(to right top, #fc0905 25%, #090909 25%);
     border-style: none;
     border-radius: 15px;
     color:#fff;
@@ -339,7 +323,7 @@ main {
     width: 3px;
     top:-70px;
     right:0px;
-    background: linear-gradient(to bottom, rgba(0,0,0,0), #920a07);
+    background: linear-gradient(to bottom, rgba(0,0,0,0), #fc0905);
     border-bottom-left-radius: 1px;
     border-bottom-right-radius: 1px;
     animation: span2 2s linear infinite;
@@ -358,7 +342,7 @@ main {
     width:200px;
     right:-200px;
     bottom: 0px;
-    background: linear-gradient(to left, rgba(0,0,0,0), #920a07);
+    background: linear-gradient(to left, rgba(0,0,0,0), #fc0905);
     border-top-left-radius: 1px;
     border-bottom-left-radius: 1px;
     animation: span3 2s linear infinite;
@@ -395,7 +379,7 @@ main {
 
 #sellme:hover{
     transition: all .5s;
-    transform: rotate(3deg) scale(1.1);
+    transform: rotate(-3deg) scale(1.1);
     box-shadow: 0px 3px 5px rgba(0,0,0,.4);
 }
 #sellme:hover span{
@@ -411,9 +395,10 @@ main {
 }
 
 #user_title {
-    font-size: 200%;
+    font-size: 6vh;
     text-align: center;
-    margin: 1vw;
+    /* position: fixed; */
+    /* margin: 1vw; */
 }
 
 #user_title span {
@@ -422,7 +407,10 @@ main {
 }
 
 .user_subtitle {
-    margin: 2vw 5vw 0;
+    margin: 2vw 0vw 0;
+    font-size: 20px;
+    text-align: center;
+    /* position: fixed; */
     /* opacity: 0.8; */
 }
 
@@ -469,7 +457,7 @@ main {
 }
 
 #meme {
-    margin-top: 1.5em;
+    margin-top: 3.5em;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -482,13 +470,9 @@ main {
 .memepage_meme {
     display: flex;
     justify-content: space-around;
-    height: 600px;
-    /* width: 600px; */
-    max-height: 90vw;
+    object-fit: cover;
+    height: 25vw;
     max-width: 90vw;
-    /*bruh*/
-    /* padding: 0px 200px; */
-    /* display: block; */
 }
 
 .memepage_meme img {
@@ -497,7 +481,6 @@ main {
     box-shadow: rgb(187, 177, 177) 0 0 4px;
     z-index: 2;
     border-radius: 15px;
-    z-index: 2;
 }
 
 
@@ -506,6 +489,10 @@ main {
     max-width: 500px;
     font-size: 20px;
     text-align: center;
+    color: rgb(16, 16, 15);
+	-webkit-text-stroke-width: 0.1px;
+    -webkit-text-stroke-color: rgb(255, 255, 255);
+}
 }
 
 .stats a {
@@ -554,4 +541,278 @@ main {
     margin: 10px;
     width: 150px;
 }
+
+#prices {
+    font-family: 'Bungee', sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 15px;
+    color: rgb(16, 16, 15);
+	-webkit-text-stroke-width: 0.6px;
+    -webkit-text-stroke-color: rgb(255, 255, 255);
+}
+  
+#prices td, #prices th {
+    border: 1px solid white;
+    padding: 8px;
+    text-align: center;
+}
+  
+#prices tr:nth-child(even){
+    background-color: #111111;
+    text-align: center;
+}
+  
+#prices tr:hover {background-color: rgb(49, 44, 44);
+}
+  
+#prices th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    color: rgb(16, 16, 15);
+	-webkit-text-stroke-width: 0.1px;
+    -webkit-text-stroke-color: rgb(255, 255, 255);
+}
+
+#prices1 {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 15px;
+    color: rgb(16, 16, 15);
+	-webkit-text-stroke-width: 0.1px;
+    -webkit-text-stroke-color: rgb(255, 255, 255);
+}
+  
+#prices1 td, #prices1 th {
+    border: 1px solid white;
+    padding: 8px;
+    color: rgb(16, 16, 15);
+	-webkit-text-stroke-width: 0.1px;
+    -webkit-text-stroke-color: rgb(255, 255, 255);
+}
+  
+#prices1 tr:nth-child(even){
+    background-color: #111111;
+    text-align: center;
+    color: rgb(16, 16, 15);
+	-webkit-text-stroke-width: 0.1px;
+    -webkit-text-stroke-color: rgb(255, 255, 255);
+}
+  
+#prices1 tr:hover {background-color: rgb(49, 44, 44);
+}
+  
+#prices1 th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    color: rgb(16, 16, 15);
+	-webkit-text-stroke-width: 0.1px;
+    -webkit-text-stroke-color: rgb(255, 255, 255);
+}
+
+p {
+    text-align: center;
+    color: rgb(16, 16, 15);
+	-webkit-text-stroke-width: 0.4px;
+    -webkit-text-stroke-color: rgb(255, 255, 255);
+}
+
+#sold-shares, #ownership {
+    background-image: linear-gradient(to right, rgb(255, 0, 13), rgb(255, 0, 13), #51ff0d, #51ff0d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  margin-bottom: 3px;
+  color: rgb(16, 16, 15);
+	-webkit-text-stroke-width: 0.1px;
+    -webkit-text-stroke-color: rgb(255, 255, 255);
+}
+
+
+
+@media screen and (max-width: 768px) {
+
+    main {
+        position: absolute;
+    }
+
+    #topnav {
+        flex-wrap: wrap;
+        justify-content: space-around;
+        /* height: 20px; */
+    }
+    
+    /* #spacer {
+        height: 100px;
+    } */
+
+    .link {
+        font-size: large;
+    }
+
+    #title {
+        width: 100%;
+        font-size: x-large;
+        position: relative;
+    }
+
+    .memepage_meme {
+        height: 100%;
+        width: 90vw;
+    }
+
+    .memepage_meme img {
+        width: 100%;
+    }
+
+    #meme {
+        margin-top: 7.5em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        color: var(--white);
+        max-width: 100vw;
+    }
+
+    .welcome {
+        justify-content: center;
+        text-align: center;
+        margin: auto;
+        display: flex;
+        margin-top: 143px;
+    }
+
+
+    #user_title {
+        font-size: large;
+    }
+
+    .user_subtitle {
+        margin: 8vw 0vw 0;
+    font-size: 20px;
+    text-align: center;
+    }
+    
+    #user_logout a {
+        font-size: large;
+    }
+
+}
+
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+
+    #choose_meme {
+        width: 60vw;
+        height: 30vh;
+        cursor: pointer;
+        display: flex;
+        /* margin: auto; */
+        align-items: center;
+        /* justify-content: space-around; */
+        max-height: 30vh;
+        max-width: 30vh;
+        border: 5px dashed gray;
+        /* border-radius: 15px; */
+    }
+    #meme_upload_container {
+        max-height: 50vh;
+        max-width: 60vw;
+        display: flex;
+        margin: auto;
+        align-items: center;
+        justify-content: space-around;
+    }
+    
+    #meme_img img {
+        box-shadow: black 0 0 20px;
+        border-radius: 15px;
+        height: 30vh;
+        width: 20vh;
+    }
+
+    #home {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        color: var(--white);
+        margin-top: 11vw;
+    }
+    
+    #upload input {
+        margin: 10px;
+        width: 150px;
+    }
+
+    .card {
+        position: relative;
+        margin: 1.4vw;
+        box-shadow: rgb(216, 203, 203) 0 0 5px;
+        border-radius: 15px;
+        text-align: center;
+        padding-bottom: 12px;
+        max-width: 90vw;
+        margin-top: 30px;
+    }
+    
+}    
+      
+
+.welcome {
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    display: flex;
+    margin-top: 126px;
+}
+
+#login-form1, #login-form2, #login-form3, .create-check, .login-btn, .create-form {
+    justify-content: center;
+    text-align: center;
+    margin: 30px;
+   display: flex;
+   /* margin: auto; */
+}
+
+.login-btn, strong {
+    margin: auto;
+    color: goldenrod;
+    width: 100px;
+}
+
+.login-btn:hover {
+    transition: all .5s;
+    transform: rotate(-1deg) scale(1.1);
+    box-shadow: 0px 3px 5px rgba(0,0,0,.4);
+}
+.login-btn:hover span{
+    animation-play-state: paused;
+}
+
+.logo-card {
+        position: relative;
+        margin: auto;
+        /* box-shadow: rgb(216, 203, 203) 0 0 5px; */
+        border-radius: 15px;
+        text-align: center;
+        padding-bottom: 12px;
+        /* max-width: 60vw; */
+}
+
+#signup-username, #signup-email, #password1, #password2 {
+    margin: 7px;
+}
+
+#yeet {
+    color: goldenrod;
+    margin-top: 10px;
+}
+
 
