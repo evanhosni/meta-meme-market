@@ -97,7 +97,7 @@ main {
     text-decoration: none;
 }
 
-#topnav_user_link {
+#topnav_link {
     display: flex;
     align-items: center;
 }
@@ -171,7 +171,7 @@ main {
     display: inline-block;
 } */
 #buyMe{
-    width:200px;
+    width:150px;
     height:70px;
     background: linear-gradient(to left top, #0adc3b 25%, #07481d 75%);
     border-style: none;
@@ -292,7 +292,7 @@ main {
     display: inline-block
 } */
 #sellme{
-    width:200px;
+    width:150px;
     height:70px;
     background: linear-gradient(to left top, #fc0905 25%, #920a07 75%);
     border-style: none;
@@ -411,9 +411,10 @@ main {
 }
 
 #user_title {
-    font-size: 200%;
+    font-size: 3vh;
     text-align: center;
-    margin: 1vw;
+    /* position: fixed; */
+    /* margin: 1vw; */
 }
 
 #user_title span {
@@ -423,6 +424,9 @@ main {
 
 .user_subtitle {
     margin: 2vw 5vw 0;
+    font-size: 20px;
+    text-align: center;
+    /* position: fixed; */
     /* opacity: 0.8; */
 }
 
@@ -560,58 +564,26 @@ main {
     border-collapse: collapse;
     width: 40%;
     margin-top: 15px;
-  }
+}
   
-  #prices td, #prices th {
+#prices td, #prices th {
     border: 1px solid #ddd;
     padding: 8px;
-  }
+}
   
-  #prices tr:nth-child(even){background-color: #f2f2f2;}
+#prices tr:nth-child(even){background-color: #f2f2f2;}
   
-  #prices tr:hover {background-color: #ddd;}
+#prices tr:hover {background-color: #ddd;
+}
   
-  #prices th {
+#prices th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
     background-color: #111111;
     color: white;
-  }
+}
+  
 
-  #buyModal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1000; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: white; /* Fallback color */
-    background-color: white; /* Black w/ opacity */
-  }
-  
-  /* Modal Content/Box */
-  #buyModal {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-  }
-  
-  /* The Close Button */
-  .closeBuy {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .closeBuy:hover,
-  .closeBuy:focus {
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-  }
+
+

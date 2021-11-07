@@ -37,27 +37,17 @@
     <span></span>
   </button>
 
-
-  <button id ="buyMe">
+  <button onClick="toggleTable()" id ="buyMe">
     BUY 
     <span></span>
     <span></span>
     <span></span>
     <span></span>
   </button>
-</div>
-
-<div id="buyModal" class="buymodal">
-  <div class="modal-buy">
-    <span class="closeBuy">close</span>
-    <p>hello</p>
-  </div>
-</div>
-
-  <table id="prices">
+  <table id="prices" style="width:100%">
     <tr>
-      <th>Bid</th>
       <th>Ask</th>
+      <th>Quantity</th>
     </tr>
     <tr>
       <th>${{bought_price}}</th>
