@@ -19,13 +19,13 @@ async function sellShare(e) {
         // console.log(await res.json());
         const { numShares, stake, listedShares, soldSuccess, memeData } = await res.json();
         console.log(numShares, stake, listedShares, soldSuccess);
-        // const seller = document.getElementById('sold-shares');
-        // if (soldSuccess) {
-        //     updateTable(memeData.shares);
-        //     seller.textContent = `Listed ${1} shares!`;
-        // } else {
-        //     seller.textContent = 'No shares to sell.';
-        // }
+        const seller = document.getElementById('sold-shares');
+        if (soldSuccess) {
+            updateTable(memeData.shares);
+            seller.textContent = `Listed ${1} shares!`;
+        } else {
+            seller.textContent = 'No shares to sell.';
+        }
     });
     // const data = await sellInfo.json();
     // console.log(data);
