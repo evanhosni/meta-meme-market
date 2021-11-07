@@ -28,13 +28,14 @@ button {
 body {
     color: var(--white);
     background: var(--black);
+    background-image: linear-gradient(to bottom left, #171717, #111111);
     /* background-image: linear-gradient(to right, var(--black), rgb(10, 10, 10)); */
 }
 
 .card {
     position: relative;
     margin: 1.4vw;
-    box-shadow: rgb(216, 203, 203) 0 0 5px;
+    box-shadow: rgb(230, 221, 221) 0 0 5px;
     border-radius: 15px;
     text-align: center;
     padding-bottom: 12px;
@@ -56,7 +57,7 @@ body {
 }
 
 .card:hover {
-    box-shadow: var(--white) 0 0 20px;
+    box-shadow: var(--white) 0 0 10px;
     transform: scale(1.025);
     transition: transform .2s;
 }
@@ -81,6 +82,7 @@ main {
     position: fixed;
     width: 100%;
     z-index: 3;
+    
 }
 
 #topnav {
@@ -95,6 +97,7 @@ main {
     box-shadow: black 0 0 20px;
     font-size: 1.5vw;
     text-decoration: none;
+    background-image: linear-gradient(to bottom right, rgb(26, 26, 25), rgb(16, 16, 15));
 }
 
 #topnav_link {
@@ -103,8 +106,8 @@ main {
 }
 
 #spacer {
-    height: 8vw;
-    min-height: 80px;
+    height: 6vw;
+    /* min-height: 80px; */
 }
 
 .create-message,
@@ -392,7 +395,7 @@ main {
 }
 
 #user_title {
-    font-size: 3vh;
+    font-size: 6vh;
     text-align: center;
     /* position: fixed; */
     /* margin: 1vw; */
@@ -404,7 +407,7 @@ main {
 }
 
 .user_subtitle {
-    margin: 2vw 5vw 0;
+    margin: 2vw 0vw 0;
     font-size: 20px;
     text-align: center;
     /* position: fixed; */
@@ -597,7 +600,7 @@ p {
 }
 
 #sold-shares, #ownership {
-    background-image: linear-gradient(to right, rgb(255, 0, 13), rgb(255, 0, 13), rgb(106, 255, 0), rgb(106, 255, 0));
+    background-image: linear-gradient(to right, rgb(255, 0, 13), rgb(255, 0, 13), #51ff0d, #51ff0d);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-align: center;
@@ -643,12 +646,13 @@ p {
 
 
     #user_title {
-        font-size: medium;
+        font-size: large;
     }
 
     .user_subtitle {
-        font-size: medium;
-        text-align: center;
+        margin: 8vw 0vw 0;
+    font-size: 20px;
+    text-align: center;
     }
     
     #user_logout a {
@@ -754,3 +758,5 @@ p {
 #signup-username, #signup-email, #password1, #password2 {
     margin: 7px;
 }
+
+
