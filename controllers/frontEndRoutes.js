@@ -7,7 +7,7 @@ const { getListedMeme } = require('../market/getModels');
 //Homepage shows all memes sorted descending by created most recently
 router.get("/", async (req, res) => {
     let balance;
-    if (req.session.user){
+    if (req.session.user) {
         balance = (await User.findByPk(req.session.user.id)).balance;
     }
     Meme.findAll({
@@ -53,12 +53,11 @@ router.get("/", async (req, res) => {
     })
 })
 
-router.get("/meme", async (req, res) => {//TODO change id to title so it's "/meme/:title"
-    // res.render("meme")
+router.get("/meme", async (req, res) => {
     let user;
     let balance;
     try {
-        if (req.session.user){
+        if (req.session.user) {
             try {
                 user = await User.findByPk(req.session.user.id, {
                     include: {
@@ -75,36 +74,20 @@ router.get("/meme", async (req, res) => {//TODO change id to title so it's "/mem
                 return res.status(500).json(err);
             }
         }
-
-        // Meme.findOne({
-        //     where: {
-        //         id: req.query.id
-        //     },
-        //     // attributes: ['img', 'title', 'share_price', 'number_shares', 'user_id'],
-        //     include: [{
-        //         model: User,
-        //         attributes: ['username']
-        //     }, {
-        //         model: Share,
-        //         where: { [Op.not]: { listed_at: null } },
-        //         attributes: ['id', 'is_initial', 'listed_at', 'bought_price', 'meme_id'],
-        //         required: false
-        //     }]
         const memeData = await getListedMeme(req.query.id);
         if (!memeData) return res.status(404).send('No meme with this id found!');
         let numShares = 'no';
         let stake = null;
         if (user) {
             numShares = user.shares.length;
-            // console.log(user.shares.length, memeData.number_shares);
             stake = (Math.round((user.shares.length / memeData.number_shares) * 100));
         }
         const hbsMeme = memeData.get({ plain: true })
         res.render("meme", {
             ...hbsMeme, loggedIn: req.session.loggedIn, currentUser: req.session.user,
-            meme: hbsMeme, balance, numShares, stake
+            meme: hbsMeme, balance, numShares, stake, username: user.username
         });
-    } catch(err) {
+    } catch (err) {
         console.log(err)
         res.status(500).json(err)
     }
@@ -112,7 +95,7 @@ router.get("/meme", async (req, res) => {//TODO change id to title so it's "/mem
 
 router.get("/user/:username", async (req, res) => {
     let balance;
-    if (req.session.user){
+    if (req.session.user) {
         balance = (await User.findByPk(req.session.user.id)).balance;
     }
     User.findOne({
@@ -122,7 +105,7 @@ router.get("/user/:username", async (req, res) => {
         attributes: ['username'],
         include: [{
             model: Meme,
-            attributes: ['id','img','share_price','number_shares','user_id'],
+            attributes: ['id', 'img', 'share_price', 'number_shares', 'user_id'],
             include: {
                 model: Share,
                 where: {
@@ -148,8 +131,6 @@ router.get("/user/:username", async (req, res) => {
                 meme.value = null;
             }
         }
-        // console.log({...plainUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: false,
-        //     user: plainUser, balance})
         if(req.session.loggedIn && req.session.user.username == req.params.username) {
             res.render("user", {
                 ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: true,
@@ -177,7 +158,7 @@ router.get("/signup", (req, res) => {
 //Renders login page unless already logged in
 router.get("/login", (req, res) => {
     if (!req.session.user) {
-        
+
         res.render("login")
     } else {
         console.log('HELP!');
@@ -188,7 +169,7 @@ router.get("/login", (req, res) => {
 
 router.get("/upload", async (req, res) => {
     let balance;
-    if (req.session.user){
+    if (req.session.user) {
         balance = (await User.findByPk(req.session.user.id)).balance;
     }
     if (!req.session.user) {
@@ -200,7 +181,7 @@ router.get("/upload", async (req, res) => {
 
 router.get('/buy', async (req, res) => {
     let balance;
-    if (req.session.user){
+    if (req.session.user) {
         balance = (await User.findByPk(req.session.user.id)).balance;
     }
     if (!req.session.user) {
@@ -212,7 +193,7 @@ router.get('/buy', async (req, res) => {
 
 router.get('/sell', async (req, res) => {
     let balance;
-    if (req.session.user){
+    if (req.session.user) {
         balance = (await User.findByPk(req.session.user.id)).balance;
     }
     if (!req.session.user) {
