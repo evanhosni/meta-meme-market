@@ -445,7 +445,7 @@ main {
 }
 
 #user_logout {
-    border-top: solid rgb(0, 0, 0, 0.35) 3px;
+    /* border-top: solid rgb(0, 0, 0, 0.35) 3px; */
     margin-top: 3vw;
     text-align: center;
     padding: 4vw
