@@ -20,6 +20,11 @@ async function getListedMeme(id) {
             model: User,
             attributes: ['username']
         }],
+        order: [
+            [{ model: Share }, 'bought_price', 'ASC'],
+            // [ 'bought_price', 'ASC'],
+            [{ model: Share }, 'listed_at', 'ASC']
+        ],
         group: ['bought_price']
     });
 
