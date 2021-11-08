@@ -3,6 +3,23 @@ const router = express.Router();
 const { User, Meme, Comment } = require('../../models');
 const bcrypt = require("bcrypt");
 
+router.get('/add/:num', (req, res) => {
+    if (!req.session.user) {
+        return res.status(401).send("You must be logged in!");
+    }
+    User.findOne({
+        where: { id: req.session.user.id },
+        // attributes: ['balance']
+    }).then(async (user) => {
+        user.balance += req.params.num;
+        await user.save();
+        res.status(200).json({ balance: user.balance });
+    }).catch(err => {
+        console.error(err);
+        res.status(500).json(err);
+    });
+});
+
 router.get('/balance', (req, res) => {
     if (!req.session.user) {
         return res.status(401).send("You must be logged in to see your balance!");

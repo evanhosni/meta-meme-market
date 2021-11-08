@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Meme, User, Share } = require('../models');
 const { Op } = require('sequelize');
-const { getListedMeme } = require('../market/getModels');
+const { getListedMeme, getInvestedMemes } = require('../market/getModels');
 
 //Homepage shows all memes sorted descending by created most recently
 router.get("/", async (req, res) => {
@@ -75,12 +75,13 @@ router.get("/meme", async (req, res) => {
             }
         }
         const memeData = await getListedMeme(req.query.id);
+        // const userData = await getUserShares(req.session.user.id, req.query.id);
         if (!memeData) return res.status(404).send('No meme with this id found!');
         let numShares = 'no';
         let stake = null;
         if (user) {
             numShares = user.shares.length;
-            stake = (Math.round((user.shares.length / memeData.number_shares) * 100));
+            stake = (Math.round((numShares / memeData.number_shares) * 100));
         }
         const hbsMeme = memeData.get({ plain: true })
         console.log(hbsMeme)
@@ -103,7 +104,7 @@ router.get("/user/:username", async (req, res) => {
         where: {
             username: req.params.username
         },
-        attributes: ['username'],
+        attributes: ['id', 'username'],
         include: [{
             model: Meme,
             attributes: ['id', 'img', 'share_price', 'number_shares', 'user_id'],
@@ -123,9 +124,19 @@ router.get("/user/:username", async (req, res) => {
                 required: false
             }
         }]
-    }).then(userData => {
+    }).then(async (userData) => {
+        if (!userData) return res.status(404).redirect('/');
         const hbsUser = userData.get({ plain: true });
         for (meme of hbsUser.memes) {
+            if (meme.shares.length) {
+                meme.value = meme.shares[0].bought_price;
+            } else {
+                meme.value = null;
+            }
+        }
+        const investedMemes = await getInvestedMemes(userData.id);
+        // console.log(investedMemes);
+        for (meme of investedMemes) {
             if (meme.shares.length) {
                 meme.value = meme.shares[0].bought_price;
             } else {
@@ -135,12 +146,12 @@ router.get("/user/:username", async (req, res) => {
         if(req.session.loggedIn && req.session.user.username == req.params.username) {
             res.render("user", {
                 ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: true,
-                user: hbsUser, balance
+                user: hbsUser, balance, investedMemes
             })
         } else {
             res.render("user", {
                 ...hbsUser, loggedIn: req.session.loggedIn, currentUser: req.session.user, sameUser: false,
-                user: hbsUser, balance
+                user: hbsUser, balance, investedMemes
             })
         }
     }).catch(err => {
@@ -205,8 +216,9 @@ router.get('/sell', async (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-    req.session.destroy()
-    res.redirect('/')
+    req.session.destroy(()=>{
+        res.redirect('/')
+    })
 })
 
 router.get('*', (req, res) => {

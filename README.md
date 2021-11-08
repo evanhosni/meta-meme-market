@@ -1,6 +1,7 @@
 # MetaMemeMarket
 
 GitHub: https://github.com/evanhosni/meta-meme-market
+Heroku: https://meta-meme-market.herokuapp.com/
 
 ## Badges
 ![](https://img.shields.io/badge/License-MIT%20-blue.svg)
@@ -37,13 +38,13 @@ No special installation directions required.
 
 ## Credits
 
-1. [Evan Hosni](https://github.com/evanhosni)
+1. [Evan Hosni](https://github.com/evanhosni) - GitHub Admin
 
-2. [Jared Hector](https://github.com/jwhector)
+2. [Jared Hector](https://github.com/jwhector) - Back-end Lead
 
-3. [Ryan Allen](https://github.com/Rallen4)
+3. [Ryan Allen](https://github.com/Rallen4) - Front-end Lead
 
-4. [David Abbey](https://github.com/davidabbey102)
+4. [David Abbey](https://github.com/davidabbey102) - Project Manager
 
 ## Features
 
