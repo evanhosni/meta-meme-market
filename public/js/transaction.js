@@ -36,15 +36,18 @@ async function buyShares(e) {
             "Content-Type":"application/json"
         },
     }).then(async (res) => {
-        const { boughtCount, memeData, totalCost } = await res.json();
+        const { boughtCount, memeData, totalCost, numShares } = await res.json();
         console.log(`You bought ${boughtCount} shares!`);
         console.log(boughtCount, memeData);
         const balanceField = document.getElementById('balance');
         const seller = document.getElementById('sold-shares');
+        const numSharesField = document.getElementById('num-shares');
+        console.log(numShares);
         if (boughtCount) {
             let balance = Number.parseInt(balanceField.textContent) - totalCost;
             balanceField.textContent = balance;
             seller.textContent = `Bought ${1} shares!`;
+            numSharesField.textContent = `You own ${numShares} shares of this meme!`;
             updateTable(memeData.shares);
         } else {
             seller.textContent = 'You cannot buy these shares!';
