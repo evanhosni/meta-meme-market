@@ -30,7 +30,11 @@ No special installation directions required.
 
 ## Usage
 
-!!!!SCREEN SHOTS!!!!!
+![HomePage](./public/assets/homepage.png)
+![LoginPage](./public/assets/loginpage.png)
+![MemePage](./public/assets/memepage.png)
+![SignUpPage](./public/assets/signuppage.png)
+![UserPage](./public/assets/userpage.png)
 
 ## Credits
 
