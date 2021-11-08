@@ -3,8 +3,12 @@ const { Transaction } = require('../models')
 const transfer = (buyer, seller, amt) => {
     if (buyer.balance < amt) return false;
 
-    buyer.balance -= amt;
-    seller.balance += amt;
+    if (buyer.id !== seller.id) {
+        buyer.balance -= amt;
+        seller.balance += amt;
+    }
+
+    // console.log(buyer, seller);
 
     return true;
 }
@@ -37,7 +41,8 @@ const buyShares = async (buyer, meme, amt) => {
                 amount: price
             });
             buyCount++;
-            totalCost += price;
+            console.log(buyer.id, share.user.id);
+            if (buyer.id !== share.user.id) totalCost += price;
         }
     }
 
