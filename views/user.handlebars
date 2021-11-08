@@ -46,10 +46,10 @@
   <span style='color: goldenrod'>o</span>
 </p></h2>
     <div id="user_owned_memes">
-        {{#each memes}}
+        {{#each investedMemes}}
             {{log 'memes' this}}
             <div class="card">
-                <img class="meme" src={{img}}>
+                <img class="meme" src={{this.dataValues.img}}>
                 {{!-- <h4>Owner: {{user.currentUser.username}}</h4> --}}
                 {{#if this.value}}
                     <p><img src="/assets/metameme_coin.png" style="height: 12px; width: 12px; float: center;" alt="$"> {{this.value}}</p>
@@ -57,7 +57,7 @@
                     <p>sold out!</p>
                 {{/if}}
                 {{!-- <button>Buy</button> --}}
-                <a id="card_link" href="/meme?id={{id}}"></a>
+                <a id="card_link" href="/meme?id={{this.dataValues.id}}"></a>
             </div>
         {{/each}}
     </div>

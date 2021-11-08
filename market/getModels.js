@@ -20,6 +20,11 @@ async function getListedMeme(id) {
             model: User,
             attributes: ['username']
         }],
+        order: [
+            [{ model: Share }, 'bought_price', 'ASC'],
+            // [ 'bought_price', 'ASC'],
+            [{ model: Share }, 'listed_at', 'ASC']
+        ],
         group: ['bought_price']
     });
 
@@ -41,8 +46,46 @@ async function getUserShares(id, memeId) {
     return user;
 }
 
+async function getInvestedMemes(userId) {
+    let investedMemeIds = [];
+    const user = await User.findByPk(userId,
+        {
+            include: {
+                model: Share
+            }
+        });
+
+    for (share of user.shares) {
+        const memeId = share.meme_id;
+        if (!investedMemeIds.includes(memeId)) investedMemeIds.push(memeId);
+    }
+
+    const investedMemes = await Meme.findAll({
+        where: {
+            id: investedMemeIds
+        },
+        include: {
+            model: Share,
+            where: {
+                [Op.and]: {
+                    [Op.not]: { listed_at: null },
+                    // [Op.not]: { user_id: req.session.user.id }
+                }
+            },
+            order: [
+                ['bought_price', 'ASC'],
+                ['listed_at', 'ASC']
+            ],
+            limit: 1,
+            required: false
+        }
+    });
+
+    return investedMemes;
+}
+
 async function getStake(user, meme) {
     return (Math.round((user.shares.length / memeData.number_shares) * 100));
 }
 
-module.exports = { getListedMeme, getUserShares };
+module.exports = { getListedMeme, getUserShares, getInvestedMemes };

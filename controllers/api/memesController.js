@@ -14,26 +14,26 @@ router.get('/buy/:id', async (req, res) => {
     const amt = 1;
     try {
         const meme = await Meme.findOne({
-        where: {
-            id: req.params.id
-        },
-        include: {
-            model: Share,
             where: {
-                [Op.and]: {
-                    [Op.not]: { listed_at: null },
-                    // [Op.not]: { user_id: req.session.user.id }
-                }
+                id: req.params.id
             },
-            attributes: ['id', 'listed_at', 'bought_price', 'user_id', 'meme_id', [sequelize.fn('SUM', sequelize.col('bought_price')), 'total']],
-            group: 'bought_price',
-            order: [
-                ['bought_price', 'ASC'],
-                ['listed_at', 'ASC']
-            ],
-            include: [User],
-            limit: amt
-        }
+            include: {
+                model: Share,
+                where: {
+                    [Op.and]: {
+                        [Op.not]: { listed_at: null },
+                        // [Op.not]: { user_id: req.session.user.id }
+                    }
+                },
+                attributes: ['id', 'listed_at', 'bought_price', 'user_id', 'meme_id', [sequelize.fn('SUM', sequelize.col('bought_price')), 'total']],
+                group: 'bought_price',
+                order: [
+                    ['bought_price', 'ASC'],
+                    ['listed_at', 'ASC']
+                ],
+                include: [User],
+                limit: amt
+            }
         });
 
         if (!meme) return res.status(404).send('Meme not found!');
@@ -43,13 +43,21 @@ router.get('/buy/:id', async (req, res) => {
         const buyer = await User.findOne({
             where: {
                 id: req.session.user.id
+            },
+            include: {
+                model: Share,
+                where: {
+                    meme_id: req.params.id
+                },
+                required: false
             }});
 
         if (!buyer) return res.status(404).send('User not found!');
         
         const { buyCount, totalCost } = await buyShares(buyer, meme, amt);
         const memeData = await getListedMeme(req.params.id);
-        res.status(200).json({ boughtCount: buyCount, memeData: memeData.toJSON(), totalCost: totalCost });
+        const userData = await getUserShares(req.session.user.id, req.params.id);
+        res.status(200).json({ boughtCount: buyCount, memeData: memeData.toJSON(), totalCost: totalCost, numShares: userData.shares.length });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'an error occured', err: err })
