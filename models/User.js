@@ -71,7 +71,7 @@ User.init({
         validate: {
             isNumeric: true
         },
-        defaultValue: 10
+        defaultValue: 100
     }
 }, {
     hooks: {
